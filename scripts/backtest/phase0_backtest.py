@@ -10,8 +10,8 @@ import numpy as np
 import pandas as pd
 from typing import Dict, Tuple
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent))
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from src.utils.logger import setup_logger
 

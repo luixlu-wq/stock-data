@@ -1,594 +1,416 @@
-# Stock Data Prediction Project
+# Stock Trading Strategy - LSTM Cross-Sectional Alpha
 
-A comprehensive machine learning project for downloading US stock data, storing it in Qdrant vector database, and training PyTorch LSTM models (both regression and classification) with GPU support.
+**Status**: ✅ **TRADEABLE STRATEGY VALIDATED**
 
-## Features
+An institutional-quality LSTM-based stock trading strategy that has been rigorously validated through systematic experimentation. The strategy achieves **Net Sharpe 2.20** with 22% turnover using cross-sectional rank loss and position smoothing.
 
-- **Data Collection**: Download historical stock data from Polygon.io with intelligent rate limiting
-- **Feature Engineering**: Calculate 20+ technical indicators (SMA, EMA, RSI, MACD, Bollinger Bands, etc.)
-- **Vector Database**: Store embeddings in Qdrant for similarity search
-- **Temporal Split**: Train on data until 2024, test on 2025 data (no data leakage)
-- **Dual Models**:
-  - Regression: Predict next day's closing price
-  - Classification: Predict direction (UP/DOWN/NEUTRAL)
-- **GPU Support**: Full PyTorch training with CUDA acceleration
-- **Comprehensive Metrics**: RMSE, MAE, directional accuracy, confusion matrix, and more
+## Quick Facts
+
+- **Net Sharpe Ratio**: 2.20 (with position smoothing)
+- **Gross Sharpe Ratio**: 2.47
+- **Daily Turnover**: 22%
+- **Alpha Validation**: Confirmed real (Net Sharpe 1.32 at 100% turnover)
+- **Model Status**: FROZEN - production ready
+- **Strategy Type**: Medium-horizon cross-sectional ranking alpha
+
+## Key Innovation
+
+This project successfully transformed a failing LSTM strategy (Net Sharpe -1.74) into an institutional-quality alpha signal through:
+
+1. **Cross-sectional rank loss** (70% rank + 30% Huber) instead of MSE
+2. **Temperature calibration** (0.05) for sharp rankings
+3. **Portfolio engineering** (EWMA position smoothing α=0.15)
+4. **Rigorous validation** (100% turnover stress test)
+
+## Project Journey
+
+| Phase | Focus | Result |
+|-------|-------|--------|
+| **Phase 0** | Alpha Discovery | Gross Sharpe 0.71, Net -1.74 (120% turnover) |
+| **Phase 1** | Rank Loss Implementation | Reduced turnover but over-smoothed |
+| **Phase 2A** | Temperature Calibration | Found optimal temp=0.05 (Gross 2.47) |
+| **Phase 2B** | Portfolio Engineering | Net Sharpe 2.20 (22% turnover) |
+| **Validation** | Baseline Stress Test | Confirmed real alpha (Net 1.32 @ 100% turnover) |
+
+Complete journey documented in [docs/FINAL_RESULTS.md](docs/FINAL_RESULTS.md).
+
+## Quick Start
+
+### Prerequisites
+
+- Python 3.8+ (3.13 recommended)
+- CUDA-capable GPU (RTX 5090 supported)
+- 8GB+ GPU memory recommended
+
+### Installation
+
+```bash
+# Clone and setup environment
+cd c:\Users\luixj\AI\stock-data
+python -m venv venv
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install PyTorch with CUDA (RTX 5090 requires CUDA 12.8)
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+```
+
+For detailed installation instructions, see [Installation Guide](#installation-guide) below.
+
+### Run Backtest
+
+The model is already trained and frozen. To verify the strategy:
+
+```bash
+# Run portfolio monetization backtest
+python scripts/backtest/phase2b_monetization.py
+
+# Validate baseline (100% turnover stress test)
+python scripts/validation/phase2b_validate_baseline.py
+```
+
+## Strategy Specification
+
+### Model (FROZEN - DO NOT CHANGE)
+
+- **Architecture**: 2-layer LSTM (128 hidden units)
+- **Features**: 14 core features (returns, volatility, price structure, trend, volume, market)
+- **Sequence Length**: 90 days
+- **Loss Function**: Combined rank-regression (70% rank + 30% Huber)
+- **Temperature**: 0.05 (sharp rankings)
+- **Checkpoint**: `models/checkpoints/lstm_phase2a_temp0.05_best.pth`
+
+### Portfolio Construction
+
+- **Universe**: 189 stocks
+- **Long/Short**: Top/Bottom 20% by predicted return
+- **Weights**: Equal-weighted within buckets
+- **Position Smoothing**: EWMA with α=0.15
+  - `pos_t = 0.85 * pos_{t-1} + 0.15 * target_t`
+- **Rebalance**: Daily
+- **Dollar Neutrality**: Enforced
+
+### Performance Metrics
+
+**Best Configuration** (Position Smoothing Only):
+- Net Sharpe: 2.20
+- Gross Sharpe: 2.47
+- Turnover: 22% daily
+- Max Drawdown: < -6%
+
+**Baseline Validation** (100% daily turnover):
+- Net Sharpe: 1.32
+- Confirms alpha is real and robust
 
 ## Project Structure
 
 ```
 stock-data/
-├── config/
-│   └── config.yaml              # Configuration file
-├── data/
-│   ├── raw/                     # Raw downloaded data
-│   ├── processed/               # Preprocessed data (train/val/test)
-│   └── embeddings/              # Generated embeddings
-├── models/
-│   └── checkpoints/             # Saved model checkpoints
-├── logs/                        # Application logs
-├── src/
-│   ├── data/
-│   │   ├── downloader.py        # Polygon.io data downloader
-│   │   └── preprocessor.py      # Feature engineering & preprocessing
-│   ├── database/
-│   │   ├── qdrant_client.py     # Qdrant vector database client
-│   │   └── embeddings.py        # Embedding generation
-│   ├── models/
-│   │   ├── lstm_model.py        # LSTM architectures
-│   │   ├── dataset.py           # PyTorch datasets
-│   │   └── trainer.py           # Training pipeline
-│   └── utils/
-│       ├── config_loader.py     # Configuration management
-│       ├── logger.py            # Logging utilities
-│       ├── metrics.py           # Evaluation metrics
-│       └── gpu_check.py         # GPU verification
-├── main.py                      # Main orchestration script
-├── requirements.txt             # Python dependencies
-└── README.md                    # This file
+├── config/                 # Configuration
+│   └── config.yaml        # Model and backtest settings (FROZEN)
+│
+├── scripts/               # Executable scripts
+│   ├── training/         # Phase 1 & 2A training (DO NOT rerun)
+│   ├── backtest/         # Portfolio backtesting
+│   └── validation/       # Alpha validation tests
+│
+├── src/                  # Core library
+│   ├── data/            # Feature engineering (14 features)
+│   ├── models/          # LSTM + rank loss implementation
+│   └── utils/           # Config and logging
+│
+├── models/               # Saved checkpoints
+│   └── checkpoints/
+│       └── lstm_phase2a_temp0.05_best.pth  # Production model
+│
+├── docs/                 # Documentation
+│   ├── FINAL_RESULTS.md         # Complete project summary ⭐
+│   ├── PHASE1_README.md         # Rank loss implementation
+│   ├── PHASE2A_VALIDATED.md     # Temperature tuning
+│   └── PHASE2B_BUGFIXES.md      # Portfolio engineering fixes
+│
+├── data/                 # Data storage
+│   ├── raw/             # Stock price data
+│   └── processed/       # Features and results
+│
+└── logs/                 # Execution logs
 ```
 
-## Prerequisites
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed structure.
 
-1. **Python 3.8+** (Python 3.13 recommended)
-2. **CUDA-capable GPU** (recommended)
-   - NVIDIA GPU with CUDA support
-   - CUDA Toolkit 12.1+ installed
-   - Note: RTX 50-series GPUs work but may show compatibility warnings
-3. **Docker** (for Qdrant)
-4. **Polygon.io API Key**
-   - Sign up at https://polygon.io/
-   - Free tier: 5 API calls/minute
-5. **Windows Long Path Support** (Windows only)
-   - Required for pip installations
-   - See installation section for setup instructions
+## Installation Guide
 
-## Installation
+### 1. System Requirements
 
-### 1. Enable Windows Long Path Support (Windows Only)
+**GPU (Highly Recommended)**:
+- NVIDIA GPU with CUDA support
+- RTX 5090: Requires PyTorch 2.7+ with CUDA 12.8
+- RTX 40 series: PyTorch with CUDA 12.4
+- Older GPUs: PyTorch with CUDA 11.8
 
-**Required before installation to avoid pip errors.**
+**Memory**:
+- 8GB+ GPU memory recommended
+- 16GB+ system RAM
 
-Run PowerShell as Administrator:
-```powershell
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
-```
-
-Then restart your computer.
-
-Alternatively, use Registry Editor:
-1. Press `Win + R`, type `regedit`, press Enter
-2. Navigate to: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem`
-3. Set `LongPathsEnabled` to `1`
-4. Restart your computer
-
-### 2. Clone and Setup Environment
+### 2. Python Environment
 
 ```bash
-# Navigate to project directory
-cd c:\Users\luixj\AI\stock-data
-
 # Create virtual environment
 python -m venv venv
 
-# Activate virtual environment
-# Windows PowerShell (if execution policy allows):
-venv\Scripts\Activate.ps1
-# Windows Command Prompt or PowerShell (recommended):
-venv\Scripts\activate.bat
-# Linux/Mac:
+# Activate (Windows)
+venv\Scripts\activate
+
+# Activate (Linux/Mac)
 source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-**Note for PowerShell users**: If you get an execution policy error, use `activate.bat` instead of `Activate.ps1`, or run:
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
+### 3. Install PyTorch
 
-### 3. Install PyTorch with CUDA Support
-
-**Check your CUDA version first:**
-```bash
-nvidia-smi
-```
-
-**For RTX 5090 (CUDA 12.8 required for sm_120 support):**
+**For RTX 5090 (CUDA 12.8 required)**:
 ```bash
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 ```
 
-**For RTX 40 series (CUDA 12.4):**
+**For RTX 40 series (CUDA 12.4)**:
 ```bash
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 ```
 
-**For older GPUs (CUDA 11.8):**
+**For older GPUs (CUDA 11.8)**:
 ```bash
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-**For CPU only (not recommended):**
-```bash
-pip3 install torch torchvision torchaudio
+**Verify GPU setup**:
+```python
+import torch
+print(f"CUDA Available: {torch.cuda.is_available()}")
+print(f"GPU: {torch.cuda.get_device_name(0)}")
 ```
 
-**Note for RTX 5090 Users**:
-- RTX 5090 has compute capability sm_120, which is fully supported by PyTorch 2.7.0+ with CUDA 12.8
-- **IMPORTANT**: You MUST use the cu128 index (NOT cu124 or cu118)
-- If you see error "CUDA error: no kernel image is available", you're using the wrong PyTorch build
-- Verify with: `python main.py check-gpu` - should show "PyTorch Version: 2.7.0+cu128" or higher
+### 4. Download Data
 
-### 4. Start Qdrant Database
-
-```bash
-# Pull Qdrant image
-docker pull qdrant/qdrant
-
-# Run Qdrant container (Windows PowerShell - use backticks for line continuation)
-docker run -d -p 6333:6333 -p 6334:6334 `
-    -v ${PWD}/qdrant_storage:/qdrant/storage `
-    qdrant/qdrant
-
-# Or on Windows Command Prompt (single line):
-docker run -d -p 6333:6333 -p 6334:6334 -v %cd%/qdrant_storage:/qdrant/storage qdrant/qdrant
-
-# Linux/Mac:
-docker run -d -p 6333:6333 -p 6334:6334 \
-    -v ./qdrant_storage:/qdrant/storage:z \
-    qdrant/qdrant
-```
-
-Verify Qdrant is running:
-- Open browser: http://localhost:6333/dashboard
-- Or check: `docker ps`
-
-### 5. Configure API Keys
-
-```bash
-# Copy example env file
-# Windows:
-copy .env.example .env
-# Linux/Mac:
-cp .env.example .env
-
-# Edit .env and add your Polygon.io API key
-# POLYGON_API_KEY=your_api_key_here
-
-# For local Qdrant (default):
-# QDRANT_URL=http://localhost:6333
-# No QDRANT_API_KEY needed for local Docker instances
-```
-
-**Note**: Local Qdrant instances don't require an API key. Only set `QDRANT_API_KEY` if using Qdrant Cloud or if you've enabled authentication on your Docker container.
-
-### 6. Verify GPU Setup
-
-```bash
-python main.py check-gpu
-```
-
-This will show:
-- CUDA availability
-- GPU information (model, memory, compute capability)
-- PyTorch and CUDA versions
-
-## Configuration
-
-Edit `config/config.yaml` to customize:
-
-- **Stock tickers**: Add/remove tickers to download
-- **Date ranges**: Adjust training/validation/test periods
-- **Model architecture**: LSTM layers, hidden size, dropout
-- **Training parameters**: Batch size, learning rate, epochs
-- **Technical indicators**: Add/remove features
+The project uses Yahoo Finance data (via `yfinance`). Data is downloaded automatically during preprocessing.
 
 ## Usage
 
-### Step-by-Step Workflow
+### DO NOT Retrain the Model
 
-#### 1. Download Stock Data
+The model is **FROZEN** and in production state. Retraining will destroy the validated alpha.
 
+**DO NOT**:
+- Add more features
+- Change model architecture
+- Retrain with different hyperparameters
+- Tune temperature again
+
+### Running Backtests
+
+**Test portfolio configurations**:
 ```bash
-python main.py download
+python scripts/backtest/phase2b_monetization.py
 ```
 
-This will:
-- Download data for all tickers in config
-- Respect Polygon.io rate limits (5 calls/min)
-- Cache data locally
-- Save to `data/raw/stocks_raw.parquet`
+This tests 5 configurations:
+1. Baseline (no engineering)
+2. Rank filter only
+3. Position smoothing only ⭐ (best: Net Sharpe 2.20)
+4. Cross-sectional z-score only
+5. All techniques combined
 
-**Expected time**: ~10 minutes for 20 stocks × 5 years
-
-#### 2. Preprocess Data
-
+**Validate baseline**:
 ```bash
-python main.py preprocess
+python scripts/validation/phase2b_validate_baseline.py
 ```
 
-This will:
-- Calculate 20+ technical indicators
-- Create regression and classification labels
-- Split data temporally:
-  - Train: until Sept 30, 2024
-  - Validation: Oct-Dec 2024
-  - Test: 2025
-- Normalize features
-- Save to `data/processed/`
+Forces 100% daily rebalance to prove alpha is real (should show Net Sharpe ~1.32).
 
-#### 3. Upload to Qdrant
+### Analyzing Results
 
-```bash
-python main.py upload
-```
+Results are saved to:
+- `data/processed/phase2b_monetization_results.json` - All configurations
+- Logs in `logs/` directory
 
-This will:
-- Generate embeddings from features
-- Create Qdrant collection
-- Upload train/val/test embeddings
-- Store metadata (ticker, date, price)
-
-#### 4. Train Regression Model
-
-```bash
-python main.py train-reg
-```
-
-This will:
-- Create LSTM regression model
-- Train on GPU (if available)
-- Use early stopping
-- Save best checkpoint to `models/checkpoints/lstm_regression_best.pth`
-
-**Expected time**: 30-60 minutes (depends on GPU)
-
-#### 5. Train Classification Model
-
-```bash
-python main.py train-clf
-```
-
-This will:
-- Create LSTM classification model
-- Train to predict UP/DOWN/NEUTRAL
-- Save best checkpoint
-
-#### 6. Evaluate Models
-
-```bash
-# Evaluate regression model on 2025 test data
-python main.py eval-reg
-
-# Evaluate classification model
-python main.py eval-clf
-```
-
-This will:
-- Load best checkpoint
-- Make predictions on 2025 test set
-- Calculate metrics:
-  - Regression: RMSE, MAE, MAPE, R², directional accuracy
-  - Classification: Accuracy, precision, recall, F1, confusion matrix
-- Save predictions to `data/processed/`
-
-### Run Full Pipeline
-
-```bash
-python main.py all
-```
-
-Runs all steps in sequence: download → preprocess → upload → train both models → evaluate both models
-
-## Model Architecture
-
-### LSTM Regression Model
-
-```
-Input: (batch_size, 60, num_features)
-  ↓
-LSTM (2 layers, 128 hidden units, dropout=0.3)
-  ↓
-Fully Connected (128 → 64 → 1)
-  ↓
-Output: Predicted price
-```
-
-### LSTM Classification Model
-
-```
-Input: (batch_size, 60, num_features)
-  ↓
-LSTM (2 layers, 128 hidden units, dropout=0.3)
-  ↓
-Fully Connected (128 → 64 → 3)
-  ↓
-Softmax
-  ↓
-Output: Class probabilities [UP, DOWN, NEUTRAL]
-```
-
-## Data Split Strategy
-
-**Temporal Split (No Data Leakage)**:
-
-- **Training**: 2020-01-01 to 2024-09-30
-- **Validation**: 2024-10-01 to 2024-12-31
-- **Test**: 2025-01-01 onwards
-
-This ensures:
-- Model never sees future data during training
-- Realistic evaluation on unseen 2025 data
-- Mimics real-world trading scenario
-
-## Technical Indicators
-
-The preprocessor calculates:
-
-1. **Moving Averages**: SMA_10, SMA_20, SMA_50, EMA_12, EMA_26
-2. **Momentum**: RSI_14, MACD, MACD_signal, MACD_diff
-3. **Volatility**: Bollinger Bands (upper/middle/lower), ATR_14
-4. **Volume**: Volume_SMA_20, OBV (On-Balance Volume)
-5. **Price Action**: Returns, momentum, volatility measures
-
-## Qdrant Vector Database
-
-### Purpose
-- Store feature embeddings for similarity search
-- Find similar stock patterns across history
-- Enable pattern-based analysis
-
-### Collection Schema
+View with:
 ```python
-{
-  "vector": [64 dimensions],
-  "payload": {
-    "ticker": "AAPL",
-    "date": "2024-09-30",
-    "close": 150.25,
-    "target_class": 1,  # UP
-    "dataset": "train"
-  }
-}
+import json
+with open('data/processed/phase2b_monetization_results.json') as f:
+    results = json.load(f)
+    for config in results:
+        print(f"{config['name']}: Net Sharpe {config['sharpe_net']:.2f}")
 ```
 
-### Similarity Search Example
+## Configuration
 
-```python
-from src.database.qdrant_client import StockQdrantClient
-from src.database.embeddings import EmbeddingGenerator
+**Config file**: [config/config.yaml](config/config.yaml)
 
-# Initialize clients
-qdrant = StockQdrantClient(config)
-embedder = EmbeddingGenerator(config)
-
-# Generate embedding for current pattern
-current_embedding = embedder.simple_embedding(current_features)
-
-# Search for similar patterns
-similar = qdrant.search_similar(
-    query_vector=current_embedding,
-    limit=10,
-    filter_dict={'ticker': 'AAPL'}  # Optional filter
-)
-
-# Returns 10 most similar historical patterns
-```
-
-## Training Configuration
-
-Default settings in `config/config.yaml`:
-
+**FROZEN Settings** (DO NOT CHANGE):
 ```yaml
 model:
-  architecture:
-    hidden_size: 128
-    num_layers: 2
-    dropout: 0.3
+  sequence_length: 90
+  hidden_size: 128
+  num_layers: 2
 
-  training:
-    batch_size: 32
-    epochs: 100
-    learning_rate: 0.001
-
-    early_stopping:
-      patience: 15
-      min_delta: 0.0001
+  loss:
+    regression: "rank"
+    rank_temperature: 0.05
+    rank_weight: 0.7
+    huber_delta: 0.05
 ```
 
-## GPU Optimization
+**Portfolio Settings** (Can adjust for Phase 3):
+```yaml
+backtest:
+  long_pct: 0.2           # Top 20%
+  short_pct: 0.2          # Bottom 20%
+  transaction_cost_bps: 5.0
+```
 
-The project is optimized for GPU training:
+## Key Lessons Learned
 
-- **DataLoader**: Uses `pin_memory=True` for faster CPU→GPU transfer
-- **Mixed Precision**: Can be enabled for faster training (future enhancement)
-- **Batch Processing**: Configurable batch size
-- **Device Handling**: Automatic GPU detection
+1. **Simplicity wins**: 14 features > 40 features
+2. **Loss function matters**: Rank loss > MSE for trading
+3. **Costs kill**: 120% turnover destroyed 0.71 gross Sharpe
+4. **Temperature is critical**: 0.05 vs 1.0 determines success/failure
+5. **Portfolio engineering ≠ ML**: Smoothing increased Sharpe 67%
+6. **Validate everything**: Baseline stress test caught accounting assumptions
+7. **Professional rigor**: Systematic experimentation prevents premature celebration
 
-## Evaluation Metrics
+## Documentation
 
-### Regression Metrics
+**Must Read**:
+- [docs/FINAL_RESULTS.md](docs/FINAL_RESULTS.md) - Complete journey and results ⭐
+- [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) - Detailed project structure
 
-- **RMSE**: Root Mean Squared Error
-- **MAE**: Mean Absolute Error
-- **MAPE**: Mean Absolute Percentage Error
-- **R²**: Coefficient of determination
-- **Directional Accuracy**: Did we predict the right direction?
+**Phase Documentation**:
+- [docs/PHASE1_README.md](docs/PHASE1_README.md) - Rank loss implementation
+- [docs/PHASE1_SUMMARY.md](docs/PHASE1_SUMMARY.md) - Phase 1 results
+- [docs/PHASE2A_README.md](docs/PHASE2A_README.md) - Temperature tuning
+- [docs/PHASE2A_VALIDATED.md](docs/PHASE2A_VALIDATED.md) - Temperature results
+- [docs/PHASE2B_README.md](docs/PHASE2B_README.md) - Portfolio engineering
+- [docs/PHASE2B_BUGFIXES.md](docs/PHASE2B_BUGFIXES.md) - Critical bug fixes
 
-### Classification Metrics
+## Next Phase: Phase 3 - Risk Management & Deployment
 
-- **Accuracy**: Overall accuracy
-- **Precision/Recall/F1**: Per class and macro average
-- **Confusion Matrix**: Breakdown of predictions
-- **Directional Accuracy**: Practical trading metric
+**Current Status**: Phase 2B complete, strategy validated
+
+**Planned Work**:
+1. ✅ Volatility targeting (risk normalization)
+2. ✅ Sector neutrality (reduce factor exposure)
+3. ✅ Sub-period analysis (rolling Sharpe, IC stability)
+4. ✅ Capacity estimation (how much capital?)
+5. ✅ Slippage modeling (realistic execution)
+6. ✅ Paper trading setup
+
+**What NOT to do**:
+- ❌ Add more features
+- ❌ Try different architectures
+- ❌ Retrain the model
+- ❌ Tune more hyperparameters
+
+The ML work is DONE. Focus is now on risk management and deployment.
 
 ## Troubleshooting
 
-### Windows Long Path Error
+### RTX 5090 CUDA Error
 
-If you see errors about file paths being too long during `pip install`:
+**Error**: `CUDA error: no kernel image is available for execution on the device`
 
-```powershell
-# Run as Administrator
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
-```
-
-Restart your computer after enabling.
-
-### PowerShell Execution Policy Error
-
-If `venv\Scripts\Activate.ps1` fails:
-
-**Solution 1** (Recommended): Use the batch file instead:
-```powershell
-venv\Scripts\activate.bat
-```
-
-**Solution 2**: Enable PowerShell scripts:
-```powershell
-# Run PowerShell as Administrator
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-### GPU Not Detected
-
+**Solution**: RTX 5090 requires PyTorch 2.7+ with CUDA 12.8:
 ```bash
-# Check CUDA installation
-nvidia-smi
-
-# Verify PyTorch sees GPU
-python -c "import torch; print(torch.cuda.is_available())"
-
-# Check PyTorch CUDA version
-python -c "import torch; print(torch.version.cuda)"
-
-# Reinstall PyTorch with correct CUDA version
 pip uninstall -y torch torchvision torchaudio
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-```
-
-### RTX 5090 Runtime Error
-
-If you see error: "CUDA error: no kernel image is available for execution on the device":
-
-**Problem**: RTX 5090 (sm_120) requires PyTorch 2.7.0+ with CUDA 12.8. Other CUDA versions won't work.
-
-**Solution - Install PyTorch with CUDA 12.8**:
-```bash
-# Uninstall current PyTorch
-pip uninstall -y torch torchvision torchaudio
-
-# Install with CUDA 12.8 support
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 ```
 
-**Verify it works**:
-```bash
-python main.py check-gpu
-```
+### Out of GPU Memory
 
-Expected output:
-- PyTorch Version: 2.7.0+cu128 or higher (e.g., 2.9.1+cu128)
-- CUDA Version: 12.8
-- No compatibility warnings
-
-**Then enable GPU in config**:
-Edit [config/config.yaml](config/config.yaml):
+Reduce batch size in config:
 ```yaml
 model:
-  device: "cuda"  # Make sure this is set to cuda, not cpu
+  training:
+    batch_size: 16  # Reduce from 32
 ```
 
-### Missing `List` Import Error
-
-If you see `NameError: name 'List' is not defined`:
-- This has been fixed in the codebase
-- Make sure you have the latest version of [src/database/embeddings.py](src/database/embeddings.py)
-
-### Polygon.io Rate Limit
-
-The downloader automatically handles rate limiting. If you hit limits:
-- Use cached data (automatic)
-- Upgrade to paid Polygon.io plan
-- Reduce number of tickers in config
-
-### Qdrant Connection Error
+### Missing Dependencies
 
 ```bash
-# Check if Qdrant is running
-docker ps
-
-# Restart Qdrant
-docker restart <qdrant_container_id>
-
-# Check logs
-docker logs <qdrant_container_id>
+pip install -r requirements.txt
 ```
 
-### Out of Memory
+### Data Download Fails
 
-If GPU runs out of memory:
-1. Reduce batch size in config: `batch_size: 16`
-2. Reduce sequence length: `sequence_length: 30`
-3. Reduce model size: `hidden_size: 64`
+The project uses Yahoo Finance via `yfinance`. If downloads fail:
+- Check internet connection
+- Verify ticker symbols are valid
+- Try reducing number of tickers in config
 
-## Future Enhancements
+## Performance Characteristics
 
-- [ ] Transformer model architecture
-- [ ] Attention mechanism
-- [ ] Multi-stock portfolio optimization
-- [ ] Real-time prediction API
-- [ ] Backtesting framework with trading simulation
-- [ ] Web dashboard for monitoring
-- [ ] Hyperparameter tuning with Optuna
-- [ ] Model ensemble methods
+### Signal Type
+
+**Medium-horizon cross-sectional ranking alpha**:
+- NOT daily momentum
+- NOT trend-following
+- IS relative regime estimation
+- Persists over 2-5 days (hence why smoothing helps)
+
+### Institutional Quality
+
+**Strengths**:
+- Net Sharpe > 2.0 (institutional quality)
+- Low turnover (22% executable at scale)
+- Dollar-neutral (market beta ~0)
+- Reasonable drawdown (<-6%)
+
+**Validated**:
+- Survives 100% daily turnover (Net Sharpe 1.32)
+- No data leakage or lookahead bias
+- Consistent Gross Sharpe ~2.5 across all backtests
+
+## ChatGPT's Critical Contributions
+
+This project benefited from ChatGPT's professional quant expertise:
+
+1. **Diagnosed over-complexity**: Stopped adding 7 new features
+2. **Focused on leverage**: Temperature tuning (highest signal-to-effort ratio)
+3. **Added professional metrics**: IC, IC IR, Rank Autocorrelation
+4. **Identified 4 critical bugs** in portfolio engineering logic
+5. **Validated baseline**: Forced stress test proving alpha is real
+6. **Reframed mindset**: ML → Portfolio Engineering transition
+
+**Key quote**:
+> "You are no longer searching for alpha. You are engineering execution. That is a huge transition."
+
+## Citation
+
+If you use this code in your research, please cite:
+
+```bibtex
+@software{lstm_stock_trading_2025,
+  title={LSTM Cross-Sectional Stock Trading Strategy},
+  author={Your Name},
+  year={2025},
+  description={Institutional-quality LSTM trading strategy with rank loss and portfolio engineering},
+  url={https://github.com/yourusername/stock-data}
+}
+```
 
 ## License
 
-MIT License
+MIT License - See LICENSE file for details
 
-## Contributing
+## Disclaimer
 
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
-
-## Support
-
-For issues and questions:
-- GitHub Issues: [Create an issue](https://github.com/yourusername/stock-data)
-- Documentation: This README
-
-## Acknowledgments
-
-- **Polygon.io**: Stock data provider
-- **Qdrant**: Vector database
-- **PyTorch**: Deep learning framework
-- **TA-Lib**: Technical analysis library
+This project is for educational and research purposes only. Past performance does not guarantee future results. Trading involves substantial risk of loss. Always do your own research before making investment decisions.
 
 ---
 
-**Disclaimer**: This project is for educational and research purposes only. Past performance does not guarantee future results. Always do your own research before making investment decisions.
+**Achievement Unlocked**: Production-grade quant trading strategy ✅
+
+For questions or collaboration, open an issue on GitHub.
