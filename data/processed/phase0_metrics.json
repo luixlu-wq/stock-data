@@ -1,0 +1,14 @@
+{
+  "n_days": 184,
+  "sharpe_gross": 0.7078359614797723,
+  "sharpe_net": -1.7436635950670352,
+  "annual_return_gross": 0.04392780374834885,
+  "annual_return_net": -0.10816796593437737,
+  "annual_vol": 0.062034882325004245,
+  "max_drawdown_gross": -0.038823898414621125,
+  "max_drawdown_net": -0.08991171145970324,
+  "avg_turnover": 1.2071092831962398,
+  "total_costs": 0.11105405405405405,
+  "mean_daily_cost": 0.0006035546415981199,
+  "win_rate": 0.44021739130434784
+}

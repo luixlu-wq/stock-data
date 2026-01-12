@@ -1,0 +1,67 @@
+[
+  {
+    "sharpe_gross": 2.525406737442468,
+    "sharpe_net": 2.0248901354935707,
+    "annual_return_gross": 0.1318362961814355,
+    "annual_return_net": 0.10574614907230108,
+    "volatility": 0.05222299510347583,
+    "max_drawdown": -0.03682870467750532,
+    "avg_turnover": 0.41412931919261037,
+    "win_rate": 0.5063291139240507,
+    "total_costs": 0.01635810810810811,
+    "trading_days": 158,
+    "config": "Baseline (No Engineering)"
+  },
+  {
+    "sharpe_gross": 2.181421520765544,
+    "sharpe_net": 1.3698345088919202,
+    "annual_return_gross": 0.11700810164473047,
+    "annual_return_net": 0.0735798934158143,
+    "volatility": 0.05371428116586663,
+    "max_drawdown": -0.04199081115160333,
+    "avg_turnover": 0.6893366385542249,
+    "win_rate": 0.5126582278481012,
+    "total_costs": 0.027228797222891885,
+    "trading_days": 158,
+    "config": "Rank Filter Only (K=10)"
+  },
+  {
+    "sharpe_gross": 2.473358514698398,
+    "sharpe_net": 2.199641871397872,
+    "annual_return_gross": 0.125199370311674,
+    "annual_return_net": 0.11123479396771736,
+    "volatility": 0.050569343233453724,
+    "max_drawdown": -0.03494491572841442,
+    "avg_turnover": 0.22165994196756586,
+    "win_rate": 0.5316455696202531,
+    "total_costs": 0.008755567707718851,
+    "trading_days": 158,
+    "config": "Position Smoothing Only"
+  },
+  {
+    "sharpe_gross": 2.525406737442468,
+    "sharpe_net": 2.0248901354935707,
+    "annual_return_gross": 0.1318362961814355,
+    "annual_return_net": 0.10574614907230108,
+    "volatility": 0.05222299510347583,
+    "max_drawdown": -0.03682870467750532,
+    "avg_turnover": 0.41412931919261037,
+    "win_rate": 0.5063291139240507,
+    "total_costs": 0.01635810810810811,
+    "trading_days": 158,
+    "config": "Cross-Sectional Z-Score Only"
+  },
+  {
+    "sharpe_gross": 1.239539121266282,
+    "sharpe_net": 1.05687435968541,
+    "annual_return_gross": 0.06082872883983083,
+    "annual_return_net": 0.05179002117655399,
+    "volatility": 0.049002847810941726,
+    "max_drawdown": -0.043713900897766035,
+    "avg_turnover": 0.14347155021074343,
+    "win_rate": 0.4936708860759494,
+    "total_costs": 0.005667126233324366,
+    "trading_days": 158,
+    "config": "ALL TECHNIQUES (Phase 2B)"
+  }
+]

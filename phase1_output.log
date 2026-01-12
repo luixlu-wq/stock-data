@@ -1,0 +1,72 @@
+2026-01-11 19:52:20,809 - phase1 - INFO - ======================================================================
+2026-01-11 19:52:20,809 - phase1 - INFO - PHASE 1: RANK LOSS + SIMPLIFIED FEATURES
+2026-01-11 19:52:20,809 - phase1 - INFO - ======================================================================
+2026-01-11 19:52:20,809 - phase1 - INFO - This training run implements:
+2026-01-11 19:52:20,809 - phase1 - INFO -   1. Only 14 core features (vs 40+ before)
+2026-01-11 19:52:20,809 - phase1 - INFO -   2. Cross-sectional rank loss (70% weight)
+2026-01-11 19:52:20,809 - phase1 - INFO -   3. Huber regression loss (30% weight)
+2026-01-11 19:52:20,809 - phase1 - INFO - 
+2026-01-11 19:52:20,809 - phase1 - INFO - Goal: Reduce turnover from 120% to <40%
+2026-01-11 19:52:20,809 - phase1 - INFO - Goal: Increase net Sharpe from -1.74 to >0.3
+2026-01-11 19:52:20,809 - phase1 - INFO - ======================================================================
+2026-01-11 19:52:20,809 - phase1 - INFO - 
+2026-01-11 19:52:20,815 - phase1 - INFO - STEP 1: Preprocessing with 14 core features...
+2026-01-11 19:52:23,019 - phase1 - INFO - Preprocessed data saved:
+2026-01-11 19:52:23,019 - phase1 - INFO -   train: data\processed\train_v2.parquet
+2026-01-11 19:52:23,019 - phase1 - INFO -   validation: data\processed\validation_v2.parquet
+2026-01-11 19:52:23,019 - phase1 - INFO -   test: data\processed\test_v2.parquet
+2026-01-11 19:52:23,019 - phase1 - INFO - 
+2026-01-11 19:52:23,019 - phase1 - INFO - STEP 2: Loading preprocessed data...
+2026-01-11 19:52:23,093 - phase1 - INFO - Train shape: (645611, 24)
+2026-01-11 19:52:23,093 - phase1 - INFO - Val shape: (47628, 24)
+2026-01-11 19:52:23,093 - phase1 - INFO - 
+2026-01-11 19:52:23,093 - phase1 - INFO - STEP 3: Creating sequences...
+2026-01-11 19:55:09,071 - phase1 - INFO - Training sequences: (634271, 60, 14)
+2026-01-11 19:55:09,071 - phase1 - INFO - Validation sequences: (36288, 60, 14)
+2026-01-11 19:55:09,071 - phase1 - INFO - Features per timestep: 14
+2026-01-11 19:55:09,071 - phase1 - INFO - 
+2026-01-11 19:55:09,071 - phase1 - INFO - STEP 4: Creating dataloaders...
+2026-01-11 19:55:09,227 - phase1 - INFO - 
+2026-01-11 19:55:09,230 - phase1 - INFO - STEP 5: Creating model...
+2026-01-11 19:55:09,231 - phase1 - INFO - Model parameters: 468,609
+2026-01-11 19:55:09,231 - phase1 - INFO - Model type: Regression LSTM
+2026-01-11 19:55:09,231 - phase1 - INFO - 
+2026-01-11 19:55:09,231 - phase1 - INFO - STEP 6: Setting up trainer...
+2026-01-11 19:55:09,231 - phase1 - INFO - 
+2026-01-11 19:55:09,231 - phase1 - INFO - CRITICAL: Configuring cross-sectional rank loss
+2026-01-11 19:55:09,231 - phase1 - INFO -   This is the KEY innovation for Phase 1
+2026-01-11 19:55:09,231 - phase1 - INFO -   Loss = 0.7 * RankLoss + 0.3 * HuberLoss
+2026-01-11 19:55:09,231 - phase1 - INFO -   Optimizes: Ranking accuracy (what drives trading P&L)
+2026-01-11 19:55:09,231 - phase1 - INFO -   Not: Return magnitude accuracy (what MSE optimizes)
+2026-01-11 19:55:09,231 - phase1 - INFO - 
+C:\Users\luixj\AI\stock-data\venv\Lib\site-packages\torch\cuda\__init__.py:235: UserWarning: 
+NVIDIA GeForce RTX 5090 with CUDA capability sm_120 is not compatible with the current PyTorch installation.
+The current PyTorch install supports CUDA capabilities sm_50 sm_60 sm_61 sm_70 sm_75 sm_80 sm_86 sm_90.
+If you want to use the NVIDIA GeForce RTX 5090 GPU with PyTorch, please check the instructions at https://pytorch.org/get-started/locally/
+
+  warnings.warn(
+Traceback (most recent call last):
+  File "C:\Users\luixj\AI\stock-data\phase1_train.py", line 188, in <module>
+    main()
+  File "C:\Users\luixj\AI\stock-data\phase1_train.py", line 153, in main
+    trainer = ModelTrainer(
+              ^^^^^^^^^^^^^
+  File "C:\Users\luixj\AI\stock-data\src\models\trainer.py", line 55, in __init__
+    self.model = self.model.to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luixj\AI\stock-data\venv\Lib\site-packages\torch\nn\modules\module.py", line 1340, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luixj\AI\stock-data\venv\Lib\site-packages\torch\nn\modules\module.py", line 900, in _apply
+    module._apply(fn)
+  File "C:\Users\luixj\AI\stock-data\venv\Lib\site-packages\torch\nn\modules\rnn.py", line 288, in _apply
+    self._init_flat_weights()
+  File "C:\Users\luixj\AI\stock-data\venv\Lib\site-packages\torch\nn\modules\rnn.py", line 215, in _init_flat_weights
+    self.flatten_parameters()
+  File "C:\Users\luixj\AI\stock-data\venv\Lib\site-packages\torch\nn\modules\rnn.py", line 269, in flatten_parameters
+    torch._cudnn_rnn_flatten_weight(
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

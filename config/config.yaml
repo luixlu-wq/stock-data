@@ -1,0 +1,380 @@
+# Polygon.io Configuration
+polygon:
+  api_key_env: "POLYGON_API_KEY"  # Environment variable name
+  rate_limit:
+    calls_per_minute: 5
+    safety_margin: 0.8  # Use only 80% to be safe (4 calls/min)
+  cache_dir: "data/raw/cache"
+  base_url: "https://api.polygon.io"
+
+# Qdrant Configuration
+qdrant:
+  host: "localhost"
+  port: 6333
+  collection_name: "stock_patterns"
+  vector_size: 64  # Embedding dimension
+  distance: "Cosine"  # Cosine, Euclidean, or Dot
+
+# Data Configuration
+data:
+  source: "yahoo"  # yahoo or polygon
+
+  # Stock tickers to download - Top 200 S&P 500 stocks by market cap
+  tickers:
+    # Top 100 by market cap
+    - "AAPL"   # Apple
+    - "MSFT"   # Microsoft
+    - "GOOGL"  # Alphabet Class A
+    - "GOOG"   # Alphabet Class C
+    - "AMZN"   # Amazon
+    - "NVDA"   # NVIDIA
+    - "META"   # Meta Platforms
+    - "TSLA"   # Tesla
+    - "BRK.B"  # Berkshire Hathaway
+    - "UNH"    # UnitedHealth
+    - "XOM"    # Exxon Mobil
+    - "JNJ"    # Johnson & Johnson
+    - "JPM"    # JPMorgan Chase
+    - "V"      # Visa
+    - "PG"     # Procter & Gamble
+    - "MA"     # Mastercard
+    - "HD"     # Home Depot
+    - "CVX"    # Chevron
+    - "MRK"    # Merck
+    - "ABBV"   # AbbVie
+    - "PEP"    # PepsiCo
+    - "COST"   # Costco
+    - "AVGO"   # Broadcom
+    - "KO"     # Coca-Cola
+    - "LLY"    # Eli Lilly
+    - "ADBE"   # Adobe
+    - "MCD"    # McDonald's
+    - "TMO"    # Thermo Fisher
+    - "WMT"    # Walmart
+    - "CRM"    # Salesforce
+    - "CSCO"   # Cisco
+    - "ABT"    # Abbott Labs
+    - "BAC"    # Bank of America
+    - "ACN"    # Accenture
+    - "NFLX"   # Netflix
+    - "ORCL"   # Oracle
+    - "NKE"    # Nike
+    - "DIS"    # Disney
+    - "TXN"    # Texas Instruments
+    - "CMCSA"  # Comcast
+    - "VZ"     # Verizon
+    - "COP"    # ConocoPhillips
+    - "DHR"    # Danaher
+    - "AMD"    # AMD
+    - "INTC"   # Intel
+    - "PM"     # Philip Morris
+    - "NEE"    # NextEra Energy
+    - "WFC"    # Wells Fargo
+    - "UPS"    # UPS
+    - "RTX"    # Raytheon
+    - "QCOM"   # Qualcomm
+    - "MS"     # Morgan Stanley
+    - "HON"    # Honeywell
+    - "T"      # AT&T
+    - "IBM"    # IBM
+    - "LOW"    # Lowe's
+    - "BMY"    # Bristol Myers
+    - "AMGN"   # Amgen
+    - "GE"     # GE
+    - "CAT"    # Caterpillar
+    - "LIN"    # Linde
+    - "BA"     # Boeing
+    - "SPGI"   # S&P Global
+    - "DE"     # Deere
+    - "SBUX"   # Starbucks
+    - "GS"     # Goldman Sachs
+    - "BLK"    # BlackRock
+    - "AXP"    # American Express
+    - "MDT"    # Medtronic
+    - "ELV"    # Elevance Health
+    - "GILD"   # Gilead Sciences
+    - "SYK"    # Stryker
+    - "MDLZ"   # Mondelez
+    - "BKNG"   # Booking Holdings
+    - "MMC"    # Marsh McLennan
+    - "ISRG"   # Intuitive Surgical
+    - "ADI"    # Analog Devices
+    - "CI"     # Cigna
+    - "AMT"    # American Tower
+    - "CVS"    # CVS Health
+    - "VRTX"   # Vertex Pharma
+    - "PLD"    # Prologis
+    - "TJX"    # TJX Companies
+    - "C"      # Citigroup
+    - "ZTS"    # Zoetis
+    - "REGN"   # Regeneron
+    - "BDX"    # Becton Dickinson
+    - "CB"     # Chubb
+    - "MO"     # Altria
+    - "SO"     # Southern Company
+    - "NOC"    # Northrop Grumman
+    - "DUK"    # Duke Energy
+    - "SCHW"   # Charles Schwab
+    - "SLB"    # Schlumberger
+    - "PGR"    # Progressive
+    - "BSX"    # Boston Scientific
+    - "USB"    # US Bancorp
+    - "EOG"    # EOG Resources
+    - "MMM"    # 3M
+    # Next 100 (101-200)
+    - "PNC"    # PNC Financial
+    - "TFC"    # Truist Financial
+    - "ITW"    # Illinois Tool Works
+    - "CME"    # CME Group
+    - "CCI"    # Crown Castle
+    - "EQIX"   # Equinix
+    - "APD"    # Air Products
+    - "ICE"    # Intercontinental Exchange
+    - "AON"    # Aon
+    - "CL"     # Colgate-Palmolive
+    - "DG"     # Dollar General
+    - "FDX"    # FedEx
+    - "HUM"    # Humana
+    - "NSC"    # Norfolk Southern
+    - "GM"     # General Motors
+    - "EMR"    # Emerson Electric
+    - "COF"    # Capital One
+    - "MCK"    # McKesson
+    - "PYPL"   # PayPal
+    - "ADP"    # ADP
+    - "PSA"    # Public Storage
+    - "APH"    # Amphenol
+    - "ETN"    # Eaton
+    - "TGT"    # Target
+    - "GD"     # General Dynamics
+    - "F"      # Ford
+    - "SRE"    # Sempra Energy
+    - "EW"     # Edwards Lifesciences
+    - "MAR"    # Marriott
+    - "CSX"    # CSX Corp
+    - "KLAC"   # KLA Corp
+    - "AIG"    # AIG
+    - "MET"    # MetLife
+    - "ROP"    # Roper Technologies
+    - "ANET"   # Arista Networks
+    - "WM"     # Waste Management
+    - "FCX"    # Freeport-McMoRan
+    - "AJG"    # Arthur J Gallagher
+    - "AFL"    # Aflac
+    - "SPG"    # Simon Property
+    - "NXPI"   # NXP Semiconductors
+    - "ECL"    # Ecolab
+    - "BK"     # Bank of NY Mellon
+    - "KMB"    # Kimberly-Clark
+    - "O"      # Realty Income
+    - "CARR"   # Carrier Global
+    - "PSX"    # Phillips 66
+    - "JCI"    # Johnson Controls
+    - "GIS"    # General Mills
+    - "CMG"    # Chipotle
+    - "WELL"   # Welltower
+    - "ADM"    # Archer Daniels
+    - "SYY"    # Sysco
+    - "TRV"    # Travelers
+    - "HCA"    # HCA Healthcare
+    - "PAYX"   # Paychex
+    - "AZO"    # AutoZone
+    - "TT"     # Trane Technologies
+    - "BKR"    # Baker Hughes
+    - "VLO"    # Valero Energy
+    - "HES"    # Hess Corp
+    - "NEM"    # Newmont
+    - "D"      # Dominion Energy
+    - "ALL"    # Allstate
+    - "MSCI"   # MSCI
+    - "MCO"    # Moody's
+    - "CTVA"   # Corteva
+    - "MPC"    # Marathon Petroleum
+    - "PRU"    # Prudential
+    - "TEL"    # TE Connectivity
+    - "AEP"    # American Electric
+    - "ROST"   # Ross Stores
+    - "YUM"    # Yum! Brands
+    - "A"      # Agilent Technologies
+    - "EXC"    # Exelon
+    - "KHC"    # Kraft Heinz
+    - "IDXX"   # IDEXX Labs
+    - "HLT"    # Hilton
+    - "ORLY"   # O'Reilly Auto
+    - "DD"     # DuPont
+    - "KMI"    # Kinder Morgan
+    - "CTAS"   # Cintas
+    - "DOW"    # Dow Inc
+    - "PCAR"   # PACCAR
+    - "EXR"    # Extra Space Storage
+    - "STZ"    # Constellation Brands
+    - "AMP"    # Ameriprise
+    - "SHW"    # Sherwin-Williams
+    - "MCHP"   # Microchip Tech
+    - "CDNS"   # Cadence Design
+    - "SNPS"   # Synopsys
+    - "DHI"    # DR Horton
+
+  # Date ranges - 15 years of data (2010-2024 training, 2025 testing)
+  date_ranges:
+    download_start: "2010-01-01"  # 15 years of history
+    download_end: "2025-12-31"    # Through end of 2025
+
+    # Train/Val/Test split (temporal)
+    train_start: "2010-01-01"     # 14 years training
+    train_end: "2023-12-31"       # Through end of 2023
+
+    validation_start: "2024-01-01"  # 2024 validation
+    validation_end: "2024-12-31"
+
+    test_start: "2025-01-01"      # 2025 testing only
+    test_end: "2025-12-31"
+
+  # Feature engineering
+  sequence_length: 60  # Use 60 days of history for prediction
+  prediction_horizon: 1  # CHANGED: Predict 1 day ahead (shorter horizon more predictable)
+
+  # Data paths
+  paths:
+    raw_data: "data/raw/stocks_raw.parquet"
+    processed_train: "data/processed/train.parquet"
+    processed_val: "data/processed/validation.parquet"
+    processed_test: "data/processed/test.parquet"
+    embeddings: "data/embeddings/stock_embeddings.parquet"
+
+# Feature Engineering
+features:
+  # Technical indicators to calculate
+  technical_indicators:
+    # Moving Averages
+    - name: "SMA_10"
+      type: "sma"
+      period: 10
+    - name: "SMA_20"
+      type: "sma"
+      period: 20
+    - name: "SMA_50"
+      type: "sma"
+      period: 50
+    - name: "EMA_12"
+      type: "ema"
+      period: 12
+    - name: "EMA_26"
+      type: "ema"
+      period: 26
+
+    # Momentum Indicators
+    - name: "RSI_14"
+      type: "rsi"
+      period: 14
+    - name: "MACD"
+      type: "macd"
+    - name: "MACD_signal"
+      type: "macd_signal"
+    - name: "MACD_diff"
+      type: "macd_diff"
+
+    # Volatility Indicators
+    - name: "BB_upper"
+      type: "bollinger_upper"
+      period: 20
+    - name: "BB_middle"
+      type: "bollinger_middle"
+      period: 20
+    - name: "BB_lower"
+      type: "bollinger_lower"
+      period: 20
+    - name: "ATR_14"
+      type: "atr"
+      period: 14
+
+    # Volume Indicators
+    - name: "Volume_SMA_20"
+      type: "volume_sma"
+      period: 20
+    - name: "OBV"
+      type: "obv"
+
+  # Normalization
+  normalization:
+    method: "standard"  # standard, minmax, robust
+    fit_on: "train"  # Only fit scaler on training data
+
+  # Classification labels - Binary classification for better performance
+  classification:
+    threshold_up: 0.0001    # Any gain > 0.01% = UP (class 1)
+    threshold_down: -0.0001 # Any loss < -0.01% = DOWN (class 0)
+    # Binary classification: UP (1) or DOWN (0) - no NEUTRAL class
+    # Small threshold avoids exact zero boundary issues
+
+# Model Configuration
+model:
+  # Device
+  # RTX 5090 (sm_120) fully supported by PyTorch 2.7.0+ with CUDA 12.8
+  # Install: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+  device: "cuda"  # cuda, cpu, auto
+
+  # Architecture
+  architecture:
+    input_size: "auto"  # Auto-detect from features
+    hidden_size: 192  # INCREASED from 128 - need more capacity for complex patterns
+    num_layers: 2     # Keep at 2 layers
+    dropout: 0.25     # Moderate dropout
+    bidirectional: False
+    use_attention: True  # Enable attention mechanism for better feature importance
+
+  # Training
+  training:
+    batch_size: 256  # Utilize RTX 5090's 32GB VRAM
+    epochs: 100  # INCREASED - allow more training time
+    learning_rate: 0.0008  # INCREASED slightly from 0.0005 - faster learning
+    weight_decay: 0.000005  # REDUCED further - less regularization for larger predictions
+    max_grad_norm: 1.0  # Gradient clipping to prevent exploding gradients
+
+    # Learning rate warm-up - IMPORTANT: Prevents early collapse
+    warmup:
+      enabled: True  # ENABLED - gradually ramp up learning rate
+      epochs: 5  # REDUCED from 10 - faster warmup
+      start_lr: 0.00005  # Start from low LR
+
+    # Multi-task learning weights (only for multitask model)
+    reg_weight: 1.0  # Weight for regression loss
+    clf_weight: 0.5  # INCREASED back to 0.5 - balance both tasks
+
+    # Early stopping - Allow more training
+    early_stopping:
+      patience: 25  # INCREASED from 15 - more patient
+      min_delta: 0.000005  # SMALLER - accept tiny improvements
+
+    # Learning rate scheduler
+    scheduler:
+      type: "ReduceLROnPlateau"  # ReduceLROnPlateau, StepLR, CosineAnnealingLR
+      patience: 12  # Moderately patient
+      factor: 0.5
+      min_lr: 0.0000001  # LOWERED - allow very small learning rates
+
+  # Loss functions
+  loss:
+    regression: "huber"  # Standard Huber loss
+    huber_delta: 0.05  # CRITICAL: Match target scale! (1-day returns std~0.02, use delta~2-3x std)
+    # regression: "directional_huber"  # DISABLED: Caused model collapse
+    directional_weight: 0.2  # REDUCED: Lower weight to prevent collapse
+    magnitude_scale: 2.0  # Scale for magnitude weighting (encourages larger predictions)
+    classification: "cross_entropy"
+
+  # Checkpointing
+  checkpoint:
+    save_dir: "models/checkpoints"
+    save_best_only: True
+    monitor: "val_loss"  # val_loss, val_accuracy
+    mode: "min"  # min for loss, max for accuracy
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/stock_data.log"
+  console: True
+
+# Random seed for reproducibility
+seed: 42
