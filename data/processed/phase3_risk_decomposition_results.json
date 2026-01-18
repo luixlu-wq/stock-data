@@ -1,0 +1,37 @@
+{
+  "long_short_attribution": {
+    "sharpe_long": 1.275637519938226,
+    "sharpe_short": -0.44736449576038273,
+    "sharpe_total": 1.422241144847825,
+    "long_contribution": 2.4788612297542096,
+    "short_contribution": -0.665413722115828,
+    "long_pct_contribution": 1.7429261125893243,
+    "short_pct_contribution": -0.46786279846166673
+  },
+  "sector_exposure": {
+    "status": "not_implemented",
+    "note": "Requires sector metadata"
+  },
+  "factor_exposure": {
+    "status": "not_implemented",
+    "note": "Requires factor data"
+  },
+  "regime_sensitivity": {
+    "status": "not_implemented",
+    "note": "Requires VIX data"
+  },
+  "drawdown_anatomy": {
+    "max_drawdown": -0.028563884701122862,
+    "max_dd_date": "2025-09-24 00:00:00-04:00",
+    "max_dd_length_days": 140,
+    "worst_day_loss": -0.013798074294268953,
+    "worst_day_date": "2025-04-02 00:00:00-04:00",
+    "pct_5_loss": -0.0037840867668976538,
+    "daily_std": 0.00332868512193277,
+    "three_sigma_loss": -0.009986055365798309
+  },
+  "gate_status": "FAIL",
+  "failures": [
+    "Extreme long or short dominance (>80%)"
+  ]
+}

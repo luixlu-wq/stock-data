@@ -1,0 +1,22 @@
+{
+  "raw_sharpe": 1.3006726500377763,
+  "raw_annual_return": 0.1876216187106282,
+  "raw_vol": 0.14424968396558427,
+  "raw_max_dd": -0.09396232578827686,
+  "raw_avg_turnover": 0.18185361593833257,
+  "scaled_sharpe": 1.288664078780064,
+  "scaled_annual_return": 0.11948700825888876,
+  "scaled_vol": 0.09272161009718158,
+  "scaled_max_dd": -0.05211093609643944,
+  "scaled_avg_turnover": 0.18185361593833257,
+  "long_sharpe": 0.924787121078327,
+  "short_sharpe": 0.2915767465888708,
+  "target_vol": 0.08,
+  "vol_lookback": 20,
+  "avg_scale_factor": 0.7562041811820546,
+  "ks1_events": 2,
+  "ks2_events": 0,
+  "ks3_events": 13,
+  "total_ks_events": 15,
+  "ks_event_pct": 7.9787234042553195
+}

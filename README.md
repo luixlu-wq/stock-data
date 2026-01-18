@@ -54,7 +54,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 # Install PyTorch with CUDA (RTX 5090 requires CUDA 12.8)
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu130
 ```
 
 For detailed installation instructions, see [Installation Guide](#installation-guide) below.
