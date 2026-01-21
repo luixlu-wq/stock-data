@@ -1,0 +1,14 @@
+2026-01-20 18:05:56,876 - INFO - Loading predictions from data/processed/phase1_predictions.parquet
+2026-01-20 18:05:57,152 - INFO - 
+============================================================
+2026-01-20 18:05:57,152 - INFO - Running paper trading for 2025-04-01
+2026-01-20 18:05:57,152 - INFO - ============================================================
+2026-01-20 18:05:57,158 - INFO - Portfolio construction: 38 longs, 15 shorts (from 38 candidates)
+2026-01-20 18:05:57,158 - INFO - PnL Net: 0.0027 | Scaled: 0.0027 | Turnover: 100.00% | Vol Scale: 1.00
+2026-01-20 18:06:03,535 - INFO - Loading predictions from data/processed/phase1_predictions.parquet
+2026-01-20 18:06:03,581 - INFO - 
+============================================================
+2026-01-20 18:06:03,581 - INFO - Running paper trading for 2025-04-02
+2026-01-20 18:06:03,581 - INFO - ============================================================
+2026-01-20 18:06:03,583 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-01-20 18:06:03,583 - INFO - PnL Net: -0.0007 | Scaled: -0.0007 | Turnover: 100.00% | Vol Scale: 1.00
