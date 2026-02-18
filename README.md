@@ -1,416 +1,593 @@
 # Stock Trading Strategy - LSTM Cross-Sectional Alpha
 
-**Status**: ✅ **TRADEABLE STRATEGY VALIDATED**
+**Status**: Phase 4 - Paper Trading (started Jan 19, 2026)
+**Strategy**: S2_FilterNegative (130/70 long/short with negative prediction filter)
+**Vol-Targeted Sharpe**: 1.29 | **Net Sharpe**: 2.20 | **Max DD**: -5.21%
 
-An institutional-quality LSTM-based stock trading strategy that has been rigorously validated through systematic experimentation. The strategy achieves **Net Sharpe 2.20** with 22% turnover using cross-sectional rank loss and position smoothing.
+---
 
-## Quick Facts
+## Table of Contents
 
-- **Net Sharpe Ratio**: 2.20 (with position smoothing)
-- **Gross Sharpe Ratio**: 2.47
-- **Daily Turnover**: 22%
-- **Alpha Validation**: Confirmed real (Net Sharpe 1.32 at 100% turnover)
-- **Model Status**: FROZEN - production ready
-- **Strategy Type**: Medium-horizon cross-sectional ranking alpha
+1. [Project Overview](#project-overview)
+2. [Quick Start](#quick-start)
+3. [Project Structure](#project-structure)
+4. [Strategy Specification](#strategy-specification)
+5. [Model Architecture](#model-architecture)
+6. [Feature Engineering](#feature-engineering)
+7. [Portfolio Construction](#portfolio-construction)
+8. [Risk Management](#risk-management)
+9. [Paper Trading (Phase 4)](#paper-trading-phase-4)
+10. [Automation](#automation)
+11. [Project History](#project-history)
+12. [Troubleshooting](#troubleshooting)
 
-## Key Innovation
+---
 
-This project successfully transformed a failing LSTM strategy (Net Sharpe -1.74) into an institutional-quality alpha signal through:
+## Project Overview
 
-1. **Cross-sectional rank loss** (70% rank + 30% Huber) instead of MSE
-2. **Temperature calibration** (0.05) for sharp rankings
-3. **Portfolio engineering** (EWMA position smoothing α=0.15)
-4. **Rigorous validation** (100% turnover stress test)
+This is a complete ML-driven stock trading system that:
 
-## Project Journey
+1. Predicts next-day returns for ~189 US stocks using a 2-layer LSTM
+2. Constructs a 130/70 long/short portfolio (S2_FilterNegative)
+3. Applies volatility targeting (8% annual) and kill switches
+4. Currently in 60-day paper trading validation
 
-| Phase | Focus | Result |
-|-------|-------|--------|
-| **Phase 0** | Alpha Discovery | Gross Sharpe 0.71, Net -1.74 (120% turnover) |
-| **Phase 1** | Rank Loss Implementation | Reduced turnover but over-smoothed |
-| **Phase 2A** | Temperature Calibration | Found optimal temp=0.05 (Gross 2.47) |
-| **Phase 2B** | Portfolio Engineering | Net Sharpe 2.20 (22% turnover) |
-| **Validation** | Baseline Stress Test | Confirmed real alpha (Net 1.32 @ 100% turnover) |
+### Key Innovation
 
-Complete journey documented in [docs/FINAL_RESULTS.md](docs/FINAL_RESULTS.md).
+Transformed a failing LSTM strategy (Net Sharpe -1.74) into institutional-quality alpha through:
+
+- **Cross-sectional rank loss** (70% rank + 30% Huber) instead of MSE
+- **Temperature calibration** (0.05) for sharp rankings
+- **Short filtering** (only short stocks with negative predictions)
+- **EWMA position smoothing** (alpha=0.15) to reduce turnover 120% to 22%
+- **Volatility targeting** (8% annual) with kill switches
+
+### Performance Summary
+
+| Metric | Phase 2B (Net) | Phase 3.5 (Vol-Targeted) |
+|--------|---------------|--------------------------|
+| **Sharpe Ratio** | 2.20 | 1.29 |
+| **Annual Return** | 22.4% | 11.95% |
+| **Volatility** | 10.2% | 9.27% |
+| **Max Drawdown** | -6.3% | -5.21% |
+| **Avg Turnover** | 49.1% | 49.1% |
+
+---
 
 ## Quick Start
-
-### Prerequisites
-
-- Python 3.8+ (3.13 recommended)
-- CUDA-capable GPU (RTX 5090 supported)
-- 8GB+ GPU memory recommended
 
 ### Installation
 
 ```bash
-# Clone and setup environment
 cd c:\Users\luixj\AI\stock-data
 python -m venv venv
 venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Install PyTorch with CUDA (RTX 5090 requires CUDA 12.8)
-pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu130
 ```
 
-For detailed installation instructions, see [Installation Guide](#installation-guide) below.
-
-### Run Backtest
-
-The model is already trained and frozen. To verify the strategy:
+### Run Paper Trading (one day)
 
 ```bash
-# Run portfolio monetization backtest
-python scripts/backtest/phase2b_monetization.py
-
-# Validate baseline (100% turnover stress test)
-python scripts/validation/phase2b_validate_baseline.py
+python scripts/paper_trading/run_daily_paper_trading.py
 ```
 
-## Strategy Specification
+The script auto-increments through historical dates (2025-04-01 onwards). Run daily.
 
-### Model (FROZEN - DO NOT CHANGE)
+### Check Results
 
-- **Architecture**: 2-layer LSTM (128 hidden units)
-- **Features**: 14 core features (returns, volatility, price structure, trend, volume, market)
-- **Sequence Length**: 90 days
-- **Loss Function**: Combined rank-regression (70% rank + 30% Huber)
-- **Temperature**: 0.05 (sharp rankings)
-- **Checkpoint**: `models/checkpoints/lstm_phase2a_temp0.05_best.pth`
+```bash
+# View summary
+cat data/processed/phase4/phase4_paper_trading_summary.json
 
-### Portfolio Construction
+# Generate performance report
+python scripts/paper_trading/phase4_performance_tracker.py
+cat reports/phase4/phase4_performance_report.txt
 
-- **Universe**: 189 stocks
-- **Long/Short**: Top/Bottom 20% by predicted return
-- **Weights**: Equal-weighted within buckets
-- **Position Smoothing**: EWMA with α=0.15
-  - `pos_t = 0.85 * pos_{t-1} + 0.15 * target_t`
-- **Rebalance**: Daily
-- **Dollar Neutrality**: Enforced
+# Check progress
+cat data/processed/phase4/paper_trading_progress.json
+```
 
-### Performance Metrics
+### Query Qdrant Database (if automation enabled)
 
-**Best Configuration** (Position Smoothing Only):
-- Net Sharpe: 2.20
-- Gross Sharpe: 2.47
-- Turnover: 22% daily
-- Max Drawdown: < -6%
+```bash
+python scripts/automation/query_qdrant.py --type recommendations --limit 10
+python scripts/automation/query_qdrant.py --type results --limit 5
+python scripts/automation/query_qdrant.py --type performance
+```
 
-**Baseline Validation** (100% daily turnover):
-- Net Sharpe: 1.32
-- Confirms alpha is real and robust
+---
 
 ## Project Structure
 
 ```
 stock-data/
-├── config/                 # Configuration
-│   └── config.yaml        # Model and backtest settings (FROZEN)
+├── config/
+│   └── config.yaml                  # Frozen model configuration
 │
-├── scripts/               # Executable scripts
-│   ├── training/         # Phase 1 & 2A training (DO NOT rerun)
-│   ├── backtest/         # Portfolio backtesting
-│   └── validation/       # Alpha validation tests
+├── src/                             # Core source code
+│   ├── data/
+│   │   ├── data_loader.py          # yfinance data download
+│   │   └── preprocessor_v2.py      # 14 feature engineering
+│   ├── models/
+│   │   ├── lstm_model.py           # 2-layer LSTM architecture
+│   │   ├── losses.py              # Rank-regression loss
+│   │   └── trainer.py             # Training loop
+│   └── utils/
+│       ├── config_loader.py       # Config management
+│       └── metrics.py             # Performance metrics
 │
-├── src/                  # Core library
-│   ├── data/            # Feature engineering (14 features)
-│   ├── models/          # LSTM + rank loss implementation
-│   └── utils/           # Config and logging
+├── scripts/
+│   ├── training/                   # Phase 1 model training (DO NOT rerun)
+│   ├── backtest/                   # Phase 2 portfolio backtesting
+│   ├── validation/                 # Alpha validation tests
+│   ├── experiment/                 # Phase 2A temperature experiments
+│   ├── portfolio/                  # Portfolio construction tests
+│   ├── risk/                       # Risk analysis scripts
+│   ├── stress_test/                # Stress testing
+│   ├── deployment/                 # Deployment preparation
+│   ├── paper_trading/              # Phase 4 daily execution
+│   │   ├── run_daily_paper_trading.py         # Simple daily runner
+│   │   ├── phase4_paper_trading_runner.py     # Core trading engine
+│   │   ├── phase4_performance_tracker.py      # Performance reporting
+│   │   └── phase4_daily_pipeline.py           # Live data pipeline (future)
+│   └── automation/                 # Automated daily execution
+│       ├── daily_paper_trading_qdrant.py      # Main automation + Qdrant
+│       ├── query_qdrant.py                    # Database query tool
+│       ├── setup_daily_task.ps1               # Windows Task Scheduler
+│       └── setup_daily_task.bat               # Alternative batch setup
 │
-├── models/               # Saved checkpoints
+├── models/                         # Trained model checkpoints
 │   └── checkpoints/
-│       └── lstm_phase2a_temp0.05_best.pth  # Production model
+│       └── lstm_phase2a_temp0.05_best.pth    # Production model (FROZEN)
 │
-├── docs/                 # Documentation
-│   ├── FINAL_RESULTS.md         # Complete project summary ⭐
-│   ├── PHASE1_README.md         # Rank loss implementation
-│   ├── PHASE2A_VALIDATED.md     # Temperature tuning
-│   └── PHASE2B_BUGFIXES.md      # Portfolio engineering fixes
+├── data/
+│   ├── raw/                        # Downloaded stock data (CSV)
+│   └── processed/
+│       ├── phase1_predictions.parquet        # Pre-computed predictions
+│       └── phase4/                           # Paper trading results
+│           ├── phase4_paper_trading_daily.parquet
+│           ├── phase4_paper_trading_summary.json
+│           └── paper_trading_progress.json
 │
-├── data/                 # Data storage
-│   ├── raw/             # Stock price data
-│   └── processed/       # Features and results
+├── logs/
+│   ├── paper_trading/              # Daily execution logs
+│   └── automation/                 # Automation logs
 │
-└── logs/                 # Execution logs
+├── reports/
+│   └── phase4/                     # Performance reports & plots
+│
+└── archive/                        # Old/deprecated scripts
 ```
 
-See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed structure.
+---
 
-## Installation Guide
+## Strategy Specification
 
-### 1. System Requirements
+**Version**: 2.0.0 (Frozen 2026-01-18) - NO CHANGES ALLOWED
 
-**GPU (Highly Recommended)**:
-- NVIDIA GPU with CUDA support
-- RTX 5090: Requires PyTorch 2.7+ with CUDA 12.8
-- RTX 40 series: PyTorch with CUDA 12.4
-- Older GPUs: PyTorch with CUDA 11.8
+### Signal Generation
 
-**Memory**:
-- 8GB+ GPU memory recommended
-- 16GB+ system RAM
+| Parameter | Value |
+|-----------|-------|
+| Model | 2-layer LSTM (128 hidden units) |
+| Features | 14 core features |
+| Sequence Length | 90 trading days |
+| Loss Function | 70% rank + 30% Huber |
+| Temperature | 0.05 (critical parameter) |
+| Checkpoint | `models/checkpoints/lstm_phase2a_temp0.05_best.pth` |
 
-### 2. Python Environment
+### Portfolio Rules
+
+| Parameter | Value |
+|-----------|-------|
+| Universe | ~189 liquid US equities |
+| Long | Top 38 stocks (65% exposure, equal-weighted) |
+| Short | Bottom 38 WHERE y_pred < 0 (35% exposure) |
+| Position Smoothing | EWMA alpha=0.15 |
+| Rebalance | Daily |
+| Transaction Cost | 5 bps per trade |
+
+### Risk Controls
+
+| Parameter | Value |
+|-----------|-------|
+| Vol Target | 8% annual (20-day lookback) |
+| Vol Scale Range | 0.5x to 2.0x |
+| Kill Switch 1 | 3-sigma daily loss → flatten |
+| Kill Switch 2 | 8% trailing drawdown → halt |
+| Kill Switch 3 | Sharpe < 0 (60-day rolling) → disable |
+
+---
+
+## Model Architecture
+
+### LSTM Model
+
+```
+Input: (batch, 90 days, 14 features)
+  → LSTM Layer 1 (128 hidden, dropout=0.2)
+  → LSTM Layer 2 (128 hidden, dropout=0.2)
+  → Last time step output (128)
+  → FC Layer (128 → 1)
+Output: predicted next-day return
+```
+
+### Training
+
+- **Training period**: 2020-01-01 to 2024-06-30
+- **Validation period**: 2024-07-01 to 2024-12-31
+- **Prediction period**: 2025-04-01 to 2025-10-31 (159 trading days)
+- **Optimizer**: Adam (lr=0.001, weight_decay=1e-5)
+- **Early stopping**: Patience 15, min_delta 0.0001
+
+### Loss Function
+
+```python
+loss = 0.7 * rank_loss + 0.3 * regression_loss
+
+# Rank loss: differentiable Spearman correlation with temperature=0.05
+rank_loss = 1 - soft_spearman(y_pred, y_true, temperature=0.05)
+
+# Regression loss: Huber (robust to outliers)
+regression_loss = HuberLoss(delta=0.05)
+```
+
+**Why this works**: Rank loss teaches relative ordering (long/short ranking). Regression loss calibrates magnitudes. Temperature 0.05 creates sharp rankings critical for performance.
+
+### Model Performance
+
+| Metric | Value |
+|--------|-------|
+| Validation Spearman | 0.120 |
+| Information Coefficient (IC) | 0.112 |
+| IC Information Ratio | 1.40 |
+| Hit Rate | 52.3% |
+
+---
+
+## Feature Engineering
+
+14 core features computed in `src/data/preprocessor_v2.py`:
+
+| # | Feature | Description | Category |
+|---|---------|-------------|----------|
+| 1 | ret_1d | Daily return | Returns |
+| 2 | ret_5d | 5-day return | Returns |
+| 3 | ret_20d | 20-day return | Returns |
+| 4 | volatility | 20-day realized vol (annualized) | Volatility |
+| 5 | vol_5d | 5-day vol (annualized) | Volatility |
+| 6 | vol_volume | Volume volatility (20-day) | Volatility |
+| 7 | dist_from_high | Distance from 20-day high | Price Structure |
+| 8 | dist_from_low | Distance from 20-day low | Price Structure |
+| 9 | price_range | Intraday range / close | Price Structure |
+| 10 | momentum | 20-day momentum | Trend |
+| 11 | momentum_5d | 5-day momentum | Trend |
+| 12 | volume_ratio | Volume / 20-day avg volume | Volume |
+| 13 | volume_trend | 5-day avg / 20-day avg volume | Volume |
+| 14 | market_return | Equal-weighted universe return | Market |
+
+**Top features by importance**: ret_20d (18.5%), volatility (15.2%), volume_ratio (12.8%), ret_5d (11.3%), dist_from_high (9.7%)
+
+**Design principles**:
+- No look-ahead bias (all features use only past data)
+- Z-score normalized per feature
+- 90-day sequences as LSTM input
+- Simplicity wins: 14 features > 40 features
+
+---
+
+## Portfolio Construction
+
+### S2_FilterNegative Strategy
+
+```python
+# 1. Rank all stocks by prediction
+sorted_stocks = predictions.sort_values('y_pred_reg', ascending=False)
+
+# 2. Long: Top 38 stocks
+longs = sorted_stocks.head(38)
+long_weight = 0.65 / len(longs)  # ~1.71% each
+
+# 3. Short: Bottom 38 WHERE prediction < 0 (CRITICAL FILTER)
+short_candidates = sorted_stocks.tail(38)
+shorts = short_candidates[short_candidates['y_pred_reg'] < 0]
+short_weight = -0.35 / len(shorts) if len(shorts) > 0 else 0
+
+# 4. EWMA smoothing to reduce turnover
+smoothed = 0.15 * target + 0.85 * previous_positions
+```
+
+### Why the Short Filter Matters
+
+| Strategy | Short Sharpe | Overall Sharpe |
+|----------|-------------|----------------|
+| S0: Naive shorts (all bottom 38) | -1.69 | 0.51 |
+| **S2: FilterNegative (pred < 0 only)** | **+0.61** | **2.20** |
+
+During bull markets, even bottom-ranked stocks may have positive predictions. Shorting them destroys value. The filter only shorts stocks genuinely expected to decline.
+
+### Transaction Costs
+
+```
+Spread: 5 bps + Commission: 1 bps + Impact: 20 * turnover bps
+Average daily cost: ~9.8 bps (at 49% turnover)
+```
+
+---
+
+## Risk Management
+
+### Volatility Targeting
+
+Scales all positions to maintain 8% annualized volatility:
+
+```python
+realized_vol = returns[-20:].std() * sqrt(252)
+vol_scale = clip(0.08 / realized_vol, 0.5, 2.0)
+positions = {ticker: weight * vol_scale for ticker, weight in base_positions.items()}
+```
+
+- High vol periods → scale down (reduce risk)
+- Low vol periods → scale up (maintain returns)
+
+### Kill Switches
+
+| Switch | Trigger | Action |
+|--------|---------|--------|
+| 3-sigma loss | Daily loss > 3 * historical std | Flatten all positions |
+| 8% drawdown | Trailing drawdown > 8% | Halt trading |
+| Negative Sharpe | 60-day rolling Sharpe < 0 | Disable strategy |
+
+**Backtest results**: Kill switches triggered on 8% of days (15 events). No 8% drawdown events.
+
+### Risk Metrics
+
+- Market Beta: 0.03 (effectively market-neutral)
+- Typical net exposure: 30% (long-biased)
+- Gross exposure: 100%
+- Max single position: ~2.6%
+- Typical portfolio: 38 longs + 15-35 shorts
+
+---
+
+## Paper Trading (Phase 4)
+
+### Overview
+
+- **Method**: Historical replay using pre-computed predictions
+- **Start date**: January 19, 2026
+- **Duration**: 60+ trading days minimum
+- **Goal**: Validate strategy before live deployment
+
+### Daily Routine
+
+Every trading day after 4:15 PM EST:
 
 ```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate (Windows)
+cd c:\Users\luixj\AI\stock-data
 venv\Scripts\activate
+python scripts/paper_trading/run_daily_paper_trading.py
+```
 
-# Activate (Linux/Mac)
-source venv/bin/activate
+The script automatically increments to the next historical date.
 
-# Install dependencies
+### Weekly Review
+
+```bash
+python scripts/paper_trading/phase4_performance_tracker.py
+```
+
+Generates reports in `reports/phase4/`.
+
+### Success Criteria (must all be met for live deployment)
+
+- Sharpe > 1.0
+- Max drawdown < -10%
+- Kill switch events < 15% of days
+- No systematic issues
+- 60+ days completed
+
+### Red Flags (stop immediately)
+
+- Sharpe < 0.5 for 2 consecutive weeks
+- Max drawdown > -15%
+- Kill switches > 25% of days
+- Systematic errors or data issues
+
+### After 60 Days
+
+- Sharpe > 1.0 → Proceed to Phase 5 (live with 10% capital)
+- Sharpe < 1.0 → DO NOT go live, investigate
+
+---
+
+## Automation
+
+### Setup Windows Task Scheduler
+
+Automates daily paper trading at 4:15 PM with Qdrant database storage.
+
+**Prerequisites**:
+```bash
+pip install qdrant-client
+docker run -d -p 6333:6333 --name qdrant-paper-trading qdrant/qdrant
+```
+
+**Setup** (run as Administrator):
+```powershell
+.\scripts\automation\setup_daily_task.ps1
+```
+
+Or use the batch file alternative:
+```cmd
+scripts\automation\setup_daily_task.bat
+```
+
+### Qdrant Collections
+
+| Collection | Purpose |
+|------------|---------|
+| `stock_recommendations` | Daily long/short picks with vector embeddings |
+| `trading_results` | Daily P&L, turnover, kill switch events |
+| `performance_metrics` | Cumulative Sharpe, returns, drawdown |
+
+### Query Database
+
+```bash
+# View latest stock recommendations
+python scripts/automation/query_qdrant.py --type recommendations --limit 10
+
+# View trading results
+python scripts/automation/query_qdrant.py --type results --limit 5
+
+# View performance metrics
+python scripts/automation/query_qdrant.py --type performance
+
+# Search similar stocks
+python scripts/automation/query_qdrant.py --search AAPL
+```
+
+### Manual Run
+
+```bash
+python scripts/automation/daily_paper_trading_qdrant.py
+```
+
+### Check Automation Status
+
+```powershell
+# View scheduled task
+Get-ScheduledTask -TaskName "DailyPaperTrading"
+
+# Check last run
+Get-ScheduledTaskInfo -TaskName "DailyPaperTrading"
+
+# Run manually
+Start-ScheduledTask -TaskName "DailyPaperTrading"
+```
+
+---
+
+## Project History
+
+### Phase 0: Baseline
+- Baseline LSTM with MSE loss
+- **Result**: Gross Sharpe 0.71, Net Sharpe -1.74 (120% turnover destroyed profits)
+
+### Phase 1: Rank Loss
+- Implemented cross-sectional rank loss (70% rank + 30% Huber)
+- Simplified features from 40+ to 14
+- **Result**: Reduced turnover but over-smoothed at temperature=1.0
+
+### Phase 2A: Temperature Tuning
+- Tested temperatures: 0.01, 0.05, 0.1, 0.5, 1.0
+- **Result**: Temperature 0.05 optimal, Gross Sharpe 2.47
+
+### Phase 2B: Portfolio Engineering
+- Fixed 4 critical bugs in portfolio construction
+- Tested 5 strategies (S0-S4)
+- Added EWMA position smoothing
+- **Result**: Net Sharpe 2.20 at 22% turnover
+- **Validated**: Net Sharpe 1.32 at 100% forced turnover (alpha is real)
+
+### Phase 3: Risk Analysis
+- **3.1**: Strategy canonicalization (froze all parameters)
+- **3.2**: Risk decomposition (market beta = 0.03)
+- **3.3**: Portfolio comparison and transaction cost fixes
+- **3.4**: Short salvage (S2_FilterNegative, short Sharpe: -1.69 → +0.61)
+- **3.5**: Vol targeting (8% annual) + kill switches
+- **Result**: Vol-Targeted Sharpe 1.29, GREEN LIGHT for paper trading
+
+### Phase 4: Paper Trading (Current)
+- Historical replay starting Jan 19, 2026
+- Automated daily execution + Qdrant storage
+- 60+ days required before live deployment
+
+### Phase 5: Live Deployment (Future)
+- Week 1-2: 10% capital
+- Week 3-4: 25% capital (if Sharpe > 1.0)
+- Week 5-8: 50% capital
+- Week 9+: 100% capital
+- Rollback: Any kill switch triggers twice in one week → reduce 50%
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+**"Module not found" errors**:
+```bash
+venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3. Install PyTorch
-
-**For RTX 5090 (CUDA 12.8 required)**:
+**"File not found: phase1_predictions.parquet"**:
 ```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+ls -l data/processed/phase1_predictions.parquet
+# If missing, run: python scripts/training/phase1_runner.py
 ```
 
-**For RTX 40 series (CUDA 12.4)**:
-```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-```
-
-**For older GPUs (CUDA 11.8)**:
-```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-**Verify GPU setup**:
+**"KeyError: y_true_reg" or column name errors**:
 ```python
-import torch
-print(f"CUDA Available: {torch.cuda.is_available()}")
-print(f"GPU: {torch.cuda.get_device_name(0)}")
+import pandas as pd
+df = pd.read_parquet('data/processed/phase1_predictions.parquet')
+print(df.columns.tolist())  # Check actual column names
 ```
 
-### 4. Download Data
+**Unicode encoding errors**:
+Ensure all file writes use `encoding='utf-8'`.
 
-The project uses Yahoo Finance data (via `yfinance`). Data is downloaded automatically during preprocessing.
-
-## Usage
-
-### DO NOT Retrain the Model
-
-The model is **FROZEN** and in production state. Retraining will destroy the validated alpha.
-
-**DO NOT**:
-- Add more features
-- Change model architecture
-- Retrain with different hyperparameters
-- Tune temperature again
-
-### Running Backtests
-
-**Test portfolio configurations**:
+**Qdrant connection failed**:
 ```bash
-python scripts/backtest/phase2b_monetization.py
+docker ps | grep qdrant        # Check if running
+docker start qdrant-paper-trading  # Restart if stopped
 ```
 
-This tests 5 configurations:
-1. Baseline (no engineering)
-2. Rank filter only
-3. Position smoothing only ⭐ (best: Net Sharpe 2.20)
-4. Cross-sectional z-score only
-5. All techniques combined
-
-**Validate baseline**:
-```bash
-python scripts/validation/phase2b_validate_baseline.py
+**Windows Task Scheduler not running**:
+```powershell
+Get-ScheduledTaskInfo -TaskName "DailyPaperTrading"
+# Recreate if needed:
+Unregister-ScheduledTask -TaskName "DailyPaperTrading" -Confirm:$false
+.\scripts\automation\setup_daily_task.ps1
 ```
 
-Forces 100% daily rebalance to prove alpha is real (should show Net Sharpe ~1.32).
-
-### Analyzing Results
-
-Results are saved to:
-- `data/processed/phase2b_monetization_results.json` - All configurations
-- Logs in `logs/` directory
-
-View with:
+**Paper trading "No data for date"**:
+Predictions only cover 2025-04-01 to 2025-10-31. Reset progress:
 ```python
 import json
-with open('data/processed/phase2b_monetization_results.json') as f:
-    results = json.load(f)
-    for config in results:
-        print(f"{config['name']}: Net Sharpe {config['sharpe_net']:.2f}")
+with open('data/processed/phase4/paper_trading_progress.json', 'w') as f:
+    json.dump({'last_historical_date': '2025-04-01', 'days_completed': 0}, f)
 ```
 
-## Configuration
-
-**Config file**: [config/config.yaml](config/config.yaml)
-
-**FROZEN Settings** (DO NOT CHANGE):
-```yaml
-model:
-  sequence_length: 90
-  hidden_size: 128
-  num_layers: 2
-
-  loss:
-    regression: "rank"
-    rank_temperature: 0.05
-    rank_weight: 0.7
-    huber_delta: 0.05
-```
-
-**Portfolio Settings** (Can adjust for Phase 3):
-```yaml
-backtest:
-  long_pct: 0.2           # Top 20%
-  short_pct: 0.2          # Bottom 20%
-  transaction_cost_bps: 5.0
-```
-
-## Key Lessons Learned
+### Key Lessons Learned
 
 1. **Simplicity wins**: 14 features > 40 features
 2. **Loss function matters**: Rank loss > MSE for trading
 3. **Costs kill**: 120% turnover destroyed 0.71 gross Sharpe
-4. **Temperature is critical**: 0.05 vs 1.0 determines success/failure
-5. **Portfolio engineering ≠ ML**: Smoothing increased Sharpe 67%
-6. **Validate everything**: Baseline stress test caught accounting assumptions
-7. **Professional rigor**: Systematic experimentation prevents premature celebration
-
-## Documentation
-
-**Must Read**:
-- [docs/FINAL_RESULTS.md](docs/FINAL_RESULTS.md) - Complete journey and results ⭐
-- [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) - Detailed project structure
-
-**Phase Documentation**:
-- [docs/PHASE1_README.md](docs/PHASE1_README.md) - Rank loss implementation
-- [docs/PHASE1_SUMMARY.md](docs/PHASE1_SUMMARY.md) - Phase 1 results
-- [docs/PHASE2A_README.md](docs/PHASE2A_README.md) - Temperature tuning
-- [docs/PHASE2A_VALIDATED.md](docs/PHASE2A_VALIDATED.md) - Temperature results
-- [docs/PHASE2B_README.md](docs/PHASE2B_README.md) - Portfolio engineering
-- [docs/PHASE2B_BUGFIXES.md](docs/PHASE2B_BUGFIXES.md) - Critical bug fixes
-
-## Next Phase: Phase 3 - Risk Management & Deployment
-
-**Current Status**: Phase 2B complete, strategy validated
-
-**Planned Work**:
-1. ✅ Volatility targeting (risk normalization)
-2. ✅ Sector neutrality (reduce factor exposure)
-3. ✅ Sub-period analysis (rolling Sharpe, IC stability)
-4. ✅ Capacity estimation (how much capital?)
-5. ✅ Slippage modeling (realistic execution)
-6. ✅ Paper trading setup
-
-**What NOT to do**:
-- ❌ Add more features
-- ❌ Try different architectures
-- ❌ Retrain the model
-- ❌ Tune more hyperparameters
-
-The ML work is DONE. Focus is now on risk management and deployment.
-
-## Troubleshooting
-
-### RTX 5090 CUDA Error
-
-**Error**: `CUDA error: no kernel image is available for execution on the device`
-
-**Solution**: RTX 5090 requires PyTorch 2.7+ with CUDA 12.8:
-```bash
-pip uninstall -y torch torchvision torchaudio
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-```
-
-### Out of GPU Memory
-
-Reduce batch size in config:
-```yaml
-model:
-  training:
-    batch_size: 16  # Reduce from 32
-```
-
-### Missing Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Data Download Fails
-
-The project uses Yahoo Finance via `yfinance`. If downloads fail:
-- Check internet connection
-- Verify ticker symbols are valid
-- Try reducing number of tickers in config
-
-## Performance Characteristics
-
-### Signal Type
-
-**Medium-horizon cross-sectional ranking alpha**:
-- NOT daily momentum
-- NOT trend-following
-- IS relative regime estimation
-- Persists over 2-5 days (hence why smoothing helps)
-
-### Institutional Quality
-
-**Strengths**:
-- Net Sharpe > 2.0 (institutional quality)
-- Low turnover (22% executable at scale)
-- Dollar-neutral (market beta ~0)
-- Reasonable drawdown (<-6%)
-
-**Validated**:
-- Survives 100% daily turnover (Net Sharpe 1.32)
-- No data leakage or lookahead bias
-- Consistent Gross Sharpe ~2.5 across all backtests
-
-## ChatGPT's Critical Contributions
-
-This project benefited from ChatGPT's professional quant expertise:
-
-1. **Diagnosed over-complexity**: Stopped adding 7 new features
-2. **Focused on leverage**: Temperature tuning (highest signal-to-effort ratio)
-3. **Added professional metrics**: IC, IC IR, Rank Autocorrelation
-4. **Identified 4 critical bugs** in portfolio engineering logic
-5. **Validated baseline**: Forced stress test proving alpha is real
-6. **Reframed mindset**: ML → Portfolio Engineering transition
-
-**Key quote**:
-> "You are no longer searching for alpha. You are engineering execution. That is a huge transition."
-
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@software{lstm_stock_trading_2025,
-  title={LSTM Cross-Sectional Stock Trading Strategy},
-  author={Your Name},
-  year={2025},
-  description={Institutional-quality LSTM trading strategy with rank loss and portfolio engineering},
-  url={https://github.com/yourusername/stock-data}
-}
-```
-
-## License
-
-MIT License - See LICENSE file for details
-
-## Disclaimer
-
-This project is for educational and research purposes only. Past performance does not guarantee future results. Trading involves substantial risk of loss. Always do your own research before making investment decisions.
+4. **Temperature is critical**: 0.05 vs 1.0 is success vs failure
+5. **Portfolio engineering != ML**: Smoothing increased Sharpe 67%
+6. **Short filtering is essential**: Naive shorts have -1.69 Sharpe
+7. **Validate everything**: Baseline stress test confirmed alpha is real
 
 ---
 
-**Achievement Unlocked**: Production-grade quant trading strategy ✅
+## Important Rules
 
-For questions or collaboration, open an issue on GitHub.
+**DO NOT**:
+- Add more features or change model architecture
+- Retrain the model or tune hyperparameters
+- Change strategy parameters during paper trading
+- Skip daily execution without documenting why
+
+**The ML work is DONE. The strategy is FROZEN at v2.0.0.**
+
+---
+
+## Disclaimer
+
+This project is for educational and research purposes only. Past performance does not guarantee future results. Trading involves substantial risk of loss.
+
+---
+
+*Strategy v2.0.0 | Frozen 2026-01-18 | Phase 4 Paper Trading*

@@ -30,7 +30,10 @@ YOUR_START_DATE = "2026-01-19"
 def get_next_historical_date(progress_file: Path) -> str:
     """
     Get the next historical date to run based on progress.
+    Skips weekends/holidays by looking at actual available dates in predictions.
     """
+    import pandas as pd
+
     if not progress_file.exists():
         return HISTORICAL_START_DATE
 
@@ -39,16 +42,18 @@ def get_next_historical_date(progress_file: Path) -> str:
 
     last_date = progress.get('last_historical_date', HISTORICAL_START_DATE)
 
-    # Find next date in the historical data
-    from datetime import timedelta
-    import pandas as pd
+    # Load available trading dates from predictions
+    df = pd.read_parquet('data/processed/phase1_predictions.parquet')
+    available_dates = sorted(df['date'].unique())
 
-    last_dt = pd.to_datetime(last_date)
-    next_dt = last_dt + timedelta(days=1)
+    # Find the next date after last_date (strip timezone for comparison)
+    last_dt = pd.to_datetime(last_date).tz_localize(None)
+    for d in available_dates:
+        d_naive = pd.to_datetime(d).tz_localize(None)
+        if d_naive > last_dt:
+            return d_naive.strftime('%Y-%m-%d')
 
-    # Keep incrementing until we find a trading day
-    # (for simplicity, just increment - the runner will handle missing data)
-    return next_dt.strftime('%Y-%m-%d')
+    raise ValueError(f"No more trading dates available after {last_date}")
 
 
 def update_progress(progress_file: Path, historical_date: str, calendar_date: str):

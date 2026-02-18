@@ -60,3 +60,6 @@ Thumbs.db
 
 # Qdrant local storage
 qdrant_storage/
+
+# Qdrant backups
+data/backups/

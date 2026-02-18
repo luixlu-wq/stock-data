@@ -1,7 +1,7 @@
 {
-  "start_calendar_date": "2026-01-19",
+  "start_calendar_date": "2026-01-01",
   "start_historical_date": "2025-04-01",
-  "days_completed": 3,
-  "last_calendar_date": "2026-01-20",
-  "last_historical_date": "2025-04-02"
+  "days_completed": 33,
+  "last_historical_date": "2025-05-16",
+  "last_calendar_date": "2026-02-17"
 }

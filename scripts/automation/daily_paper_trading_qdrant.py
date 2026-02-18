@@ -15,19 +15,34 @@ Usage:
 
 import json
 import logging
+import os
+import subprocess
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
 
+# Ensure working directory is project root (critical for Task Scheduler)
+PROJECT_ROOT = Path(__file__).parent.parent.parent.resolve()
+os.chdir(PROJECT_ROOT)
+sys.path.insert(0, str(PROJECT_ROOT))
+
+import numpy as np
 import pandas as pd
+import requests
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
 
-# Add project root to path
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-
 from scripts.paper_trading.phase4_paper_trading_runner import PaperTradingRunner
+
+# Docker/Qdrant Configuration
+QDRANT_CONTAINER_NAME = "qdrant-paper-trading"
+QDRANT_IMAGE = "qdrant/qdrant"
+DOCKER_DESKTOP_PATH = r"C:\Program Files\Docker\Docker\Docker Desktop.exe"
+
+# Backup Configuration
+BACKUP_DIR = Path("data/backups/qdrant")
 
 # Setup logging
 log_dir = Path("logs/automation")
@@ -103,7 +118,7 @@ class QdrantPaperTrading:
             logger.info(f"Created collection '{COLLECTION_PERFORMANCE}'")
 
     def get_next_historical_date(self) -> str:
-        """Get next historical date based on progress."""
+        """Get next historical date based on progress, skipping weekends/holidays."""
         progress_file = Path(self.output_dir) / "paper_trading_progress.json"
 
         if not progress_file.exists():
@@ -114,12 +129,18 @@ class QdrantPaperTrading:
 
         last_date = progress.get('last_historical_date', '2025-04-01')
 
-        # Increment to next trading day
-        from datetime import timedelta
-        last_dt = pd.to_datetime(last_date)
-        next_dt = last_dt + timedelta(days=1)
+        # Load available trading dates from predictions
+        df = pd.read_parquet(self.predictions_path)
+        available_dates = sorted(df['date'].unique())
 
-        return next_dt.strftime('%Y-%m-%d')
+        # Find the next date after last_date (strip timezone for comparison)
+        last_dt = pd.to_datetime(last_date).tz_localize(None)
+        for d in available_dates:
+            d_naive = pd.to_datetime(d).tz_localize(None)
+            if d_naive > last_dt:
+                return d_naive.strftime('%Y-%m-%d')
+
+        raise ValueError(f"No more trading dates available after {last_date}")
 
     def run_daily_paper_trading(self, historical_date: str) -> Dict:
         """Run paper trading for the specified date."""
@@ -342,6 +363,61 @@ class QdrantPaperTrading:
 
         logger.info(f"Saved performance metrics to Qdrant")
 
+    def save_daily_results_and_summary(self, result: Dict):
+        """Append daily result to parquet and regenerate summary metrics."""
+        daily_file = Path(self.output_dir) / "phase4_paper_trading_daily.parquet"
+
+        # Load existing or create new DataFrame
+        if daily_file.exists():
+            existing_df = pd.read_parquet(daily_file)
+            results_df = pd.concat([existing_df, pd.DataFrame([result])], ignore_index=True)
+        else:
+            results_df = pd.DataFrame([result])
+
+        # Save daily parquet
+        results_df.to_parquet(daily_file)
+        logger.info(f"Saved {len(results_df)} daily results to {daily_file}")
+
+        # Calculate and save summary metrics
+        pnl_net = results_df['pnl_net'].values
+        pnl_scaled = results_df['pnl_scaled'].values
+
+        sharpe_raw = (np.mean(pnl_net) / np.std(pnl_net)) * np.sqrt(252) if np.std(pnl_net) > 0 else 0
+        sharpe_scaled = (np.mean(pnl_scaled) / np.std(pnl_scaled)) * np.sqrt(252) if np.std(pnl_scaled) > 0 else 0
+
+        cum_returns = np.cumsum(pnl_net)
+        running_max = np.maximum.accumulate(cum_returns)
+        max_dd = float(np.min(cum_returns - running_max))
+
+        long_pnl = results_df['long_pnl'].values
+        short_pnl = results_df['short_pnl'].values
+        long_sharpe = (np.mean(long_pnl) / np.std(long_pnl)) * np.sqrt(252) if np.std(long_pnl) > 0 else 0
+        short_sharpe = (np.mean(short_pnl) / np.std(short_pnl)) * np.sqrt(252) if np.std(short_pnl) > 0 else 0
+
+        ks_events = int(results_df['ks_triggered'].sum())
+
+        summary = {
+            'num_days': len(results_df),
+            'sharpe_raw': float(sharpe_raw),
+            'annual_return_raw': float(np.mean(pnl_net) * 252),
+            'vol_raw': float(np.std(pnl_net) * np.sqrt(252)),
+            'sharpe_scaled': float(sharpe_scaled),
+            'annual_return_scaled': float(np.mean(pnl_scaled) * 252),
+            'vol_scaled': float(np.std(pnl_scaled) * np.sqrt(252)),
+            'max_dd': max_dd,
+            'avg_turnover': float(results_df['turnover'].mean()),
+            'avg_cost_bps': float(results_df['cost'].mean() * 10000),
+            'long_sharpe': float(long_sharpe),
+            'short_sharpe': float(short_sharpe),
+            'ks_events': ks_events,
+            'ks_pct': (ks_events / len(results_df)) * 100
+        }
+
+        summary_file = Path(self.output_dir) / "phase4_paper_trading_summary.json"
+        with open(summary_file, 'w') as f:
+            json.dump(summary, f, indent=2)
+        logger.info(f"Saved summary: Sharpe(scaled)={sharpe_scaled:.2f}, Days={len(results_df)}")
+
     def run_automated_daily(self):
         """Run complete automated daily workflow."""
         logger.info("="*60)
@@ -357,18 +433,24 @@ class QdrantPaperTrading:
             # Step 2: Run paper trading
             result = self.run_daily_paper_trading(historical_date)
 
-            # Step 3: Get stock recommendations
+            # Step 3: Save daily results and summary to local files
+            self.save_daily_results_and_summary(result)
+
+            # Step 4: Get stock recommendations
             recommendations = self.get_stock_recommendations(historical_date)
 
-            # Step 4: Save to Qdrant
+            # Step 5: Save to Qdrant
             self.save_recommendations_to_qdrant(recommendations, historical_date)
             self.save_trading_result_to_qdrant(result, historical_date)
             self.save_performance_metrics_to_qdrant()
 
-            # Step 5: Update progress
+            # Step 6: Update progress
             self.update_progress(historical_date)
 
-            # Step 6: Print summary
+            # Step 7: Incremental backup
+            self.backup_qdrant_data(historical_date)
+
+            # Step 8: Print summary
             self.print_summary(result, recommendations)
 
             logger.info("="*60)
@@ -402,6 +484,72 @@ class QdrantPaperTrading:
 
         logger.info(f"Progress updated: {progress['days_completed']} days completed")
 
+    def backup_qdrant_data(self, historical_date: str):
+        """Incremental backup of Qdrant data to local JSON files after each trading day."""
+        today = datetime.now().strftime('%Y%m%d')
+        backup_dir = BACKUP_DIR / today
+        backup_dir.mkdir(parents=True, exist_ok=True)
+
+        logger.info(f"Backing up Qdrant data to {backup_dir}...")
+
+        for collection_name in [COLLECTION_RECOMMENDATIONS, COLLECTION_TRADING_RESULTS, COLLECTION_PERFORMANCE]:
+            try:
+                info = self.qdrant_client.get_collection(collection_name)
+                total_points = info.points_count
+
+                # Scroll through all points
+                all_points = []
+                offset = None
+                while True:
+                    results, next_offset = self.qdrant_client.scroll(
+                        collection_name=collection_name,
+                        limit=100,
+                        offset=offset,
+                        with_vectors=True
+                    )
+                    for point in results:
+                        all_points.append({
+                            'id': point.id,
+                            'vector': point.vector,
+                            'payload': point.payload
+                        })
+                    if next_offset is None:
+                        break
+                    offset = next_offset
+
+                backup_file = backup_dir / f"{collection_name}.json"
+                with open(backup_file, 'w', encoding='utf-8') as f:
+                    json.dump({
+                        'collection': collection_name,
+                        'backup_date': datetime.now().isoformat(),
+                        'historical_date': historical_date,
+                        'total_points': len(all_points),
+                        'points': all_points
+                    }, f, indent=2, default=str)
+
+                logger.info(f"  Backed up {len(all_points)} points from '{collection_name}'")
+
+            except Exception as e:
+                logger.error(f"  Failed to backup '{collection_name}': {e}")
+
+        # Write a manifest file with backup summary
+        manifest = {
+            'backup_date': datetime.now().isoformat(),
+            'historical_date': historical_date,
+            'calendar_date': today,
+            'collections': {}
+        }
+        for f in backup_dir.glob("*.json"):
+            if f.name != "manifest.json":
+                with open(f, 'r') as fh:
+                    data = json.load(fh)
+                    manifest['collections'][f.stem] = data['total_points']
+
+        with open(backup_dir / "manifest.json", 'w') as f:
+            json.dump(manifest, f, indent=2)
+
+        logger.info(f"Backup complete: {backup_dir / 'manifest.json'}")
+
     def print_summary(self, result: Dict, recommendations: Dict):
         """Print summary of today's trading."""
         print("\n" + "="*60)
@@ -418,11 +566,155 @@ class QdrantPaperTrading:
         print("="*60)
 
 
+def is_docker_desktop_running() -> bool:
+    """Check if Docker Desktop process is running on Windows."""
+    try:
+        result = subprocess.run(
+            ["tasklist", "/FI", "IMAGENAME eq Docker Desktop.exe", "/NH"],
+            capture_output=True, text=True, timeout=10
+        )
+        return "Docker Desktop.exe" in result.stdout
+    except Exception:
+        return False
+
+
+def ensure_docker_running() -> bool:
+    """Check Docker Desktop process and Docker daemon, start if needed."""
+    # Check if Docker daemon is already responsive
+    try:
+        result = subprocess.run(
+            ["docker", "info"],
+            capture_output=True, text=True, timeout=10
+        )
+        if result.returncode == 0:
+            logger.info("Docker Desktop is running, daemon is ready")
+            return True
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        pass
+
+    # Docker daemon not responding - check Docker Desktop process
+    if is_docker_desktop_running():
+        logger.info("Docker Desktop process is running but daemon not ready, waiting...")
+    else:
+        logger.warning("Docker Desktop is not running, starting it...")
+        if os.path.exists(DOCKER_DESKTOP_PATH):
+            subprocess.Popen([DOCKER_DESKTOP_PATH], shell=False)
+            logger.info(f"Launched Docker Desktop from {DOCKER_DESKTOP_PATH}")
+        else:
+            logger.error(f"Docker Desktop not found at {DOCKER_DESKTOP_PATH}")
+            return False
+
+    # Wait for Docker daemon to become ready (up to 90 seconds)
+    for i in range(18):
+        time.sleep(5)
+        try:
+            result = subprocess.run(
+                ["docker", "info"],
+                capture_output=True, text=True, timeout=10
+            )
+            if result.returncode == 0:
+                logger.info(f"Docker daemon ready after {(i+1)*5} seconds")
+                return True
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            pass
+        logger.info(f"Waiting for Docker daemon... ({(i+1)*5}s)")
+
+    logger.error("Docker daemon failed to start within 90 seconds")
+    return False
+
+
+def ensure_qdrant_running() -> bool:
+    """Check if Qdrant container is running, start it if not."""
+    # First check if Qdrant is reachable
+    try:
+        resp = requests.get(f"http://{QDRANT_HOST}:{QDRANT_PORT}", timeout=3)
+        if resp.status_code == 200:
+            logger.info("Qdrant is already running")
+            return True
+    except requests.ConnectionError:
+        pass
+
+    logger.warning("Qdrant is not reachable, checking Docker container...")
+
+    # Check if container exists (running or stopped)
+    result = subprocess.run(
+        ["docker", "ps", "-a", "--filter", f"name={QDRANT_CONTAINER_NAME}",
+         "--format", "{{.Status}}"],
+        capture_output=True, text=True, timeout=10
+    )
+    container_status = result.stdout.strip()
+
+    if container_status:
+        if container_status.startswith("Up"):
+            logger.info(f"Container '{QDRANT_CONTAINER_NAME}' is up, waiting for port...")
+        else:
+            # Container exists but is stopped - restart it
+            logger.info(f"Starting stopped container '{QDRANT_CONTAINER_NAME}'...")
+            subprocess.run(
+                ["docker", "start", QDRANT_CONTAINER_NAME],
+                capture_output=True, text=True, timeout=30
+            )
+    else:
+        # Also check for any qdrant container with a different name
+        result = subprocess.run(
+            ["docker", "ps", "-a", "--filter", "ancestor=qdrant/qdrant",
+             "--format", "{{.Names}} {{.Status}}"],
+            capture_output=True, text=True, timeout=10
+        )
+        existing = result.stdout.strip()
+
+        if existing:
+            # Found a qdrant container with different name
+            name = existing.split()[0]
+            status = " ".join(existing.split()[1:])
+            logger.info(f"Found existing Qdrant container '{name}' ({status})")
+            if not status.startswith("Up"):
+                logger.info(f"Starting container '{name}'...")
+                subprocess.run(
+                    ["docker", "start", name],
+                    capture_output=True, text=True, timeout=30
+                )
+        else:
+            # No qdrant container exists - create one
+            logger.info(f"Creating new Qdrant container '{QDRANT_CONTAINER_NAME}'...")
+            subprocess.run(
+                ["docker", "run", "-d",
+                 "-p", "6333:6333", "-p", "6334:6334",
+                 "--name", QDRANT_CONTAINER_NAME,
+                 QDRANT_IMAGE],
+                capture_output=True, text=True, timeout=60
+            )
+
+    # Wait for Qdrant to become ready (up to 30 seconds)
+    for i in range(10):
+        time.sleep(3)
+        try:
+            resp = requests.get(f"http://{QDRANT_HOST}:{QDRANT_PORT}", timeout=3)
+            if resp.status_code == 200:
+                logger.info(f"Qdrant ready after {(i+1)*3} seconds")
+                return True
+        except requests.ConnectionError:
+            pass
+        logger.info(f"Waiting for Qdrant... ({(i+1)*3}s)")
+
+    logger.error("Qdrant failed to start within 30 seconds")
+    return False
+
+
 def main():
     """Main entry point for automation."""
     logger.info("Starting automated daily paper trading...")
 
     try:
+        # Step 0: Ensure Docker and Qdrant are running
+        if not ensure_docker_running():
+            logger.error("Cannot proceed without Docker")
+            sys.exit(1)
+
+        if not ensure_qdrant_running():
+            logger.error("Cannot proceed without Qdrant")
+            sys.exit(1)
+
         # Create automation instance
         automation = QdrantPaperTrading()
 
