@@ -14,8 +14,10 @@ Usage:
 import argparse
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
+
+import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -25,35 +27,103 @@ from scripts.paper_trading.phase4_paper_trading_runner import PaperTradingRunner
 # This allows you to "replay" historical data as if it's happening in real-time
 HISTORICAL_START_DATE = "2025-04-01"
 YOUR_START_DATE = "2026-01-19"
+PHASE1_PREDICTIONS = Path("data/processed/phase1_predictions.parquet")
+COMBINED_PREDICTIONS = Path("data/processed/phase4/predictions_combined.parquet")
 
 
-def get_next_historical_date(progress_file: Path) -> str:
+def resolve_predictions_path(cli_path: str | None) -> Path:
+    """Resolve predictions file path, preferring combined 2025+2026 predictions."""
+    if cli_path:
+        return Path(cli_path)
+    if COMBINED_PREDICTIONS.exists():
+        return COMBINED_PREDICTIONS
+    return PHASE1_PREDICTIONS
+
+
+def _normalize_dates(date_series: pd.Series) -> pd.Series:
+    return pd.to_datetime(date_series, errors='coerce').dt.tz_localize(None).dt.strftime('%Y-%m-%d')
+
+
+def load_available_dates(predictions_path: Path) -> tuple[list[str], list[str]]:
+    """
+    Load date ranges from predictions.
+
+    Returns:
+        (all_dates, tradable_dates)
+        tradable_dates excludes dates where y_true_reg is entirely missing.
+    """
+    try:
+        df = pd.read_parquet(predictions_path, columns=['date', 'y_true_reg'])
+    except Exception:
+        df = pd.read_parquet(predictions_path, columns=['date'])
+
+    df = df.copy()
+    df['date'] = _normalize_dates(df['date'])
+    df = df.dropna(subset=['date'])
+
+    all_dates = sorted(df['date'].unique().tolist())
+    if not all_dates:
+        raise ValueError(f"No valid dates found in predictions file: {predictions_path}")
+
+    if 'y_true_reg' in df.columns:
+        by_date_has_truth = df.groupby('date')['y_true_reg'].apply(lambda s: s.notna().any())
+        tradable_dates = sorted(by_date_has_truth[by_date_has_truth].index.tolist())
+    else:
+        tradable_dates = all_dates
+
+    if not tradable_dates:
+        raise ValueError(f"No tradable dates (with y_true_reg) found in predictions file: {predictions_path}")
+
+    return all_dates, tradable_dates
+
+
+def build_refresh_command(max_date: str) -> str:
+    """Generate command to refresh predictions beyond the current max date."""
+    next_start = (pd.to_datetime(max_date) + timedelta(days=1)).strftime('%Y-%m-%d')
+    return (
+        f"python scripts/paper_trading/run_2026_paper_trading.py "
+        f"--sim-start {next_start} --sim-end auto"
+    )
+
+
+def get_next_historical_date(progress_file: Path, predictions_path: Path) -> tuple[str | None, str, str, str]:
     """
     Get the next historical date to run based on progress.
     Skips weekends/holidays by looking at actual available dates in predictions.
+
+    Returns:
+        (next_date_or_none, min_tradable_date, max_tradable_date, max_raw_date)
     """
-    import pandas as pd
+    all_dates, tradable_dates = load_available_dates(predictions_path)
+    min_date = tradable_dates[0]
+    max_date = tradable_dates[-1]
+    max_raw_date = all_dates[-1]
 
     if not progress_file.exists():
-        return HISTORICAL_START_DATE
+        return min_date, min_date, max_date, max_raw_date
 
     with open(progress_file, 'r') as f:
         progress = json.load(f)
 
-    last_date = progress.get('last_historical_date', HISTORICAL_START_DATE)
-
-    # Load available trading dates from predictions
-    df = pd.read_parquet('data/processed/phase1_predictions.parquet')
-    available_dates = sorted(df['date'].unique())
+    last_date = progress.get('last_historical_date')
+    if not last_date:
+        return min_date, min_date, max_date, max_raw_date
 
     # Find the next date after last_date (strip timezone for comparison)
-    last_dt = pd.to_datetime(last_date).tz_localize(None)
-    for d in available_dates:
-        d_naive = pd.to_datetime(d).tz_localize(None)
-        if d_naive > last_dt:
-            return d_naive.strftime('%Y-%m-%d')
+    last_dt = pd.to_datetime(last_date, errors='coerce')
+    if pd.isna(last_dt):
+        return min_date, min_date, max_date, max_raw_date
+    last_dt = last_dt.tz_localize(None)
+    max_dt = pd.to_datetime(max_date)
+    if last_dt > max_dt:
+        last_dt = max_dt
 
-    raise ValueError(f"No more trading dates available after {last_date}")
+    for d in tradable_dates:
+        d_naive = pd.to_datetime(d)
+        if d_naive > last_dt:
+            return d_naive.strftime('%Y-%m-%d'), min_date, max_date, max_raw_date
+
+    return None, min_date, max_date, max_raw_date
 
 
 def update_progress(progress_file: Path, historical_date: str, calendar_date: str):
@@ -70,9 +140,11 @@ def update_progress(progress_file: Path, historical_date: str, calendar_date: st
             'days_completed': 0
         }
 
+    previous_date = progress.get('last_historical_date')
     progress['last_calendar_date'] = calendar_date
     progress['last_historical_date'] = historical_date
-    progress['days_completed'] = progress.get('days_completed', 0) + 1
+    if previous_date != historical_date:
+        progress['days_completed'] = progress.get('days_completed', 0) + 1
 
     progress_file.parent.mkdir(parents=True, exist_ok=True)
     with open(progress_file, 'w') as f:
@@ -84,8 +156,8 @@ def main():
     parser.add_argument('--historical-date', type=str, default=None,
                        help='Historical date to use (YYYY-MM-DD). If not provided, auto-increments.')
     parser.add_argument('--predictions', type=str,
-                       default='data/processed/phase1_predictions.parquet',
-                       help='Path to predictions file')
+                       default=None,
+                       help='Path to predictions file (default: combined 2025+2026 if available, else phase1)')
     parser.add_argument('--output-dir', type=str,
                        default='data/processed/phase4',
                        help='Output directory')
@@ -94,12 +166,48 @@ def main():
 
     # Progress tracking file
     progress_file = Path("data/processed/phase4/paper_trading_progress.json")
+    predictions_path = resolve_predictions_path(args.predictions)
+
+    if not predictions_path.exists():
+        print(f"ERROR: Predictions file not found: {predictions_path}")
+        sys.exit(1)
+
+    all_dates, available_dates = load_available_dates(predictions_path)
+    min_available = available_dates[0]
+    max_available = available_dates[-1]
+    max_raw_date = all_dates[-1]
 
     # Determine which historical date to run
     if args.historical_date:
         historical_date = args.historical_date
+        if historical_date not in set(available_dates):
+            print(f"ERROR: No data for date {historical_date} in {predictions_path}")
+            print(f"Available tradable range: {min_available} to {max_available}")
+            if max_raw_date > max_available:
+                print(f"Note: newest raw prediction date is {max_raw_date}, but it has no y_true_reg yet.")
+            sys.exit(1)
     else:
-        historical_date = get_next_historical_date(progress_file)
+        historical_date, min_available, max_available, max_raw_date = get_next_historical_date(
+            progress_file, predictions_path
+        )
+        if historical_date is None:
+            today = datetime.now().strftime('%Y-%m-%d')
+            yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+            print("="*60)
+            print("DAILY PAPER TRADING")
+            print("="*60)
+            print(f"Calendar Date (Today): {today}")
+            print("No new historical trading date available.")
+            print(f"Predictions: {predictions_path}")
+            print(f"Available tradable range: {min_available} to {max_available}")
+            if max_raw_date > max_available:
+                print(f"Newest raw prediction date: {max_raw_date} (not tradable yet, y_true_reg missing)")
+            if max_available < yesterday:
+                print("Predictions look stale. Refresh command:")
+                print(f"  {build_refresh_command(max_available)}")
+            print("No action taken.")
+            print("="*60)
+            return
 
     # Today's calendar date
     calendar_date = datetime.now().strftime('%Y-%m-%d')
@@ -113,7 +221,7 @@ def main():
 
     # Run paper trading for this historical date
     runner = PaperTradingRunner(
-        predictions_path=args.predictions,
+        predictions_path=str(predictions_path),
         output_dir=args.output_dir
     )
 
@@ -139,7 +247,7 @@ def main():
         print(f"  KS3 (Sharpe < 0): {'TRIGGERED' if result['ks3'] else 'OK'}")
 
         if result['ks_triggered']:
-            print("\n⚠️  WARNING: Kill switch triggered!")
+            print("\nWARNING: Kill switch triggered!")
 
         # Update progress
         update_progress(progress_file, historical_date, calendar_date)
@@ -164,14 +272,14 @@ def main():
             dd_ok = summary['max_dd'] > -0.10
             ks_ok = summary['ks_pct'] < 15.0
 
-            print(f"  Sharpe > 1.0: {'✅ PASS' if sharpe_ok else '❌ FAIL'}")
-            print(f"  MaxDD < -10%: {'✅ PASS' if dd_ok else '❌ FAIL'}")
-            print(f"  Kill Switches < 15%: {'✅ PASS' if ks_ok else '❌ FAIL'}")
+            print(f"  Sharpe > 1.0: {'PASS' if sharpe_ok else 'FAIL'}")
+            print(f"  MaxDD < -10%: {'PASS' if dd_ok else 'FAIL'}")
+            print(f"  Kill Switches < 15%: {'PASS' if ks_ok else 'FAIL'}")
 
             if sharpe_ok and dd_ok and ks_ok:
-                print(f"\n✅ ON TRACK for live deployment!")
+                print(f"\nON TRACK for live deployment.")
             else:
-                print(f"\n⚠️  Review needed - some gates not met")
+                print(f"\nReview needed - some gates not met")
 
         except Exception as e:
             print(f"\nCould not load cumulative stats: {e}")
@@ -185,7 +293,7 @@ def main():
         print("3. Friday: Run performance tracker for weekly review")
 
     else:
-        print(f"\n❌ ERROR: Failed to run paper trading for {historical_date}")
+        print(f"\nERROR: Failed to run paper trading for {historical_date}")
         print("Check if this date exists in the historical data")
         sys.exit(1)
 

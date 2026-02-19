@@ -19,7 +19,7 @@ import os
 import subprocess
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List
 
@@ -64,6 +64,8 @@ QDRANT_PORT = 6333
 COLLECTION_RECOMMENDATIONS = "stock_recommendations"
 COLLECTION_TRADING_RESULTS = "trading_results"
 COLLECTION_PERFORMANCE = "performance_metrics"
+PHASE1_PREDICTIONS = Path("data/processed/phase1_predictions.parquet")
+COMBINED_PREDICTIONS = Path("data/processed/phase4/predictions_combined.parquet")
 
 
 class QdrantPaperTrading:
@@ -73,11 +75,53 @@ class QdrantPaperTrading:
 
     def __init__(self, qdrant_host: str = QDRANT_HOST, qdrant_port: int = QDRANT_PORT):
         self.qdrant_client = QdrantClient(host=qdrant_host, port=qdrant_port)
-        self.predictions_path = "data/processed/phase1_predictions.parquet"
+        self.predictions_path = str(self.resolve_predictions_path())
         self.output_dir = "data/processed/phase4"
 
         # Initialize collections
         self.setup_qdrant_collections()
+
+    @staticmethod
+    def resolve_predictions_path() -> Path:
+        """Use combined predictions when available; otherwise fallback to phase1."""
+        if COMBINED_PREDICTIONS.exists():
+            return COMBINED_PREDICTIONS
+        return PHASE1_PREDICTIONS
+
+    @staticmethod
+    def load_available_dates(predictions_path: str) -> tuple[list[str], list[str]]:
+        """Load (all_dates, tradable_dates) as YYYY-MM-DD strings."""
+        try:
+            df = pd.read_parquet(predictions_path, columns=['date', 'y_true_reg'])
+        except Exception:
+            df = pd.read_parquet(predictions_path, columns=['date'])
+
+        df = df.copy()
+        df['date'] = pd.to_datetime(df['date'], errors='coerce').dt.tz_localize(None).dt.strftime('%Y-%m-%d')
+        df = df.dropna(subset=['date'])
+
+        all_dates = sorted(df['date'].unique().tolist())
+        if not all_dates:
+            raise ValueError(f"No valid dates found in predictions: {predictions_path}")
+
+        if 'y_true_reg' in df.columns:
+            by_date_has_truth = df.groupby('date')['y_true_reg'].apply(lambda s: s.notna().any())
+            tradable_dates = sorted(by_date_has_truth[by_date_has_truth].index.tolist())
+        else:
+            tradable_dates = all_dates
+
+        if not tradable_dates:
+            raise ValueError(f"No tradable dates (with y_true_reg) found in predictions: {predictions_path}")
+
+        return all_dates, tradable_dates
+
+    @staticmethod
+    def build_refresh_command(max_date: str) -> str:
+        next_start = (pd.to_datetime(max_date) + timedelta(days=1)).strftime('%Y-%m-%d')
+        return (
+            f"python scripts/paper_trading/run_2026_paper_trading.py "
+            f"--sim-start {next_start} --sim-end auto"
+        )
 
     def setup_qdrant_collections(self):
         """Create Qdrant collections if they don't exist."""
@@ -117,30 +161,58 @@ class QdrantPaperTrading:
             )
             logger.info(f"Created collection '{COLLECTION_PERFORMANCE}'")
 
-    def get_next_historical_date(self) -> str:
+    def get_next_historical_date(self) -> str | None:
         """Get next historical date based on progress, skipping weekends/holidays."""
         progress_file = Path(self.output_dir) / "paper_trading_progress.json"
 
+        all_dates, available_dates = self.load_available_dates(self.predictions_path)
+        min_date = available_dates[0]
+        max_date = available_dates[-1]
+        max_raw_date = all_dates[-1]
+
         if not progress_file.exists():
-            return "2025-04-01"  # First date
+            return min_date
 
         with open(progress_file, 'r') as f:
             progress = json.load(f)
 
-        last_date = progress.get('last_historical_date', '2025-04-01')
-
-        # Load available trading dates from predictions
-        df = pd.read_parquet(self.predictions_path)
-        available_dates = sorted(df['date'].unique())
+        last_date = progress.get('last_historical_date')
+        if not last_date:
+            return min_date
 
         # Find the next date after last_date (strip timezone for comparison)
-        last_dt = pd.to_datetime(last_date).tz_localize(None)
+        last_dt = pd.to_datetime(last_date, errors='coerce')
+        if pd.isna(last_dt):
+            logger.warning("Invalid last_historical_date '%s' in progress file. Resetting to %s.", last_date, min_date)
+            return min_date
+        last_dt = last_dt.tz_localize(None)
+        max_dt = pd.to_datetime(max_date)
+        if last_dt > max_dt:
+            logger.warning(
+                "Progress file date %s is ahead of available tradable data (max %s). Clamping.",
+                last_date, max_date
+            )
+            last_dt = max_dt
+
         for d in available_dates:
-            d_naive = pd.to_datetime(d).tz_localize(None)
+            d_naive = pd.to_datetime(d)
             if d_naive > last_dt:
                 return d_naive.strftime('%Y-%m-%d')
 
-        raise ValueError(f"No more trading dates available after {last_date}")
+        yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        logger.info(
+            "No new historical dates available. Last processed: %s | Tradable range: %s to %s",
+            last_date, min_date, max_date
+        )
+        if max_raw_date > max_date:
+            logger.info(
+                "Newest raw prediction date is %s but not tradable yet (y_true_reg missing).",
+                max_raw_date
+            )
+        if max_date < yesterday:
+            logger.warning("Predictions look stale. Refresh with:")
+            logger.warning("  %s", self.build_refresh_command(max_date))
+        return None
 
     def run_daily_paper_trading(self, historical_date: str) -> Dict:
         """Run paper trading for the specified date."""
@@ -166,6 +238,7 @@ class QdrantPaperTrading:
 
         # Load predictions
         df = pd.read_parquet(self.predictions_path)
+        df['date'] = pd.to_datetime(df['date'], errors='coerce').dt.tz_localize(None).dt.strftime('%Y-%m-%d')
         day = df[df['date'] == historical_date].copy()
 
         if day.empty:
@@ -424,10 +497,17 @@ class QdrantPaperTrading:
         logger.info("AUTOMATED DAILY PAPER TRADING")
         logger.info("="*60)
         logger.info(f"Calendar Date: {datetime.now().strftime('%Y-%m-%d')}")
+        logger.info("Predictions source: %s", self.predictions_path)
 
         try:
             # Step 1: Get next historical date
             historical_date = self.get_next_historical_date()
+            if historical_date is None:
+                logger.info("No action taken today because there is no new historical date to process.")
+                logger.info("="*60)
+                logger.info("DAILY AUTOMATION COMPLETE (NO NEW DATA)")
+                logger.info("="*60)
+                return
             logger.info(f"Historical Date (simulation): {historical_date}")
 
             # Step 2: Run paper trading
@@ -475,9 +555,11 @@ class QdrantPaperTrading:
                 'days_completed': 0
             }
 
+        previous_date = progress.get('last_historical_date')
         progress['last_calendar_date'] = datetime.now().strftime('%Y-%m-%d')
         progress['last_historical_date'] = historical_date
-        progress['days_completed'] = progress.get('days_completed', 0) + 1
+        if previous_date != historical_date:
+            progress['days_completed'] = progress.get('days_completed', 0) + 1
 
         with open(progress_file, 'w') as f:
             json.dump(progress, f, indent=2)

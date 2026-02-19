@@ -63,6 +63,9 @@ class PaperTradingRunner:
         # Load historical predictions
         logger.info(f"Loading predictions from {predictions_path}")
         self.predictions_df = pd.read_parquet(predictions_path)
+        # Normalise date column to plain YYYY-MM-DD strings so all comparisons
+        # are consistent regardless of whether parquet stored Timestamps.
+        self.predictions_df['date'] = pd.to_datetime(self.predictions_df['date']).dt.strftime('%Y-%m-%d')
         self.dates = sorted(self.predictions_df['date'].unique())
 
         # Initialize state
@@ -146,6 +149,10 @@ class PaperTradingRunner:
         for ticker, weight in positions.items():
             if ticker in returns_dict:
                 ret = returns_dict[ticker]
+                if not np.isfinite(ret):
+                    # Skip missing/invalid next-day returns so one NaN does not
+                    # corrupt the entire daily portfolio PnL.
+                    continue
                 contribution = weight * ret
                 pnl_gross += contribution
 

@@ -3,6 +3,7 @@
 **Status**: Phase 4 - Paper Trading (started Jan 19, 2026)
 **Strategy**: S2_FilterNegative (130/70 long/short with negative prediction filter)
 **Vol-Targeted Sharpe**: 1.29 | **Net Sharpe**: 2.20 | **Max DD**: -5.21%
+**Live Predictions**: 2026-01-02 → 2026-02-18 (actual Yahoo Finance data, LSTM inference)
 
 ---
 
@@ -17,6 +18,8 @@
 7. [Portfolio Construction](#portfolio-construction)
 8. [Risk Management](#risk-management)
 9. [Paper Trading (Phase 4)](#paper-trading-phase-4)
+   - [2026 Live Data Paper Trading](#2026-live-data-paper-trading)
+   - [Batch Extension](#batch-extension)
 10. [Automation](#automation)
 11. [Project History](#project-history)
 12. [Troubleshooting](#troubleshooting)
@@ -73,6 +76,45 @@ python scripts/paper_trading/run_daily_paper_trading.py
 
 The script auto-increments through historical dates (2025-04-01 onwards). Run daily.
 
+### Run 2026 Live Data Paper Trading (recommended)
+
+Downloads actual 2026 market data from Yahoo Finance, runs LSTM inference, and simulates the full 2025+2026 period. OHLCV data is cached after the first download:
+
+```bash
+python scripts/paper_trading/run_2026_paper_trading.py
+
+# Skip Qdrant sync (local files only):
+python scripts/paper_trading/run_2026_paper_trading.py --skip-qdrant
+
+# Force re-download (bypass OHLCV cache):
+python scripts/paper_trading/run_2026_paper_trading.py --force-download
+
+# Skip all download+inference (use existing predictions_2026.parquet):
+python scripts/paper_trading/run_2026_paper_trading.py --skip-download
+```
+
+See [2026 Live Data Paper Trading](#2026-live-data-paper-trading) for full details.
+
+### Run Full Batch Simulation (2025 historical data only)
+
+Re-runs the complete simulation over a date range in a single pass, then re-syncs all Qdrant collections:
+
+```bash
+python scripts/paper_trading/run_batch_extension.py
+# defaults: --start-date 2025-04-01 --end-date 2025-12-31
+
+# Custom range:
+python scripts/paper_trading/run_batch_extension.py --start-date 2025-04-01 --end-date 2025-12-31
+
+# Custom predictions file:
+python scripts/paper_trading/run_batch_extension.py --predictions data/processed/phase4/predictions_combined.parquet
+
+# Local files only (skip Qdrant):
+python scripts/paper_trading/run_batch_extension.py --skip-qdrant
+```
+
+See [Batch Extension](#batch-extension) for full details.
+
 ### Check Results
 
 ```bash
@@ -126,10 +168,12 @@ stock-data/
 │   ├── stress_test/                # Stress testing
 │   ├── deployment/                 # Deployment preparation
 │   ├── paper_trading/              # Phase 4 daily execution
-│   │   ├── run_daily_paper_trading.py         # Simple daily runner
+│   │   ├── run_2026_paper_trading.py          # Live 2026 data: download → inference → simulate
+│   │   ├── run_batch_extension.py             # Batch runner: extend date range + Qdrant sync
+│   │   ├── run_daily_paper_trading.py         # Simple daily runner (one day, historical replay)
 │   │   ├── phase4_paper_trading_runner.py     # Core trading engine
 │   │   ├── phase4_performance_tracker.py      # Performance reporting
-│   │   └── phase4_daily_pipeline.py           # Live data pipeline (future)
+│   │   └── phase4_daily_pipeline.py           # Live data pipeline (reference, has known bugs)
 │   └── automation/                 # Automated daily execution
 │       ├── daily_paper_trading_qdrant.py      # Main automation + Qdrant
 │       ├── query_qdrant.py                    # Database query tool
@@ -143,11 +187,14 @@ stock-data/
 ├── data/
 │   ├── raw/                        # Downloaded stock data (CSV)
 │   └── processed/
-│       ├── phase1_predictions.parquet        # Pre-computed predictions
+│       ├── phase1_predictions.parquet        # Pre-computed 2025 predictions (2025-04-01→2025-12-29)
 │       └── phase4/                           # Paper trading results
-│           ├── phase4_paper_trading_daily.parquet
-│           ├── phase4_paper_trading_summary.json
-│           └── paper_trading_progress.json
+│           ├── phase4_paper_trading_daily.parquet   # All simulation results (2025+2026)
+│           ├── phase4_paper_trading_summary.json    # Cumulative performance stats
+│           ├── paper_trading_progress.json          # Progress tracker
+│           ├── predictions_2026.parquet             # Live 2026 LSTM predictions (generated)
+│           ├── predictions_combined.parquet         # 2025+2026 merged predictions
+│           └── ohlcv_2026_cache.parquet             # Cached Yahoo Finance download
 │
 ├── logs/
 │   ├── paper_trading/              # Daily execution logs
@@ -169,7 +216,7 @@ stock-data/
 
 | Parameter | Value |
 |-----------|-------|
-| Model | 2-layer LSTM (128 hidden units) |
+| Model | 2-layer LSTM (192 hidden units) |
 | Features | 14 core features |
 | Sequence Length | 90 trading days |
 | Loss Function | 70% rank + 30% Huber |
@@ -205,18 +252,21 @@ stock-data/
 
 ```
 Input: (batch, 90 days, 14 features)
-  → LSTM Layer 1 (128 hidden, dropout=0.2)
-  → LSTM Layer 2 (128 hidden, dropout=0.2)
-  → Last time step output (128)
-  → FC Layer (128 → 1)
+  → LSTM Layer 1 (192 hidden, dropout=0.2)
+  → LSTM Layer 2 (192 hidden, dropout=0.2)
+  → Last time step output (192)
+  → FC Layer (192 → 64 → 1)
 Output: predicted next-day return
 ```
+
+> **Note**: The checkpoint uses `hidden_size=192` (confirmed from state_dict shape `lstm.weight_ih_l0: [768, 14]` where 768 = 4 × 192). Earlier documentation incorrectly stated 128.
 
 ### Training
 
 - **Training period**: 2020-01-01 to 2024-06-30
 - **Validation period**: 2024-07-01 to 2024-12-31
-- **Prediction period**: 2025-04-01 to 2025-10-31 (159 trading days)
+- **Historical predictions**: 2025-04-01 to 2025-12-29 (188 trading days, pre-computed)
+- **Live predictions**: 2026-01-02 to 2026-02-18 (generated via Yahoo Finance + LSTM inference)
 - **Optimizer**: Adam (lr=0.001, weight_decay=1e-5)
 - **Early stopping**: Patience 15, min_delta 0.0001
 
@@ -251,22 +301,20 @@ regression_loss = HuberLoss(delta=0.05)
 
 | # | Feature | Description | Category |
 |---|---------|-------------|----------|
-| 1 | ret_1d | Daily return | Returns |
-| 2 | ret_5d | 5-day return | Returns |
-| 3 | ret_20d | 20-day return | Returns |
-| 4 | volatility | 20-day realized vol (annualized) | Volatility |
-| 5 | vol_5d | 5-day vol (annualized) | Volatility |
-| 6 | vol_volume | Volume volatility (20-day) | Volatility |
-| 7 | dist_from_high | Distance from 20-day high | Price Structure |
-| 8 | dist_from_low | Distance from 20-day low | Price Structure |
-| 9 | price_range | Intraday range / close | Price Structure |
-| 10 | momentum | 20-day momentum | Trend |
-| 11 | momentum_5d | 5-day momentum | Trend |
-| 12 | volume_ratio | Volume / 20-day avg volume | Volume |
-| 13 | volume_trend | 5-day avg / 20-day avg volume | Volume |
-| 14 | market_return | Equal-weighted universe return | Market |
-
-**Top features by importance**: ret_20d (18.5%), volatility (15.2%), volume_ratio (12.8%), ret_5d (11.3%), dist_from_high (9.7%)
+| 1 | `ret_1d` | Log daily return: log(close / close[-1]) | Returns |
+| 2 | `ret_5d` | Log 5-day return: log(close / close[-5]) | Returns |
+| 3 | `ret_20d` | Log 20-day return: log(close / close[-20]) | Returns |
+| 4 | `vol_10d` | 10-day rolling std of ret_1d | Volatility |
+| 5 | `vol_20d` | 20-day rolling std of ret_1d | Volatility |
+| 6 | `hl_range` | (high - low) / close — intraday range | Price Structure |
+| 7 | `oc_gap` | (open - prev_close) / prev_close — gap | Price Structure |
+| 8 | `sma_10_dist` | (close - SMA10) / SMA10 | Trend |
+| 9 | `sma_20_dist` | (close - SMA20) / SMA20 | Trend |
+| 10 | `log_volume` | log(volume + 1) | Volume |
+| 11 | `volume_change` | log((volume+1) / (prev_volume+1)) | Volume |
+| 12 | `market_return` | Equal-weighted cross-sectional mean of ret_1d | Market |
+| 13 | `vs_market` | ret_1d - market_return | Market |
+| 14 | `market_correlation` | 20-day rolling correlation of ret_1d with market_return | Market |
 
 **Design principles**:
 - No look-ahead bias (all features use only past data)
@@ -398,6 +446,91 @@ Generates reports in `reports/phase4/`.
 
 - Sharpe > 1.0 → Proceed to Phase 5 (live with 10% capital)
 - Sharpe < 1.0 → DO NOT go live, investigate
+
+### 2026 Live Data Paper Trading
+
+`run_2026_paper_trading.py` extends paper trading into 2026 using **actual market data** downloaded from Yahoo Finance and **live LSTM inference** — not pre-computed predictions. It then re-runs the full combined simulation (`2025-04-01` → `2026-02-18`) in one pass so vol-scaling state is continuous across the year boundary.
+
+#### Pipeline steps
+
+| Step | What happens |
+|------|-------------|
+| 1 | Download OHLCV for all tickers from Yahoo Finance (`2025-09-01` → today) |
+| 2 | Compute 14 core features via `SimplifiedStockPreprocessor.calculate_core_features()` |
+| 3 | Load frozen `LSTMRegressor` checkpoint (`hidden_size=192`) |
+| 4 | For each 2026 trading day: extract 90-day sequence → run inference → record `y_pred_reg`, `y_true_reg`, `close` |
+| 5 | Save to `predictions_2026.parquet`; combine with `phase1_predictions.parquet` |
+| 6 | Run full simulation `2025-04-01` → `2026-02-18` (one runner instance → correct vol-scaling) |
+| 7 | Clear and re-upload all Qdrant collections |
+| 8 | Update `paper_trading_progress.json` |
+
+#### OHLCV Caching
+
+Downloaded data is saved to `data/processed/phase4/ohlcv_2026_cache.parquet`. On every subsequent run the cache is reused automatically — the download only repeats if the cached max date is earlier than `2026-02-18` (stale) or `--force-download` is passed.
+
+```bash
+# Normal run — uses cache if present
+python scripts/paper_trading/run_2026_paper_trading.py
+
+# Force a fresh Yahoo Finance download
+python scripts/paper_trading/run_2026_paper_trading.py --force-download
+
+# Skip all download+inference, re-simulate from existing predictions_2026.parquet
+python scripts/paper_trading/run_2026_paper_trading.py --skip-download
+
+# Skip Qdrant sync (local files only)
+python scripts/paper_trading/run_2026_paper_trading.py --skip-qdrant
+
+# Custom date range
+python scripts/paper_trading/run_2026_paper_trading.py --sim-start 2026-01-02 --sim-end 2026-02-18
+```
+
+#### Output files
+
+| File | Content |
+|------|---------|
+| `data/processed/phase4/ohlcv_2026_cache.parquet` | Cached raw OHLCV (2025-09-01 → today) |
+| `data/processed/phase4/predictions_2026.parquet` | Live LSTM predictions for 2026 trading days |
+| `data/processed/phase4/predictions_combined.parquet` | 2025 + 2026 merged predictions |
+| `data/processed/phase4/phase4_paper_trading_daily.parquet` | Full simulation results (2025+2026) |
+| `data/processed/phase4/phase4_paper_trading_summary.json` | Cumulative performance |
+| `data/processed/phase4/paper_trading_progress.json` | Updated with 2026 last date |
+
+### Batch Extension
+
+Use `run_batch_extension.py` to re-run the full simulation over a longer date range in one pass, rather than incrementally day-by-day. This is the correct way to extend the historical replay window because it carries vol-scaling and kill-switch state forward continuously through all days (the incremental daily runner resets state on each invocation, making vol-scale inaccurate for the first ~60 days of any new run).
+
+```bash
+# Full run: April 1 – December 31, 2025 (188 trading days)
+python scripts/paper_trading/run_batch_extension.py
+
+# Custom date range
+python scripts/paper_trading/run_batch_extension.py \
+    --start-date 2025-04-01 --end-date 2025-12-31
+
+# Custom predictions file (e.g., combined 2025+2026)
+python scripts/paper_trading/run_batch_extension.py \
+    --predictions data/processed/phase4/predictions_combined.parquet \
+    --start-date 2025-04-01 --end-date 2026-02-18
+
+# Regenerate local files only (skip Qdrant re-upload)
+python scripts/paper_trading/run_batch_extension.py --skip-qdrant
+```
+
+**What it overwrites:**
+
+| File | Action |
+|---|---|
+| `data/processed/phase4/phase4_paper_trading_daily.parquet` | Replaced with full date range |
+| `data/processed/phase4/phase4_paper_trading_summary.json` | Recomputed over all days |
+| `data/processed/phase4/paper_trading_progress.json` | Updated with new last date + day count |
+| Qdrant `stock_recommendations` | Cleared and re-uploaded (all dates) |
+| Qdrant `trading_results` | Cleared and re-uploaded (all dates) |
+| Qdrant `performance_metrics` | Cleared and re-uploaded (final snapshot) |
+
+**Qdrant point IDs** use a deterministic scheme (`YYYYMMDD × 10,000 + offset`) so re-running the script is idempotent — no duplicates are created.
+
+**Date normalisation fix**: `phase4_paper_trading_runner.py` normalises the `date` column from the predictions parquet to plain `YYYY-MM-DD` strings immediately on load, so all date comparisons work regardless of whether the parquet stored dates as `datetime64` Timestamps or strings.
 
 ---
 
@@ -552,12 +685,36 @@ Unregister-ScheduledTask -TaskName "DailyPaperTrading" -Confirm:$false
 .\scripts\automation\setup_daily_task.ps1
 ```
 
+**Qdrant `400 Bad Request: data did not match any variant of untagged enum VectorStruct`**:
+A vector contains `NaN` or `Inf` — Qdrant rejects non-finite floats. Both `run_2026_paper_trading.py` and `run_batch_extension.py` now sanitize all vector values via `_safe_float()` which replaces `NaN`/`Inf` with `0.0`. If this appears on an older script, verify the `_safe_float` helper is present.
+
+**2026 OHLCV cache is stale or wrong data**:
+```bash
+# Force a fresh download and regenerate all predictions
+python scripts/paper_trading/run_2026_paper_trading.py --force-download
+```
+The cache file is at `data/processed/phase4/ohlcv_2026_cache.parquet`. Delete it manually to force a re-download on next run.
+
+**2026 predictions don't appear in stock-ui**:
+Ensure the full pipeline ran (not just `--skip-download`). Check that `predictions_combined.parquet` exists and Qdrant sync completed. The simulation must cover 2026 dates for them to appear as `trading_results` in Qdrant.
+
 **Paper trading "No data for date"**:
-Predictions only cover 2025-04-01 to 2025-10-31. Reset progress:
+Historical predictions cover 2025-04-01 to 2025-12-29. Live 2026 predictions are in `predictions_2026.parquet`. If the progress file points past the last available date, reset it:
 ```python
 import json
 with open('data/processed/phase4/paper_trading_progress.json', 'w') as f:
     json.dump({'last_historical_date': '2025-04-01', 'days_completed': 0}, f)
+```
+
+Or re-run the full batch to rebuild everything from scratch:
+```bash
+python scripts/paper_trading/run_batch_extension.py
+```
+
+**TypeError comparing Timestamp with str in `run_backtest_simulation`**:
+Fixed in `phase4_paper_trading_runner.py` — the `date` column is now normalised to plain `YYYY-MM-DD` strings immediately after loading the parquet file. If this error reappears, check that the fix at line 68 is present:
+```python
+self.predictions_df['date'] = pd.to_datetime(self.predictions_df['date']).dt.strftime('%Y-%m-%d')
 ```
 
 ### Key Lessons Learned
@@ -590,4 +747,4 @@ This project is for educational and research purposes only. Past performance doe
 
 ---
 
-*Strategy v2.0.0 | Frozen 2026-01-18 | Phase 4 Paper Trading*
+*Strategy v2.0.0 | Frozen 2026-01-18 | Phase 4 Paper Trading | Live predictions through 2026-02-18*

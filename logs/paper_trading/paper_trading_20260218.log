@@ -1,0 +1,70 @@
+2026-02-18 16:15:07,563 - INFO - Starting automated daily paper trading...
+2026-02-18 16:15:08,596 - WARNING - Docker Desktop is not running, starting it...
+2026-02-18 16:15:08,607 - INFO - Launched Docker Desktop from C:\Program Files\Docker\Docker\Docker Desktop.exe
+2026-02-18 16:15:15,486 - INFO - Docker daemon ready after 5 seconds
+2026-02-18 16:15:19,585 - WARNING - Qdrant is not reachable, checking Docker container...
+2026-02-18 16:15:19,738 - INFO - Found existing Qdrant container 'elegant_borg' (Exited (255) 6 seconds ago)
+2026-02-18 16:15:19,739 - INFO - Starting container 'elegant_borg'...
+2026-02-18 16:15:23,164 - INFO - Qdrant ready after 3 seconds
+2026-02-18 16:15:23,697 - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2026-02-18 16:15:23,703 - INFO - Setting up Qdrant collections...
+2026-02-18 16:15:23,708 - INFO - HTTP Request: GET http://localhost:6333/collections/stock_recommendations "HTTP/1.1 200 OK"
+2026-02-18 16:15:23,710 - INFO - Collection 'stock_recommendations' already exists
+2026-02-18 16:15:23,723 - INFO - HTTP Request: GET http://localhost:6333/collections/trading_results "HTTP/1.1 200 OK"
+2026-02-18 16:15:23,723 - INFO - Collection 'trading_results' already exists
+2026-02-18 16:15:23,739 - INFO - HTTP Request: GET http://localhost:6333/collections/performance_metrics "HTTP/1.1 200 OK"
+2026-02-18 16:15:23,739 - INFO - Collection 'performance_metrics' already exists
+2026-02-18 16:15:23,741 - INFO - ============================================================
+2026-02-18 16:15:23,741 - INFO - AUTOMATED DAILY PAPER TRADING
+2026-02-18 16:15:23,741 - INFO - ============================================================
+2026-02-18 16:15:23,741 - INFO - Calendar Date: 2026-02-18
+2026-02-18 16:15:24,035 - INFO - Historical Date (simulation): 2025-05-19
+2026-02-18 16:15:24,035 - INFO - Running paper trading for 2025-05-19
+2026-02-18 16:15:24,035 - INFO - Loading predictions from data/processed/phase1_predictions.parquet
+2026-02-18 16:15:24,038 - INFO - 
+============================================================
+2026-02-18 16:15:24,038 - INFO - Running paper trading for 2025-05-19
+2026-02-18 16:15:24,038 - INFO - ============================================================
+2026-02-18 16:15:24,042 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-18 16:15:24,042 - INFO - PnL Net: -0.0054 | Scaled: -0.0054 | Turnover: 100.00% | Vol Scale: 1.00
+2026-02-18 16:15:24,042 - INFO - Paper trading complete: PnL=-0.0054, Sharpe cumulative ongoing
+2026-02-18 16:15:24,049 - INFO - Saved 34 daily results to data\processed\phase4\phase4_paper_trading_daily.parquet
+2026-02-18 16:15:24,049 - INFO - Saved summary: Sharpe(scaled)=0.89, Days=34
+2026-02-18 16:15:24,049 - INFO - Loading stock recommendations for 2025-05-19
+2026-02-18 16:15:24,056 - INFO - Saving recommendations to Qdrant...
+2026-02-18 16:15:24,208 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,211 - INFO - Saved 76 stock recommendations to Qdrant
+2026-02-18 16:15:24,211 - INFO - Saving trading result to Qdrant...
+2026-02-18 16:15:24,227 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,227 - INFO - Saved trading result to Qdrant
+2026-02-18 16:15:24,227 - INFO - Saving performance metrics to Qdrant...
+2026-02-18 16:15:24,234 - INFO - HTTP Request: PUT http://localhost:6333/collections/performance_metrics/points?wait=true "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,234 - INFO - Saved performance metrics to Qdrant
+2026-02-18 16:15:24,234 - INFO - Progress updated: 34 days completed
+2026-02-18 16:15:24,234 - INFO - Backing up Qdrant data to data\backups\qdrant\20260218...
+2026-02-18 16:15:24,236 - INFO - HTTP Request: GET http://localhost:6333/collections/stock_recommendations "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,244 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,250 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,277 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,287 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,292 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,299 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,307 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,345 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,374 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,394 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,421 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,427 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,431 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,450 - INFO -   Backed up 1212 points from 'stock_recommendations'
+2026-02-18 16:15:24,465 - INFO - HTTP Request: GET http://localhost:6333/collections/trading_results "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,469 - INFO - HTTP Request: POST http://localhost:6333/collections/trading_results/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,471 - INFO -   Backed up 34 points from 'trading_results'
+2026-02-18 16:15:24,473 - INFO - HTTP Request: GET http://localhost:6333/collections/performance_metrics "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,478 - INFO - HTTP Request: POST http://localhost:6333/collections/performance_metrics/points/scroll "HTTP/1.1 200 OK"
+2026-02-18 16:15:24,478 - INFO -   Backed up 2 points from 'performance_metrics'
+2026-02-18 16:15:24,484 - INFO - Backup complete: data\backups\qdrant\20260218\manifest.json
+2026-02-18 16:15:24,484 - INFO - ============================================================
+2026-02-18 16:15:24,484 - INFO - DAILY AUTOMATION COMPLETE
+2026-02-18 16:15:24,484 - INFO - ============================================================
+2026-02-18 16:15:24,484 - INFO - Automation completed successfully!
