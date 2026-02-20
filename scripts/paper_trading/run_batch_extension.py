@@ -2,7 +2,7 @@
 Batch Paper Trading Extension
 ==============================
 Extends (or re-runs) the paper trading simulation over a full date range and
-re-syncs all three Qdrant collections from scratch.
+re-syncs all Qdrant collections from scratch.
 
 Why batch instead of day-by-day?
   The PaperTradingRunner carries vol-scaling history and PnL history as object
@@ -14,8 +14,9 @@ Why batch instead of day-by-day?
 What this script does
   1. Run full simulation: phase1_predictions.parquet → phase4 output files
      (overwrites phase4_paper_trading_daily.parquet + summary.json)
-  2. Clear stock_recommendations, trading_results, performance_metrics in Qdrant
-  3. Re-upload every date's recommendations and results to Qdrant
+  2. Clear stock_recommendations, trading_results, performance_metrics,
+     and daily_trade_strategies in Qdrant
+  3. Re-upload every date's recommendations, results, and operation strategy
   4. Upload final cumulative performance metrics snapshot
   5. Update paper_trading_progress.json
 
@@ -41,6 +42,11 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.paper_trading.phase4_paper_trading_runner import PaperTradingRunner
+from scripts.paper_trading.strategy_planner import (
+    build_recommendations_for_date,
+    build_trade_strategy_payload,
+    strategy_payload_to_vector,
+)
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 DEFAULT_PREDICTIONS_PATH = PROJECT_ROOT / "data/processed/phase1_predictions.parquet"
@@ -52,6 +58,7 @@ QDRANT_URL                  = "http://localhost:6333"
 COLLECTION_RECOMMENDATIONS  = "stock_recommendations"
 COLLECTION_TRADING_RESULTS  = "trading_results"
 COLLECTION_PERFORMANCE      = "performance_metrics"
+COLLECTION_STRATEGIES       = "daily_trade_strategies"
 
 # Strategy constants (STRATEGY_DEFINITION.md v2.0.0)
 K              = 38
@@ -138,47 +145,6 @@ def run_simulation(start_date: str, end_date: str, predictions_path: Path) -> pd
 # Step 2 — Build recommendations per date
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _build_recommendations_for_date(date: str, pred_df: pd.DataFrame) -> list[dict]:
-    """Apply S2_FilterNegative logic to predictions and return flat list of dicts."""
-    day = pred_df[pred_df["date"] == date].copy()
-    if day.empty:
-        return []
-
-    day_sorted = day.sort_values("y_pred_reg", ascending=False)
-
-    longs = day_sorted.head(K)
-    long_weight = LONG_EXPOSURE / len(longs)
-
-    short_candidates = day_sorted.tail(K)
-    shorts = short_candidates[short_candidates["y_pred_reg"] < 0]
-    short_weight = -SHORT_EXPOSURE / len(shorts) if len(shorts) > 0 else 0.0
-
-    records = []
-    for _, row in longs.iterrows():
-        records.append({
-            "ticker":         row["ticker"],
-            "position":       "LONG",
-            "weight":         float(long_weight),
-            "prediction":     float(row["y_pred_reg"]),
-            "actual_return":  float(row["y_true_reg"]) if not pd.isna(row.get("y_true_reg")) else None,
-            "close_price":    float(row["close"]) if not pd.isna(row.get("close")) else None,
-            "date":           date,
-        })
-
-    for _, row in shorts.iterrows():
-        records.append({
-            "ticker":         row["ticker"],
-            "position":       "SHORT",
-            "weight":         float(short_weight),
-            "prediction":     float(row["y_pred_reg"]),
-            "actual_return":  float(row["y_true_reg"]) if not pd.isna(row.get("y_true_reg")) else None,
-            "close_price":    float(row["close"]) if not pd.isna(row.get("close")) else None,
-            "date":           date,
-        })
-
-    return records
-
-
 # ─────────────────────────────────────────────────────────────────────────────
 # Step 3 — Sync Qdrant
 # ─────────────────────────────────────────────────────────────────────────────
@@ -205,23 +171,33 @@ def sync_qdrant(results_df: pd.DataFrame, pred_df: pd.DataFrame):
     _ensure_collection(client, COLLECTION_RECOMMENDATIONS, size=10)
     _ensure_collection(client, COLLECTION_TRADING_RESULTS, size=5)
     _ensure_collection(client, COLLECTION_PERFORMANCE,     size=8)
+    _ensure_collection(client, COLLECTION_STRATEGIES,      size=8)
 
     # Clear stale data
     _clear_collection(client, COLLECTION_RECOMMENDATIONS)
     _clear_collection(client, COLLECTION_TRADING_RESULTS)
     _clear_collection(client, COLLECTION_PERFORMANCE)
+    _clear_collection(client, COLLECTION_STRATEGIES)
 
     dates = sorted(str(d)[:10] for d in results_df["date"].unique())
     total_reco_points = 0
     total_result_points = 0
+    total_strategy_points = 0
 
     # ── Upload per-date data ──────────────────────────────────────────────
     # Use a deterministic integer ID: encode date as YYYYMMDD * 10^6 + offset
-    for date_str in dates:
+    for date_idx, date_str in enumerate(dates):
         date_int = int(date_str.replace("-", ""))  # e.g. 20250401
+        prev_date = dates[date_idx - 1] if date_idx > 0 else None
 
         # --- Recommendations ---
-        reco_records = _build_recommendations_for_date(date_str, pred_df)
+        reco_records = build_recommendations_for_date(
+            date_str,
+            pred_df,
+            k=K,
+            long_exposure=LONG_EXPOSURE,
+            short_exposure=SHORT_EXPOSURE,
+        )
         if reco_records:
             reco_points = []
             for idx, rec in enumerate(reco_records):
@@ -238,6 +214,30 @@ def sync_qdrant(results_df: pd.DataFrame, pred_df: pd.DataFrame):
 
             client.upsert(collection_name=COLLECTION_RECOMMENDATIONS, points=reco_points)
             total_reco_points += len(reco_points)
+
+        # --- Daily operation strategy ---
+        strategy_payload = build_trade_strategy_payload(
+            date_str,
+            pred_df,
+            previous_date=prev_date,
+            k=K,
+            long_exposure=LONG_EXPOSURE,
+            short_exposure=SHORT_EXPOSURE,
+        )
+        if strategy_payload:
+            strategy_payload["saved_at"] = datetime.now().isoformat()
+            strategy_point_id = date_int * 10_000 + 8_888
+            client.upsert(
+                collection_name=COLLECTION_STRATEGIES,
+                points=[
+                    PointStruct(
+                        id=strategy_point_id,
+                        vector=strategy_payload_to_vector(strategy_payload),
+                        payload=strategy_payload,
+                    )
+                ],
+            )
+            total_strategy_points += 1
 
         # --- Trading result ---
         day_row = results_df[results_df["date"] == date_str]
@@ -265,6 +265,7 @@ def sync_qdrant(results_df: pd.DataFrame, pred_df: pd.DataFrame):
 
     log.info("Uploaded %d recommendation points.", total_reco_points)
     log.info("Uploaded %d trading result points.", total_result_points)
+    log.info("Uploaded %d strategy points.", total_strategy_points)
 
     # ── Upload performance snapshot ───────────────────────────────────────
     summary_path = OUTPUT_DIR / "phase4_paper_trading_summary.json"

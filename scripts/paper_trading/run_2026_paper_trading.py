@@ -13,7 +13,7 @@ Steps:
   5. Save to data/processed/phase4/predictions_2026.parquet
   6. Combine with phase1_predictions.parquet (2025 data)
   7. Run full simulation 2025-04-01 → sim-end
-  8. Sync Qdrant (clears and re-uploads all data)
+  8. Sync Qdrant (clears and re-uploads recommendations, results, performance, and daily strategies)
   9. Update paper_trading_progress.json
 
 Caching:
@@ -47,6 +47,11 @@ from src.utils.config_loader import ConfigLoader
 from src.data.preprocessor_v2 import SimplifiedStockPreprocessor
 from src.models.lstm_model import LSTMRegressor
 from scripts.paper_trading.phase4_paper_trading_runner import PaperTradingRunner
+from scripts.paper_trading.strategy_planner import (
+    build_recommendations_for_date,
+    build_trade_strategy_payload,
+    strategy_payload_to_vector,
+)
 
 # =============================================================================
 # Paths
@@ -91,6 +96,7 @@ QDRANT_URL                 = "http://localhost:6333"
 COLLECTION_RECOMMENDATIONS = "stock_recommendations"
 COLLECTION_TRADING_RESULTS = "trading_results"
 COLLECTION_PERFORMANCE     = "performance_metrics"
+COLLECTION_STRATEGIES      = "daily_trade_strategies"
 K             = 38
 LONG_EXPOSURE  = 0.65
 SHORT_EXPOSURE = 0.35
@@ -501,45 +507,6 @@ def _clear_collection(client, name: str):
     log.info("Cleared '%s'.", name)
 
 
-def _build_recommendations_for_date(date_str: str, pred_df: pd.DataFrame) -> list:
-    """Apply S2_FilterNegative logic to produce per-date recommendation records."""
-    day = pred_df[pred_df['date'] == date_str].copy()
-    if day.empty:
-        return []
-
-    day = day.sort_values('y_pred_reg', ascending=False)
-
-    longs = day.head(K)
-    long_weight = LONG_EXPOSURE / len(longs)
-
-    short_candidates = day.tail(K)
-    shorts = short_candidates[short_candidates['y_pred_reg'] < 0]
-    short_weight = -SHORT_EXPOSURE / len(shorts) if len(shorts) > 0 else 0.0
-
-    records = []
-    for _, row in longs.iterrows():
-        records.append({
-            'ticker':        row['ticker'],
-            'position':      'LONG',
-            'weight':        float(long_weight),
-            'prediction':    float(row['y_pred_reg']),
-            'actual_return': float(row['y_true_reg']) if not pd.isna(row.get('y_true_reg')) else None,
-            'close_price':   float(row['close'])      if not pd.isna(row.get('close'))      else None,
-            'date':          date_str,
-        })
-    for _, row in shorts.iterrows():
-        records.append({
-            'ticker':        row['ticker'],
-            'position':      'SHORT',
-            'weight':        float(short_weight),
-            'prediction':    float(row['y_pred_reg']),
-            'actual_return': float(row['y_true_reg']) if not pd.isna(row.get('y_true_reg')) else None,
-            'close_price':   float(row['close'])      if not pd.isna(row.get('close'))      else None,
-            'date':          date_str,
-        })
-    return records
-
-
 def _safe_float(v, default: float = 0.0) -> float:
     """Convert to float and replace NaN/Inf with default (Qdrant rejects non-finite values)."""
     try:
@@ -562,20 +529,30 @@ def sync_qdrant(results_df: pd.DataFrame, pred_df: pd.DataFrame):
     _ensure_collection(client, COLLECTION_RECOMMENDATIONS, size=10)
     _ensure_collection(client, COLLECTION_TRADING_RESULTS, size=5)
     _ensure_collection(client, COLLECTION_PERFORMANCE,     size=8)
+    _ensure_collection(client, COLLECTION_STRATEGIES,      size=8)
 
     _clear_collection(client, COLLECTION_RECOMMENDATIONS)
     _clear_collection(client, COLLECTION_TRADING_RESULTS)
     _clear_collection(client, COLLECTION_PERFORMANCE)
+    _clear_collection(client, COLLECTION_STRATEGIES)
 
     dates = sorted(str(d)[:10] for d in results_df['date'].unique())
     total_reco   = 0
     total_result = 0
+    total_strategy = 0
 
-    for date_str in dates:
+    for date_idx, date_str in enumerate(dates):
         date_int = int(date_str.replace('-', ''))
+        prev_date = dates[date_idx - 1] if date_idx > 0 else None
 
         # --- Recommendations ---
-        reco_records = _build_recommendations_for_date(date_str, pred_df)
+        reco_records = build_recommendations_for_date(
+            date_str,
+            pred_df,
+            k=K,
+            long_exposure=LONG_EXPOSURE,
+            short_exposure=SHORT_EXPOSURE,
+        )
         if reco_records:
             reco_points = []
             for idx, rec in enumerate(reco_records):
@@ -592,6 +569,27 @@ def sync_qdrant(results_df: pd.DataFrame, pred_df: pd.DataFrame):
 
             client.upsert(collection_name=COLLECTION_RECOMMENDATIONS, points=reco_points)
             total_reco += len(reco_points)
+
+        # --- Daily operation strategy ---
+        strategy_payload = build_trade_strategy_payload(
+            date_str,
+            pred_df,
+            previous_date=prev_date,
+            k=K,
+            long_exposure=LONG_EXPOSURE,
+            short_exposure=SHORT_EXPOSURE,
+        )
+        if strategy_payload:
+            strategy_payload['saved_at'] = datetime.now().isoformat()
+            client.upsert(
+                collection_name=COLLECTION_STRATEGIES,
+                points=[PointStruct(
+                    id=date_int * 10_000 + 8_888,
+                    vector=strategy_payload_to_vector(strategy_payload),
+                    payload=strategy_payload,
+                )],
+            )
+            total_strategy += 1
 
         # --- Trading result ---
         day_row = results_df[results_df['date'] == date_str]
@@ -624,6 +622,7 @@ def sync_qdrant(results_df: pd.DataFrame, pred_df: pd.DataFrame):
 
     log.info(f"Uploaded {total_reco} recommendation points.")
     log.info(f"Uploaded {total_result} trading result points.")
+    log.info(f"Uploaded {total_strategy} strategy points.")
 
     # --- Performance snapshot ---
     summary_path = OUTPUT_DIR / "phase4_paper_trading_summary.json"

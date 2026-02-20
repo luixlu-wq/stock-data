@@ -8575,3 +8575,2051 @@ KILL SWITCHES:
 2026-02-19 17:09:03,890 - INFO -   Daily results    : C:\Users\luixj\AI\stock-data\data\processed\phase4\phase4_paper_trading_daily.parquet
 2026-02-19 17:09:03,890 - INFO -   Summary          : C:\Users\luixj\AI\stock-data\data\processed\phase4\phase4_paper_trading_summary.json
 2026-02-19 17:09:03,890 - INFO - ============================================================
+2026-02-19 20:23:55,888 - INFO - ============================================================
+2026-02-19 20:23:55,888 - INFO - BATCH PAPER TRADING EXTENSION
+2026-02-19 20:23:55,890 - INFO -   Predictions: data\processed\phase4\predictions_combined.parquet
+2026-02-19 20:23:55,890 - INFO - ============================================================
+2026-02-19 20:23:55,890 - INFO - Loading predictions from data\processed\phase4\predictions_combined.parquet
+2026-02-19 20:23:55,926 - INFO - ============================================================
+2026-02-19 20:23:55,926 - INFO - STEP 1: Running batch paper trading simulation
+2026-02-19 20:23:55,926 - INFO -   Predictions : data\processed\phase4\predictions_combined.parquet
+2026-02-19 20:23:55,928 - INFO - ============================================================
+2026-02-19 20:23:55,928 - INFO - Loading predictions from data\processed\phase4\predictions_combined.parquet
+2026-02-19 20:23:55,943 - INFO - Running paper trading simulation for 196 days
+2026-02-19 20:23:55,943 - INFO - Date range: 2025-04-01 to 2026-02-18
+2026-02-19 20:23:55,944 - INFO - 
+============================================================
+2026-02-19 20:23:55,944 - INFO - Running paper trading for 2025-04-01
+2026-02-19 20:23:55,944 - INFO - ============================================================
+2026-02-19 20:23:55,945 - INFO - Portfolio construction: 38 longs, 15 shorts (from 38 candidates)
+2026-02-19 20:23:55,946 - INFO - PnL Net: 0.0027 | Scaled: 0.0027 | Turnover: 100.00% | Vol Scale: 1.00
+2026-02-19 20:23:55,946 - INFO - 
+============================================================
+2026-02-19 20:23:55,946 - INFO - Running paper trading for 2025-04-02
+2026-02-19 20:23:55,946 - INFO - ============================================================
+2026-02-19 20:23:55,947 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,947 - INFO - PnL Net: -0.0234 | Scaled: -0.0234 | Turnover: 16.46% | Vol Scale: 1.00
+2026-02-19 20:23:55,947 - INFO - 
+============================================================
+2026-02-19 20:23:55,947 - INFO - Running paper trading for 2025-04-03
+2026-02-19 20:23:55,947 - INFO - ============================================================
+2026-02-19 20:23:55,948 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,949 - INFO - PnL Net: -0.0208 | Scaled: -0.0208 | Turnover: 20.14% | Vol Scale: 1.00
+2026-02-19 20:23:55,949 - INFO - 
+============================================================
+2026-02-19 20:23:55,949 - INFO - Running paper trading for 2025-04-04
+2026-02-19 20:23:55,949 - INFO - ============================================================
+2026-02-19 20:23:55,949 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,949 - INFO - PnL Net: -0.0002 | Scaled: -0.0002 | Turnover: 27.43% | Vol Scale: 1.00
+2026-02-19 20:23:55,949 - INFO - 
+============================================================
+2026-02-19 20:23:55,950 - INFO - Running paper trading for 2025-04-07
+2026-02-19 20:23:55,950 - INFO - ============================================================
+2026-02-19 20:23:55,951 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,951 - INFO - PnL Net: -0.0028 | Scaled: -0.0028 | Turnover: 21.14% | Vol Scale: 1.00
+2026-02-19 20:23:55,951 - INFO - 
+============================================================
+2026-02-19 20:23:55,951 - INFO - Running paper trading for 2025-04-08
+2026-02-19 20:23:55,951 - INFO - ============================================================
+2026-02-19 20:23:55,952 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,952 - INFO - PnL Net: 0.0243 | Scaled: 0.0243 | Turnover: 21.60% | Vol Scale: 1.00
+2026-02-19 20:23:55,952 - INFO - 
+============================================================
+2026-02-19 20:23:55,953 - INFO - Running paper trading for 2025-04-09
+2026-02-19 20:23:55,953 - INFO - ============================================================
+2026-02-19 20:23:55,954 - INFO - Portfolio construction: 38 longs, 1 shorts (from 38 candidates)
+2026-02-19 20:23:55,954 - INFO - PnL Net: -0.0107 | Scaled: -0.0107 | Turnover: 20.86% | Vol Scale: 1.00
+2026-02-19 20:23:55,954 - INFO - 
+============================================================
+2026-02-19 20:23:55,954 - INFO - Running paper trading for 2025-04-10
+2026-02-19 20:23:55,954 - INFO - ============================================================
+2026-02-19 20:23:55,954 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,954 - INFO - PnL Net: 0.0049 | Scaled: 0.0049 | Turnover: 22.53% | Vol Scale: 1.00
+2026-02-19 20:23:55,954 - INFO - 
+============================================================
+2026-02-19 20:23:55,954 - INFO - Running paper trading for 2025-04-11
+2026-02-19 20:23:55,954 - INFO - ============================================================
+2026-02-19 20:23:55,956 - INFO - Portfolio construction: 38 longs, 1 shorts (from 38 candidates)
+2026-02-19 20:23:55,956 - INFO - PnL Net: 0.0038 | Scaled: 0.0038 | Turnover: 20.79% | Vol Scale: 1.00
+2026-02-19 20:23:55,956 - INFO - 
+============================================================
+2026-02-19 20:23:55,956 - INFO - Running paper trading for 2025-04-14
+2026-02-19 20:23:55,956 - INFO - ============================================================
+2026-02-19 20:23:55,958 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,958 - INFO - Vol targeting: rolling_vol=0.2061, scale=0.5000
+2026-02-19 20:23:55,958 - INFO - PnL Net: -0.0018 | Scaled: -0.0009 | Turnover: 21.69% | Vol Scale: 0.50
+2026-02-19 20:23:55,958 - INFO - 
+============================================================
+2026-02-19 20:23:55,958 - INFO - Running paper trading for 2025-04-15
+2026-02-19 20:23:55,958 - INFO - ============================================================
+2026-02-19 20:23:55,960 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,960 - INFO - Vol targeting: rolling_vol=0.1968, scale=0.5000
+2026-02-19 20:23:55,960 - INFO - PnL Net: -0.0047 | Scaled: -0.0023 | Turnover: 21.09% | Vol Scale: 0.50
+2026-02-19 20:23:55,960 - INFO - 
+============================================================
+2026-02-19 20:23:55,960 - INFO - Running paper trading for 2025-04-16
+2026-02-19 20:23:55,960 - INFO - ============================================================
+2026-02-19 20:23:55,962 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,962 - INFO - Vol targeting: rolling_vol=0.1890, scale=0.5000
+2026-02-19 20:23:55,962 - INFO - PnL Net: 0.0008 | Scaled: 0.0004 | Turnover: 21.09% | Vol Scale: 0.50
+2026-02-19 20:23:55,962 - INFO - 
+============================================================
+2026-02-19 20:23:55,962 - INFO - Running paper trading for 2025-04-17
+2026-02-19 20:23:55,962 - INFO - ============================================================
+2026-02-19 20:23:55,962 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,964 - INFO - Vol targeting: rolling_vol=0.1826, scale=0.5000
+2026-02-19 20:23:55,964 - INFO - PnL Net: -0.0068 | Scaled: -0.0034 | Turnover: 18.47% | Vol Scale: 0.50
+2026-02-19 20:23:55,964 - INFO - 
+============================================================
+2026-02-19 20:23:55,964 - INFO - Running paper trading for 2025-04-21
+2026-02-19 20:23:55,964 - INFO - ============================================================
+2026-02-19 20:23:55,964 - INFO - Portfolio construction: 38 longs, 6 shorts (from 38 candidates)
+2026-02-19 20:23:55,964 - INFO - Vol targeting: rolling_vol=0.1822, scale=0.5000
+2026-02-19 20:23:55,964 - INFO - PnL Net: 0.0089 | Scaled: 0.0045 | Turnover: 17.46% | Vol Scale: 0.50
+2026-02-19 20:23:55,964 - INFO - 
+============================================================
+2026-02-19 20:23:55,964 - INFO - Running paper trading for 2025-04-22
+2026-02-19 20:23:55,964 - INFO - ============================================================
+2026-02-19 20:23:55,966 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,966 - INFO - Vol targeting: rolling_vol=0.1783, scale=0.5000
+2026-02-19 20:23:55,966 - INFO - PnL Net: 0.0053 | Scaled: 0.0027 | Turnover: 18.72% | Vol Scale: 0.50
+2026-02-19 20:23:55,966 - INFO - 
+============================================================
+2026-02-19 20:23:55,966 - INFO - Running paper trading for 2025-04-23
+2026-02-19 20:23:55,966 - INFO - ============================================================
+2026-02-19 20:23:55,968 - INFO - Portfolio construction: 38 longs, 5 shorts (from 38 candidates)
+2026-02-19 20:23:55,968 - INFO - Vol targeting: rolling_vol=0.1782, scale=0.5000
+2026-02-19 20:23:55,968 - INFO - PnL Net: 0.0102 | Scaled: 0.0051 | Turnover: 20.73% | Vol Scale: 0.50
+2026-02-19 20:23:55,968 - INFO - 
+============================================================
+2026-02-19 20:23:55,968 - INFO - Running paper trading for 2025-04-24
+2026-02-19 20:23:55,968 - INFO - ============================================================
+2026-02-19 20:23:55,968 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,970 - INFO - Vol targeting: rolling_vol=0.1730, scale=0.5000
+2026-02-19 20:23:55,970 - INFO - PnL Net: 0.0011 | Scaled: 0.0006 | Turnover: 18.37% | Vol Scale: 0.50
+2026-02-19 20:23:55,970 - INFO - 
+============================================================
+2026-02-19 20:23:55,970 - INFO - Running paper trading for 2025-04-25
+2026-02-19 20:23:55,970 - INFO - ============================================================
+2026-02-19 20:23:55,970 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,973 - INFO - Vol targeting: rolling_vol=0.1682, scale=0.5000
+2026-02-19 20:23:55,973 - INFO - PnL Net: 0.0007 | Scaled: 0.0004 | Turnover: 23.46% | Vol Scale: 0.50
+2026-02-19 20:23:55,973 - INFO - 
+============================================================
+2026-02-19 20:23:55,973 - INFO - Running paper trading for 2025-04-28
+2026-02-19 20:23:55,973 - INFO - ============================================================
+2026-02-19 20:23:55,973 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,973 - INFO - Vol targeting: rolling_vol=0.1639, scale=0.5000
+2026-02-19 20:23:55,973 - INFO - PnL Net: 0.0018 | Scaled: 0.0009 | Turnover: 19.52% | Vol Scale: 0.50
+2026-02-19 20:23:55,973 - INFO - 
+============================================================
+2026-02-19 20:23:55,973 - INFO - Running paper trading for 2025-04-29
+2026-02-19 20:23:55,973 - INFO - ============================================================
+2026-02-19 20:23:55,975 - INFO - Portfolio construction: 38 longs, 30 shorts (from 38 candidates)
+2026-02-19 20:23:55,975 - INFO - Vol targeting: rolling_vol=0.1599, scale=0.5004
+2026-02-19 20:23:55,975 - INFO - PnL Net: 0.0011 | Scaled: 0.0005 | Turnover: 16.79% | Vol Scale: 0.50
+2026-02-19 20:23:55,975 - INFO - 
+============================================================
+2026-02-19 20:23:55,975 - INFO - Running paper trading for 2025-04-30
+2026-02-19 20:23:55,975 - INFO - ============================================================
+2026-02-19 20:23:55,977 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,977 - INFO - Vol targeting: rolling_vol=0.1596, scale=0.5012
+2026-02-19 20:23:55,977 - INFO - PnL Net: 0.0014 | Scaled: 0.0007 | Turnover: 20.09% | Vol Scale: 0.50
+2026-02-19 20:23:55,977 - INFO - 
+============================================================
+2026-02-19 20:23:55,977 - INFO - Running paper trading for 2025-05-01
+2026-02-19 20:23:55,977 - INFO - ============================================================
+2026-02-19 20:23:55,979 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,979 - INFO - Vol targeting: rolling_vol=0.1370, scale=0.5840
+2026-02-19 20:23:55,979 - INFO - PnL Net: 0.0062 | Scaled: 0.0036 | Turnover: 17.98% | Vol Scale: 0.58
+2026-02-19 20:23:55,979 - INFO - 
+============================================================
+2026-02-19 20:23:55,979 - INFO - Running paper trading for 2025-05-02
+2026-02-19 20:23:55,979 - INFO - ============================================================
+2026-02-19 20:23:55,981 - INFO - Portfolio construction: 38 longs, 13 shorts (from 38 candidates)
+2026-02-19 20:23:55,981 - INFO - Vol targeting: rolling_vol=0.1119, scale=0.7149
+2026-02-19 20:23:55,981 - INFO - PnL Net: -0.0011 | Scaled: -0.0008 | Turnover: 17.52% | Vol Scale: 0.71
+2026-02-19 20:23:55,981 - INFO - 
+============================================================
+2026-02-19 20:23:55,981 - INFO - Running paper trading for 2025-05-05
+2026-02-19 20:23:55,981 - INFO - ============================================================
+2026-02-19 20:23:55,981 - INFO - Portfolio construction: 38 longs, 2 shorts (from 38 candidates)
+2026-02-19 20:23:55,981 - INFO - Vol targeting: rolling_vol=0.1128, scale=0.7091
+2026-02-19 20:23:55,983 - INFO - PnL Net: -0.0026 | Scaled: -0.0018 | Turnover: 19.38% | Vol Scale: 0.71
+2026-02-19 20:23:55,983 - INFO - 
+============================================================
+2026-02-19 20:23:55,983 - INFO - Running paper trading for 2025-05-06
+2026-02-19 20:23:55,983 - INFO - ============================================================
+2026-02-19 20:23:55,983 - INFO - Portfolio construction: 38 longs, 33 shorts (from 38 candidates)
+2026-02-19 20:23:55,983 - INFO - Vol targeting: rolling_vol=0.1115, scale=0.7177
+2026-02-19 20:23:55,983 - INFO - PnL Net: 0.0026 | Scaled: 0.0019 | Turnover: 19.06% | Vol Scale: 0.72
+2026-02-19 20:23:55,983 - INFO - 
+============================================================
+2026-02-19 20:23:55,983 - INFO - Running paper trading for 2025-05-07
+2026-02-19 20:23:55,985 - INFO - ============================================================
+2026-02-19 20:23:55,985 - INFO - Portfolio construction: 38 longs, 9 shorts (from 38 candidates)
+2026-02-19 20:23:55,985 - INFO - Vol targeting: rolling_vol=0.0781, scale=1.0243
+2026-02-19 20:23:55,985 - INFO - PnL Net: 0.0043 | Scaled: 0.0045 | Turnover: 18.97% | Vol Scale: 1.02
+2026-02-19 20:23:55,985 - INFO - 
+============================================================
+2026-02-19 20:23:55,987 - INFO - Running paper trading for 2025-05-08
+2026-02-19 20:23:55,987 - INFO - ============================================================
+2026-02-19 20:23:55,987 - INFO - Portfolio construction: 38 longs, 10 shorts (from 38 candidates)
+2026-02-19 20:23:55,987 - INFO - Vol targeting: rolling_vol=0.0656, scale=1.2200
+2026-02-19 20:23:55,987 - INFO - PnL Net: -0.0009 | Scaled: -0.0012 | Turnover: 19.75% | Vol Scale: 1.22
+2026-02-19 20:23:55,987 - INFO - 
+============================================================
+2026-02-19 20:23:55,987 - INFO - Running paper trading for 2025-05-09
+2026-02-19 20:23:55,987 - INFO - ============================================================
+2026-02-19 20:23:55,989 - INFO - Portfolio construction: 38 longs, 37 shorts (from 38 candidates)
+2026-02-19 20:23:55,989 - INFO - Vol targeting: rolling_vol=0.0785, scale=1.0196
+2026-02-19 20:23:55,989 - INFO - PnL Net: 0.0145 | Scaled: 0.0148 | Turnover: 18.03% | Vol Scale: 1.02
+2026-02-19 20:23:55,989 - INFO - 
+============================================================
+2026-02-19 20:23:55,989 - INFO - Running paper trading for 2025-05-12
+2026-02-19 20:23:55,989 - INFO - ============================================================
+2026-02-19 20:23:55,991 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,991 - INFO - Vol targeting: rolling_vol=0.0804, scale=0.9956
+2026-02-19 20:23:55,991 - INFO - PnL Net: 0.0074 | Scaled: 0.0074 | Turnover: 18.12% | Vol Scale: 1.00
+2026-02-19 20:23:55,991 - INFO - 
+============================================================
+2026-02-19 20:23:55,991 - INFO - Running paper trading for 2025-05-13
+2026-02-19 20:23:55,991 - INFO - ============================================================
+2026-02-19 20:23:55,993 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,993 - INFO - Vol targeting: rolling_vol=0.0797, scale=1.0044
+2026-02-19 20:23:55,993 - INFO - PnL Net: -0.0006 | Scaled: -0.0006 | Turnover: 21.90% | Vol Scale: 1.00
+2026-02-19 20:23:55,993 - INFO - 
+============================================================
+2026-02-19 20:23:55,993 - INFO - Running paper trading for 2025-05-14
+2026-02-19 20:23:55,993 - INFO - ============================================================
+2026-02-19 20:23:55,993 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,993 - INFO - Vol targeting: rolling_vol=0.0757, scale=1.0562
+2026-02-19 20:23:55,993 - INFO - PnL Net: 0.0052 | Scaled: 0.0055 | Turnover: 20.59% | Vol Scale: 1.06
+2026-02-19 20:23:55,993 - INFO - 
+============================================================
+2026-02-19 20:23:55,995 - INFO - Running paper trading for 2025-05-15
+2026-02-19 20:23:55,995 - INFO - ============================================================
+2026-02-19 20:23:55,996 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,996 - INFO - Vol targeting: rolling_vol=0.0754, scale=1.0608
+2026-02-19 20:23:55,996 - INFO - PnL Net: 0.0020 | Scaled: 0.0021 | Turnover: 19.63% | Vol Scale: 1.06
+2026-02-19 20:23:55,996 - INFO - 
+============================================================
+2026-02-19 20:23:55,996 - INFO - Running paper trading for 2025-05-16
+2026-02-19 20:23:55,996 - INFO - ============================================================
+2026-02-19 20:23:55,996 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:55,998 - INFO - Vol targeting: rolling_vol=0.0684, scale=1.1703
+2026-02-19 20:23:55,998 - INFO - PnL Net: -0.0013 | Scaled: -0.0015 | Turnover: 18.38% | Vol Scale: 1.17
+2026-02-19 20:23:55,998 - INFO - 
+============================================================
+2026-02-19 20:23:55,998 - INFO - Running paper trading for 2025-05-19
+2026-02-19 20:23:55,998 - INFO - ============================================================
+2026-02-19 20:23:56,000 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,000 - INFO - Vol targeting: rolling_vol=0.0676, scale=1.1828
+2026-02-19 20:23:56,000 - INFO - PnL Net: -0.0021 | Scaled: -0.0025 | Turnover: 16.36% | Vol Scale: 1.18
+2026-02-19 20:23:56,000 - INFO - 
+============================================================
+2026-02-19 20:23:56,000 - INFO - Running paper trading for 2025-05-20
+2026-02-19 20:23:56,000 - INFO - ============================================================
+2026-02-19 20:23:56,002 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,002 - INFO - Vol targeting: rolling_vol=0.0748, scale=1.0691
+2026-02-19 20:23:56,002 - INFO - PnL Net: -0.0070 | Scaled: -0.0075 | Turnover: 15.81% | Vol Scale: 1.07
+2026-02-19 20:23:56,002 - INFO - 
+============================================================
+2026-02-19 20:23:56,002 - INFO - Running paper trading for 2025-05-21
+2026-02-19 20:23:56,002 - INFO - ============================================================
+2026-02-19 20:23:56,002 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,004 - INFO - Vol targeting: rolling_vol=0.0690, scale=1.1591
+2026-02-19 20:23:56,004 - INFO - PnL Net: 0.0004 | Scaled: 0.0004 | Turnover: 19.34% | Vol Scale: 1.16
+2026-02-19 20:23:56,004 - INFO - 
+============================================================
+2026-02-19 20:23:56,004 - INFO - Running paper trading for 2025-05-22
+2026-02-19 20:23:56,004 - INFO - ============================================================
+2026-02-19 20:23:56,004 - INFO - Portfolio construction: 38 longs, 32 shorts (from 38 candidates)
+2026-02-19 20:23:56,006 - INFO - Vol targeting: rolling_vol=0.0706, scale=1.1324
+2026-02-19 20:23:56,006 - INFO - PnL Net: -0.0027 | Scaled: -0.0031 | Turnover: 19.64% | Vol Scale: 1.13
+2026-02-19 20:23:56,006 - INFO - 
+============================================================
+2026-02-19 20:23:56,006 - INFO - Running paper trading for 2025-05-23
+2026-02-19 20:23:56,006 - INFO - ============================================================
+2026-02-19 20:23:56,006 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,008 - INFO - Vol targeting: rolling_vol=0.0743, scale=1.0767
+2026-02-19 20:23:56,008 - INFO - PnL Net: 0.0082 | Scaled: 0.0088 | Turnover: 19.52% | Vol Scale: 1.08
+2026-02-19 20:23:56,008 - INFO - 
+============================================================
+2026-02-19 20:23:56,008 - INFO - Running paper trading for 2025-05-27
+2026-02-19 20:23:56,008 - INFO - ============================================================
+2026-02-19 20:23:56,008 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,008 - INFO - Vol targeting: rolling_vol=0.0756, scale=1.0588
+2026-02-19 20:23:56,008 - INFO - PnL Net: -0.0021 | Scaled: -0.0022 | Turnover: 18.56% | Vol Scale: 1.06
+2026-02-19 20:23:56,008 - INFO - 
+============================================================
+2026-02-19 20:23:56,008 - INFO - Running paper trading for 2025-05-28
+2026-02-19 20:23:56,008 - INFO - ============================================================
+2026-02-19 20:23:56,010 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,010 - INFO - Vol targeting: rolling_vol=0.0756, scale=1.0575
+2026-02-19 20:23:56,010 - INFO - PnL Net: 0.0004 | Scaled: 0.0005 | Turnover: 16.29% | Vol Scale: 1.06
+2026-02-19 20:23:56,010 - INFO - 
+============================================================
+2026-02-19 20:23:56,010 - INFO - Running paper trading for 2025-05-29
+2026-02-19 20:23:56,010 - INFO - ============================================================
+2026-02-19 20:23:56,012 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,012 - INFO - Vol targeting: rolling_vol=0.0762, scale=1.0504
+2026-02-19 20:23:56,012 - INFO - PnL Net: -0.0009 | Scaled: -0.0010 | Turnover: 19.51% | Vol Scale: 1.05
+2026-02-19 20:23:56,012 - INFO - 
+============================================================
+2026-02-19 20:23:56,012 - INFO - Running paper trading for 2025-05-30
+2026-02-19 20:23:56,012 - INFO - ============================================================
+2026-02-19 20:23:56,014 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,014 - INFO - Vol targeting: rolling_vol=0.0742, scale=1.0777
+2026-02-19 20:23:56,014 - INFO - PnL Net: 0.0008 | Scaled: 0.0009 | Turnover: 21.02% | Vol Scale: 1.08
+2026-02-19 20:23:56,014 - INFO - 
+============================================================
+2026-02-19 20:23:56,014 - INFO - Running paper trading for 2025-06-02
+2026-02-19 20:23:56,014 - INFO - ============================================================
+2026-02-19 20:23:56,014 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,016 - INFO - Vol targeting: rolling_vol=0.0737, scale=1.0849
+2026-02-19 20:23:56,016 - INFO - PnL Net: 0.0011 | Scaled: 0.0012 | Turnover: 20.37% | Vol Scale: 1.08
+2026-02-19 20:23:56,016 - INFO - 
+============================================================
+2026-02-19 20:23:56,016 - INFO - Running paper trading for 2025-06-03
+2026-02-19 20:23:56,016 - INFO - ============================================================
+2026-02-19 20:23:56,016 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,016 - INFO - Vol targeting: rolling_vol=0.0730, scale=1.0965
+2026-02-19 20:23:56,018 - INFO - PnL Net: -0.0012 | Scaled: -0.0013 | Turnover: 18.45% | Vol Scale: 1.10
+2026-02-19 20:23:56,018 - INFO - 
+============================================================
+2026-02-19 20:23:56,018 - INFO - Running paper trading for 2025-06-04
+2026-02-19 20:23:56,018 - INFO - ============================================================
+2026-02-19 20:23:56,018 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,018 - INFO - Vol targeting: rolling_vol=0.0730, scale=1.0962
+2026-02-19 20:23:56,018 - INFO - PnL Net: -0.0000 | Scaled: -0.0000 | Turnover: 16.06% | Vol Scale: 1.10
+2026-02-19 20:23:56,018 - INFO - 
+============================================================
+2026-02-19 20:23:56,018 - INFO - Running paper trading for 2025-06-05
+2026-02-19 20:23:56,018 - INFO - ============================================================
+2026-02-19 20:23:56,020 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,020 - INFO - Vol targeting: rolling_vol=0.0721, scale=1.1092
+2026-02-19 20:23:56,020 - INFO - PnL Net: 0.0008 | Scaled: 0.0009 | Turnover: 17.46% | Vol Scale: 1.11
+2026-02-19 20:23:56,020 - INFO - 
+============================================================
+2026-02-19 20:23:56,020 - INFO - Running paper trading for 2025-06-06
+2026-02-19 20:23:56,020 - INFO - ============================================================
+2026-02-19 20:23:56,022 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,022 - INFO - Vol targeting: rolling_vol=0.0728, scale=1.0986
+2026-02-19 20:23:56,022 - INFO - PnL Net: -0.0024 | Scaled: -0.0026 | Turnover: 18.52% | Vol Scale: 1.10
+2026-02-19 20:23:56,022 - INFO - 
+============================================================
+2026-02-19 20:23:56,022 - INFO - Running paper trading for 2025-06-09
+2026-02-19 20:23:56,022 - INFO - ============================================================
+2026-02-19 20:23:56,024 - INFO - Portfolio construction: 38 longs, 13 shorts (from 38 candidates)
+2026-02-19 20:23:56,024 - INFO - Vol targeting: rolling_vol=0.0539, scale=1.4831
+2026-02-19 20:23:56,024 - INFO - PnL Net: 0.0012 | Scaled: 0.0018 | Turnover: 20.04% | Vol Scale: 1.48
+2026-02-19 20:23:56,024 - INFO - 
+============================================================
+2026-02-19 20:23:56,024 - INFO - Running paper trading for 2025-06-10
+2026-02-19 20:23:56,024 - INFO - ============================================================
+2026-02-19 20:23:56,025 - INFO - Portfolio construction: 38 longs, 6 shorts (from 38 candidates)
+2026-02-19 20:23:56,025 - INFO - Vol targeting: rolling_vol=0.0476, scale=1.6799
+2026-02-19 20:23:56,025 - INFO - PnL Net: -0.0013 | Scaled: -0.0021 | Turnover: 17.79% | Vol Scale: 1.68
+2026-02-19 20:23:56,025 - INFO - 
+============================================================
+2026-02-19 20:23:56,025 - INFO - Running paper trading for 2025-06-11
+2026-02-19 20:23:56,025 - INFO - ============================================================
+2026-02-19 20:23:56,025 - INFO - Portfolio construction: 38 longs, 16 shorts (from 38 candidates)
+2026-02-19 20:23:56,025 - INFO - Vol targeting: rolling_vol=0.0477, scale=1.6785
+2026-02-19 20:23:56,027 - INFO - PnL Net: 0.0007 | Scaled: 0.0012 | Turnover: 18.77% | Vol Scale: 1.68
+2026-02-19 20:23:56,027 - INFO - 
+============================================================
+2026-02-19 20:23:56,027 - INFO - Running paper trading for 2025-06-12
+2026-02-19 20:23:56,027 - INFO - ============================================================
+2026-02-19 20:23:56,027 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,027 - INFO - Vol targeting: rolling_vol=0.0449, scale=1.7832
+2026-02-19 20:23:56,027 - INFO - PnL Net: -0.0033 | Scaled: -0.0058 | Turnover: 21.75% | Vol Scale: 1.78
+2026-02-19 20:23:56,027 - INFO - 
+============================================================
+2026-02-19 20:23:56,027 - INFO - Running paper trading for 2025-06-13
+2026-02-19 20:23:56,027 - INFO - ============================================================
+2026-02-19 20:23:56,029 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,029 - INFO - Vol targeting: rolling_vol=0.0444, scale=1.8031
+2026-02-19 20:23:56,029 - INFO - PnL Net: 0.0011 | Scaled: 0.0020 | Turnover: 18.70% | Vol Scale: 1.80
+2026-02-19 20:23:56,029 - INFO - 
+============================================================
+2026-02-19 20:23:56,029 - INFO - Running paper trading for 2025-06-16
+2026-02-19 20:23:56,029 - INFO - ============================================================
+2026-02-19 20:23:56,031 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,031 - INFO - Vol targeting: rolling_vol=0.0455, scale=1.7575
+2026-02-19 20:23:56,031 - INFO - PnL Net: -0.0035 | Scaled: -0.0061 | Turnover: 16.38% | Vol Scale: 1.76
+2026-02-19 20:23:56,032 - INFO - 
+============================================================
+2026-02-19 20:23:56,032 - INFO - Running paper trading for 2025-06-17
+2026-02-19 20:23:56,032 - INFO - ============================================================
+2026-02-19 20:23:56,032 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,032 - INFO - Vol targeting: rolling_vol=0.0452, scale=1.7708
+2026-02-19 20:23:56,034 - INFO - PnL Net: -0.0005 | Scaled: -0.0009 | Turnover: 17.30% | Vol Scale: 1.77
+2026-02-19 20:23:56,034 - INFO - 
+============================================================
+2026-02-19 20:23:56,034 - INFO - Running paper trading for 2025-06-18
+2026-02-19 20:23:56,034 - INFO - ============================================================
+2026-02-19 20:23:56,034 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,035 - INFO - Vol targeting: rolling_vol=0.0385, scale=2.0000
+2026-02-19 20:23:56,035 - INFO - PnL Net: 0.0001 | Scaled: 0.0003 | Turnover: 18.66% | Vol Scale: 2.00
+2026-02-19 20:23:56,035 - INFO - 
+============================================================
+2026-02-19 20:23:56,035 - INFO - Running paper trading for 2025-06-20
+2026-02-19 20:23:56,035 - INFO - ============================================================
+2026-02-19 20:23:56,036 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,036 - INFO - Vol targeting: rolling_vol=0.0397, scale=2.0000
+2026-02-19 20:23:56,036 - INFO - PnL Net: 0.0027 | Scaled: 0.0053 | Turnover: 20.03% | Vol Scale: 2.00
+2026-02-19 20:23:56,036 - INFO - 
+============================================================
+2026-02-19 20:23:56,036 - INFO - Running paper trading for 2025-06-23
+2026-02-19 20:23:56,036 - INFO - ============================================================
+2026-02-19 20:23:56,037 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,038 - INFO - Vol targeting: rolling_vol=0.0406, scale=1.9706
+2026-02-19 20:23:56,038 - INFO - PnL Net: 0.0039 | Scaled: 0.0076 | Turnover: 17.48% | Vol Scale: 1.97
+2026-02-19 20:23:56,038 - INFO - 
+============================================================
+2026-02-19 20:23:56,038 - INFO - Running paper trading for 2025-06-24
+2026-02-19 20:23:56,038 - INFO - ============================================================
+2026-02-19 20:23:56,039 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,040 - INFO - Vol targeting: rolling_vol=0.0294, scale=2.0000
+2026-02-19 20:23:56,040 - INFO - PnL Net: -0.0021 | Scaled: -0.0042 | Turnover: 18.08% | Vol Scale: 2.00
+2026-02-19 20:23:56,040 - INFO - 
+============================================================
+2026-02-19 20:23:56,040 - INFO - Running paper trading for 2025-06-25
+2026-02-19 20:23:56,040 - INFO - ============================================================
+2026-02-19 20:23:56,042 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,042 - INFO - Vol targeting: rolling_vol=0.0295, scale=2.0000
+2026-02-19 20:23:56,042 - INFO - PnL Net: 0.0019 | Scaled: 0.0038 | Turnover: 17.90% | Vol Scale: 2.00
+2026-02-19 20:23:56,042 - INFO - 
+============================================================
+2026-02-19 20:23:56,042 - INFO - Running paper trading for 2025-06-26
+2026-02-19 20:23:56,042 - INFO - ============================================================
+2026-02-19 20:23:56,043 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,043 - INFO - Vol targeting: rolling_vol=0.0299, scale=2.0000
+2026-02-19 20:23:56,043 - INFO - PnL Net: 0.0015 | Scaled: 0.0029 | Turnover: 17.70% | Vol Scale: 2.00
+2026-02-19 20:23:56,043 - INFO - 
+============================================================
+2026-02-19 20:23:56,043 - INFO - Running paper trading for 2025-06-27
+2026-02-19 20:23:56,043 - INFO - ============================================================
+2026-02-19 20:23:56,044 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,045 - INFO - Vol targeting: rolling_vol=0.0300, scale=2.0000
+2026-02-19 20:23:56,045 - INFO - PnL Net: 0.0013 | Scaled: 0.0025 | Turnover: 16.45% | Vol Scale: 2.00
+2026-02-19 20:23:56,045 - INFO - 
+============================================================
+2026-02-19 20:23:56,045 - INFO - Running paper trading for 2025-06-30
+2026-02-19 20:23:56,045 - INFO - ============================================================
+2026-02-19 20:23:56,046 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,046 - INFO - Vol targeting: rolling_vol=0.0351, scale=2.0000
+2026-02-19 20:23:56,046 - INFO - PnL Net: 0.0055 | Scaled: 0.0109 | Turnover: 17.10% | Vol Scale: 2.00
+2026-02-19 20:23:56,046 - INFO - 
+============================================================
+2026-02-19 20:23:56,046 - INFO - Running paper trading for 2025-07-01
+2026-02-19 20:23:56,046 - INFO - ============================================================
+2026-02-19 20:23:56,047 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,048 - INFO - Vol targeting: rolling_vol=0.0352, scale=2.0000
+2026-02-19 20:23:56,048 - INFO - PnL Net: 0.0013 | Scaled: 0.0026 | Turnover: 15.04% | Vol Scale: 2.00
+2026-02-19 20:23:56,048 - INFO - 
+============================================================
+2026-02-19 20:23:56,048 - INFO - Running paper trading for 2025-07-02
+2026-02-19 20:23:56,048 - INFO - ============================================================
+2026-02-19 20:23:56,049 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,050 - INFO - Vol targeting: rolling_vol=0.0349, scale=2.0000
+2026-02-19 20:23:56,050 - INFO - PnL Net: 0.0014 | Scaled: 0.0028 | Turnover: 12.74% | Vol Scale: 2.00
+2026-02-19 20:23:56,050 - INFO - 
+============================================================
+2026-02-19 20:23:56,050 - INFO - Running paper trading for 2025-07-03
+2026-02-19 20:23:56,050 - INFO - ============================================================
+2026-02-19 20:23:56,051 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,052 - INFO - Vol targeting: rolling_vol=0.0371, scale=2.0000
+2026-02-19 20:23:56,052 - INFO - PnL Net: -0.0032 | Scaled: -0.0063 | Turnover: 11.38% | Vol Scale: 2.00
+2026-02-19 20:23:56,052 - INFO - 
+============================================================
+2026-02-19 20:23:56,052 - INFO - Running paper trading for 2025-07-07
+2026-02-19 20:23:56,052 - INFO - ============================================================
+2026-02-19 20:23:56,053 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,054 - INFO - Vol targeting: rolling_vol=0.0371, scale=2.0000
+2026-02-19 20:23:56,054 - INFO - PnL Net: 0.0005 | Scaled: 0.0010 | Turnover: 10.84% | Vol Scale: 2.00
+2026-02-19 20:23:56,054 - INFO - 
+============================================================
+2026-02-19 20:23:56,054 - INFO - Running paper trading for 2025-07-08
+2026-02-19 20:23:56,054 - INFO - ============================================================
+2026-02-19 20:23:56,055 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,055 - INFO - Vol targeting: rolling_vol=0.0357, scale=2.0000
+2026-02-19 20:23:56,056 - INFO - PnL Net: 0.0009 | Scaled: 0.0019 | Turnover: 18.35% | Vol Scale: 2.00
+2026-02-19 20:23:56,056 - INFO - 
+============================================================
+2026-02-19 20:23:56,056 - INFO - Running paper trading for 2025-07-09
+2026-02-19 20:23:56,056 - INFO - ============================================================
+2026-02-19 20:23:56,057 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,057 - INFO - Vol targeting: rolling_vol=0.0364, scale=2.0000
+2026-02-19 20:23:56,057 - INFO - PnL Net: 0.0026 | Scaled: 0.0053 | Turnover: 19.70% | Vol Scale: 2.00
+2026-02-19 20:23:56,058 - INFO - 
+============================================================
+2026-02-19 20:23:56,058 - INFO - Running paper trading for 2025-07-10
+2026-02-19 20:23:56,058 - INFO - ============================================================
+2026-02-19 20:23:56,059 - INFO - Portfolio construction: 38 longs, 12 shorts (from 38 candidates)
+2026-02-19 20:23:56,059 - INFO - Vol targeting: rolling_vol=0.0379, scale=2.0000
+2026-02-19 20:23:56,059 - INFO - PnL Net: -0.0029 | Scaled: -0.0058 | Turnover: 19.47% | Vol Scale: 2.00
+2026-02-19 20:23:56,059 - INFO - 
+============================================================
+2026-02-19 20:23:56,059 - INFO - Running paper trading for 2025-07-11
+2026-02-19 20:23:56,059 - INFO - ============================================================
+2026-02-19 20:23:56,060 - INFO - Portfolio construction: 38 longs, 26 shorts (from 38 candidates)
+2026-02-19 20:23:56,061 - INFO - Vol targeting: rolling_vol=0.0382, scale=2.0000
+2026-02-19 20:23:56,061 - INFO - PnL Net: -0.0008 | Scaled: -0.0016 | Turnover: 19.00% | Vol Scale: 2.00
+2026-02-19 20:23:56,061 - INFO - 
+============================================================
+2026-02-19 20:23:56,061 - INFO - Running paper trading for 2025-07-14
+2026-02-19 20:23:56,061 - INFO - ============================================================
+2026-02-19 20:23:56,062 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,062 - INFO - Vol targeting: rolling_vol=0.0411, scale=1.9456
+2026-02-19 20:23:56,062 - INFO - PnL Net: -0.0053 | Scaled: -0.0103 | Turnover: 18.01% | Vol Scale: 1.95
+2026-02-19 20:23:56,062 - INFO - 
+============================================================
+2026-02-19 20:23:56,062 - INFO - Running paper trading for 2025-07-15
+2026-02-19 20:23:56,063 - INFO - ============================================================
+2026-02-19 20:23:56,063 - INFO - Portfolio construction: 38 longs, 24 shorts (from 38 candidates)
+2026-02-19 20:23:56,063 - INFO - Vol targeting: rolling_vol=0.0411, scale=1.9452
+2026-02-19 20:23:56,063 - INFO - PnL Net: 0.0011 | Scaled: 0.0022 | Turnover: 17.80% | Vol Scale: 1.95
+2026-02-19 20:23:56,064 - INFO - 
+============================================================
+2026-02-19 20:23:56,064 - INFO - Running paper trading for 2025-07-16
+2026-02-19 20:23:56,064 - INFO - ============================================================
+2026-02-19 20:23:56,064 - INFO - Portfolio construction: 38 longs, 4 shorts (from 38 candidates)
+2026-02-19 20:23:56,064 - INFO - Vol targeting: rolling_vol=0.0400, scale=1.9977
+2026-02-19 20:23:56,064 - INFO - PnL Net: 0.0035 | Scaled: 0.0070 | Turnover: 18.83% | Vol Scale: 2.00
+2026-02-19 20:23:56,064 - INFO - 
+============================================================
+2026-02-19 20:23:56,064 - INFO - Running paper trading for 2025-07-17
+2026-02-19 20:23:56,064 - INFO - ============================================================
+2026-02-19 20:23:56,067 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,067 - INFO - Vol targeting: rolling_vol=0.0400, scale=2.0000
+2026-02-19 20:23:56,067 - INFO - PnL Net: -0.0003 | Scaled: -0.0006 | Turnover: 20.65% | Vol Scale: 2.00
+2026-02-19 20:23:56,067 - INFO - 
+============================================================
+2026-02-19 20:23:56,068 - INFO - Running paper trading for 2025-07-18
+2026-02-19 20:23:56,068 - INFO - ============================================================
+2026-02-19 20:23:56,068 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,068 - INFO - Vol targeting: rolling_vol=0.0407, scale=1.9646
+2026-02-19 20:23:56,068 - INFO - PnL Net: -0.0016 | Scaled: -0.0032 | Turnover: 22.59% | Vol Scale: 1.96
+2026-02-19 20:23:56,068 - INFO - 
+============================================================
+2026-02-19 20:23:56,068 - INFO - Running paper trading for 2025-07-21
+2026-02-19 20:23:56,068 - INFO - ============================================================
+2026-02-19 20:23:56,070 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,070 - INFO - Vol targeting: rolling_vol=0.0456, scale=1.7529
+2026-02-19 20:23:56,070 - INFO - PnL Net: 0.0068 | Scaled: 0.0120 | Turnover: 18.81% | Vol Scale: 1.75
+2026-02-19 20:23:56,070 - INFO - 
+============================================================
+2026-02-19 20:23:56,070 - INFO - Running paper trading for 2025-07-22
+2026-02-19 20:23:56,070 - INFO - ============================================================
+2026-02-19 20:23:56,073 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,073 - INFO - Vol targeting: rolling_vol=0.0446, scale=1.7927
+2026-02-19 20:23:56,073 - INFO - PnL Net: 0.0023 | Scaled: 0.0041 | Turnover: 18.89% | Vol Scale: 1.79
+2026-02-19 20:23:56,073 - INFO - 
+============================================================
+2026-02-19 20:23:56,073 - INFO - Running paper trading for 2025-07-23
+2026-02-19 20:23:56,073 - INFO - ============================================================
+2026-02-19 20:23:56,073 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,075 - INFO - Vol targeting: rolling_vol=0.0451, scale=1.7756
+2026-02-19 20:23:56,075 - INFO - PnL Net: -0.0026 | Scaled: -0.0046 | Turnover: 15.52% | Vol Scale: 1.78
+2026-02-19 20:23:56,075 - INFO - 
+============================================================
+2026-02-19 20:23:56,075 - INFO - Running paper trading for 2025-07-24
+2026-02-19 20:23:56,075 - INFO - ============================================================
+2026-02-19 20:23:56,075 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,075 - INFO - Vol targeting: rolling_vol=0.0449, scale=1.7834
+2026-02-19 20:23:56,075 - INFO - PnL Net: 0.0011 | Scaled: 0.0019 | Turnover: 15.70% | Vol Scale: 1.78
+2026-02-19 20:23:56,075 - INFO - 
+============================================================
+2026-02-19 20:23:56,075 - INFO - Running paper trading for 2025-07-25
+2026-02-19 20:23:56,077 - INFO - ============================================================
+2026-02-19 20:23:56,077 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,077 - INFO - Vol targeting: rolling_vol=0.0465, scale=1.7198
+2026-02-19 20:23:56,077 - INFO - PnL Net: -0.0031 | Scaled: -0.0052 | Turnover: 16.41% | Vol Scale: 1.72
+2026-02-19 20:23:56,077 - INFO - 
+============================================================
+2026-02-19 20:23:56,077 - INFO - Running paper trading for 2025-07-28
+2026-02-19 20:23:56,077 - INFO - ============================================================
+2026-02-19 20:23:56,079 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,079 - INFO - Vol targeting: rolling_vol=0.0474, scale=1.6862
+2026-02-19 20:23:56,079 - INFO - PnL Net: -0.0025 | Scaled: -0.0041 | Turnover: 18.54% | Vol Scale: 1.69
+2026-02-19 20:23:56,079 - INFO - 
+============================================================
+2026-02-19 20:23:56,079 - INFO - Running paper trading for 2025-07-29
+2026-02-19 20:23:56,080 - INFO - ============================================================
+2026-02-19 20:23:56,081 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,081 - INFO - Vol targeting: rolling_vol=0.0445, scale=1.7974
+2026-02-19 20:23:56,081 - INFO - PnL Net: -0.0028 | Scaled: -0.0050 | Turnover: 17.07% | Vol Scale: 1.80
+2026-02-19 20:23:56,081 - INFO - 
+============================================================
+2026-02-19 20:23:56,081 - INFO - Running paper trading for 2025-07-30
+2026-02-19 20:23:56,081 - INFO - ============================================================
+2026-02-19 20:23:56,083 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,083 - INFO - Vol targeting: rolling_vol=0.0463, scale=1.7283
+2026-02-19 20:23:56,083 - INFO - PnL Net: -0.0042 | Scaled: -0.0073 | Turnover: 18.97% | Vol Scale: 1.73
+2026-02-19 20:23:56,083 - INFO - 
+============================================================
+2026-02-19 20:23:56,083 - INFO - Running paper trading for 2025-07-31
+2026-02-19 20:23:56,083 - INFO - ============================================================
+2026-02-19 20:23:56,083 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,085 - INFO - Vol targeting: rolling_vol=0.0470, scale=1.7007
+2026-02-19 20:23:56,085 - INFO - PnL Net: -0.0036 | Scaled: -0.0062 | Turnover: 19.57% | Vol Scale: 1.70
+2026-02-19 20:23:56,085 - INFO - 
+============================================================
+2026-02-19 20:23:56,085 - INFO - Running paper trading for 2025-08-01
+2026-02-19 20:23:56,085 - INFO - ============================================================
+2026-02-19 20:23:56,085 - INFO - Portfolio construction: 38 longs, 6 shorts (from 38 candidates)
+2026-02-19 20:23:56,087 - INFO - Vol targeting: rolling_vol=0.0468, scale=1.7092
+2026-02-19 20:23:56,087 - INFO - PnL Net: 0.0016 | Scaled: 0.0028 | Turnover: 18.75% | Vol Scale: 1.71
+2026-02-19 20:23:56,087 - INFO - 
+============================================================
+2026-02-19 20:23:56,087 - INFO - Running paper trading for 2025-08-04
+2026-02-19 20:23:56,087 - INFO - ============================================================
+2026-02-19 20:23:56,087 - INFO - Portfolio construction: 38 longs, 5 shorts (from 38 candidates)
+2026-02-19 20:23:56,087 - INFO - Vol targeting: rolling_vol=0.0486, scale=1.6467
+2026-02-19 20:23:56,087 - INFO - PnL Net: 0.0034 | Scaled: 0.0056 | Turnover: 20.03% | Vol Scale: 1.65
+2026-02-19 20:23:56,089 - INFO - 
+============================================================
+2026-02-19 20:23:56,089 - INFO - Running paper trading for 2025-08-05
+2026-02-19 20:23:56,089 - INFO - ============================================================
+2026-02-19 20:23:56,089 - INFO - Portfolio construction: 38 longs, 37 shorts (from 38 candidates)
+2026-02-19 20:23:56,089 - INFO - Vol targeting: rolling_vol=0.0485, scale=1.6507
+2026-02-19 20:23:56,089 - INFO - PnL Net: -0.0013 | Scaled: -0.0021 | Turnover: 19.43% | Vol Scale: 1.65
+2026-02-19 20:23:56,089 - INFO - 
+============================================================
+2026-02-19 20:23:56,089 - INFO - Running paper trading for 2025-08-06
+2026-02-19 20:23:56,089 - INFO - ============================================================
+2026-02-19 20:23:56,091 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,091 - INFO - Vol targeting: rolling_vol=0.0472, scale=1.6961
+2026-02-19 20:23:56,091 - INFO - PnL Net: -0.0009 | Scaled: -0.0016 | Turnover: 18.13% | Vol Scale: 1.70
+2026-02-19 20:23:56,091 - INFO - 
+============================================================
+2026-02-19 20:23:56,091 - INFO - Running paper trading for 2025-08-07
+2026-02-19 20:23:56,091 - INFO - ============================================================
+2026-02-19 20:23:56,093 - INFO - Portfolio construction: 38 longs, 7 shorts (from 38 candidates)
+2026-02-19 20:23:56,094 - INFO - Vol targeting: rolling_vol=0.0466, scale=1.7164
+2026-02-19 20:23:56,094 - INFO - PnL Net: 0.0008 | Scaled: 0.0013 | Turnover: 20.31% | Vol Scale: 1.72
+2026-02-19 20:23:56,094 - INFO - 
+============================================================
+2026-02-19 20:23:56,094 - INFO - Running paper trading for 2025-08-08
+2026-02-19 20:23:56,094 - INFO - ============================================================
+2026-02-19 20:23:56,094 - INFO - Portfolio construction: 38 longs, 8 shorts (from 38 candidates)
+2026-02-19 20:23:56,094 - INFO - Vol targeting: rolling_vol=0.0467, scale=1.7135
+2026-02-19 20:23:56,094 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.0651 < 0
+2026-02-19 20:23:56,094 - INFO - PnL Net: -0.0013 | Scaled: -0.0022 | Turnover: 18.30% | Vol Scale: 1.71
+2026-02-19 20:23:56,094 - INFO - 
+============================================================
+2026-02-19 20:23:56,096 - INFO - Running paper trading for 2025-08-11
+2026-02-19 20:23:56,096 - INFO - ============================================================
+2026-02-19 20:23:56,097 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,097 - INFO - Vol targeting: rolling_vol=0.0479, scale=1.6690
+2026-02-19 20:23:56,097 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.0144 < 0
+2026-02-19 20:23:56,097 - INFO - PnL Net: 0.0058 | Scaled: 0.0096 | Turnover: 15.45% | Vol Scale: 1.67
+2026-02-19 20:23:56,097 - INFO - 
+============================================================
+2026-02-19 20:23:56,097 - INFO - Running paper trading for 2025-08-12
+2026-02-19 20:23:56,097 - INFO - ============================================================
+2026-02-19 20:23:56,099 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,099 - INFO - Vol targeting: rolling_vol=0.0574, scale=1.3933
+2026-02-19 20:23:56,099 - INFO - PnL Net: 0.0093 | Scaled: 0.0129 | Turnover: 15.64% | Vol Scale: 1.39
+2026-02-19 20:23:56,099 - INFO - 
+============================================================
+2026-02-19 20:23:56,099 - INFO - Running paper trading for 2025-08-13
+2026-02-19 20:23:56,099 - INFO - ============================================================
+2026-02-19 20:23:56,101 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,101 - INFO - Vol targeting: rolling_vol=0.0564, scale=1.4186
+2026-02-19 20:23:56,101 - INFO - PnL Net: 0.0002 | Scaled: 0.0003 | Turnover: 20.87% | Vol Scale: 1.42
+2026-02-19 20:23:56,101 - INFO - 
+============================================================
+2026-02-19 20:23:56,101 - INFO - Running paper trading for 2025-08-14
+2026-02-19 20:23:56,101 - INFO - ============================================================
+2026-02-19 20:23:56,101 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,103 - INFO - Vol targeting: rolling_vol=0.0564, scale=1.4190
+2026-02-19 20:23:56,103 - INFO - PnL Net: 0.0010 | Scaled: 0.0014 | Turnover: 18.05% | Vol Scale: 1.42
+2026-02-19 20:23:56,103 - INFO - 
+============================================================
+2026-02-19 20:23:56,103 - INFO - Running paper trading for 2025-08-15
+2026-02-19 20:23:56,103 - INFO - ============================================================
+2026-02-19 20:23:56,104 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,104 - INFO - Vol targeting: rolling_vol=0.0559, scale=1.4310
+2026-02-19 20:23:56,104 - INFO - PnL Net: 0.0002 | Scaled: 0.0003 | Turnover: 19.70% | Vol Scale: 1.43
+2026-02-19 20:23:56,104 - INFO - 
+============================================================
+2026-02-19 20:23:56,104 - INFO - Running paper trading for 2025-08-18
+2026-02-19 20:23:56,104 - INFO - ============================================================
+2026-02-19 20:23:56,104 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,106 - INFO - Vol targeting: rolling_vol=0.0515, scale=1.5525
+2026-02-19 20:23:56,106 - INFO - PnL Net: 0.0024 | Scaled: 0.0038 | Turnover: 18.09% | Vol Scale: 1.55
+2026-02-19 20:23:56,106 - INFO - 
+============================================================
+2026-02-19 20:23:56,106 - INFO - Running paper trading for 2025-08-19
+2026-02-19 20:23:56,106 - INFO - ============================================================
+2026-02-19 20:23:56,106 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,106 - INFO - Vol targeting: rolling_vol=0.0516, scale=1.5515
+2026-02-19 20:23:56,108 - INFO - PnL Net: -0.0020 | Scaled: -0.0031 | Turnover: 16.60% | Vol Scale: 1.55
+2026-02-19 20:23:56,108 - INFO - 
+============================================================
+2026-02-19 20:23:56,108 - INFO - Running paper trading for 2025-08-20
+2026-02-19 20:23:56,108 - INFO - ============================================================
+2026-02-19 20:23:56,108 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,108 - INFO - Vol targeting: rolling_vol=0.0510, scale=1.5694
+2026-02-19 20:23:56,108 - INFO - PnL Net: -0.0015 | Scaled: -0.0024 | Turnover: 15.21% | Vol Scale: 1.57
+2026-02-19 20:23:56,108 - INFO - 
+============================================================
+2026-02-19 20:23:56,108 - INFO - Running paper trading for 2025-08-21
+2026-02-19 20:23:56,108 - INFO - ============================================================
+2026-02-19 20:23:56,110 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,110 - INFO - Vol targeting: rolling_vol=0.0594, scale=1.3476
+2026-02-19 20:23:56,110 - INFO - PnL Net: 0.0089 | Scaled: 0.0120 | Turnover: 16.82% | Vol Scale: 1.35
+2026-02-19 20:23:56,110 - INFO - 
+============================================================
+2026-02-19 20:23:56,110 - INFO - Running paper trading for 2025-08-22
+2026-02-19 20:23:56,110 - INFO - ============================================================
+2026-02-19 20:23:56,111 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,112 - INFO - Vol targeting: rolling_vol=0.0605, scale=1.3221
+2026-02-19 20:23:56,112 - INFO - PnL Net: -0.0044 | Scaled: -0.0058 | Turnover: 15.55% | Vol Scale: 1.32
+2026-02-19 20:23:56,112 - INFO - 
+============================================================
+2026-02-19 20:23:56,112 - INFO - Running paper trading for 2025-08-25
+2026-02-19 20:23:56,112 - INFO - ============================================================
+2026-02-19 20:23:56,112 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,112 - INFO - Vol targeting: rolling_vol=0.0596, scale=1.3428
+2026-02-19 20:23:56,112 - INFO - PnL Net: 0.0005 | Scaled: 0.0007 | Turnover: 15.86% | Vol Scale: 1.34
+2026-02-19 20:23:56,112 - INFO - 
+============================================================
+2026-02-19 20:23:56,112 - INFO - Running paper trading for 2025-08-26
+2026-02-19 20:23:56,114 - INFO - ============================================================
+2026-02-19 20:23:56,114 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,114 - INFO - Vol targeting: rolling_vol=0.0583, scale=1.3725
+2026-02-19 20:23:56,114 - INFO - PnL Net: 0.0005 | Scaled: 0.0007 | Turnover: 17.06% | Vol Scale: 1.37
+2026-02-19 20:23:56,114 - INFO - 
+============================================================
+2026-02-19 20:23:56,114 - INFO - Running paper trading for 2025-08-27
+2026-02-19 20:23:56,114 - INFO - ============================================================
+2026-02-19 20:23:56,116 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,116 - INFO - Vol targeting: rolling_vol=0.0555, scale=1.4411
+2026-02-19 20:23:56,116 - INFO - PnL Net: -0.0002 | Scaled: -0.0002 | Turnover: 17.80% | Vol Scale: 1.44
+2026-02-19 20:23:56,116 - INFO - 
+============================================================
+2026-02-19 20:23:56,116 - INFO - Running paper trading for 2025-08-28
+2026-02-19 20:23:56,116 - INFO - ============================================================
+2026-02-19 20:23:56,118 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,118 - INFO - Vol targeting: rolling_vol=0.0530, scale=1.5091
+2026-02-19 20:23:56,118 - INFO - PnL Net: 0.0003 | Scaled: 0.0004 | Turnover: 19.25% | Vol Scale: 1.51
+2026-02-19 20:23:56,118 - INFO - 
+============================================================
+2026-02-19 20:23:56,118 - INFO - Running paper trading for 2025-08-29
+2026-02-19 20:23:56,118 - INFO - ============================================================
+2026-02-19 20:23:56,118 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,120 - INFO - Vol targeting: rolling_vol=0.0539, scale=1.4841
+2026-02-19 20:23:56,120 - INFO - PnL Net: -0.0017 | Scaled: -0.0026 | Turnover: 15.06% | Vol Scale: 1.48
+2026-02-19 20:23:56,120 - INFO - 
+============================================================
+2026-02-19 20:23:56,120 - INFO - Running paper trading for 2025-09-02
+2026-02-19 20:23:56,120 - INFO - ============================================================
+2026-02-19 20:23:56,120 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,122 - INFO - Vol targeting: rolling_vol=0.0542, scale=1.4760
+2026-02-19 20:23:56,122 - INFO - PnL Net: -0.0021 | Scaled: -0.0031 | Turnover: 18.16% | Vol Scale: 1.48
+2026-02-19 20:23:56,122 - INFO - 
+============================================================
+2026-02-19 20:23:56,122 - INFO - Running paper trading for 2025-09-03
+2026-02-19 20:23:56,122 - INFO - ============================================================
+2026-02-19 20:23:56,122 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,122 - INFO - Vol targeting: rolling_vol=0.0537, scale=1.4886
+2026-02-19 20:23:56,122 - INFO - PnL Net: 0.0013 | Scaled: 0.0020 | Turnover: 17.78% | Vol Scale: 1.49
+2026-02-19 20:23:56,124 - INFO - 
+============================================================
+2026-02-19 20:23:56,124 - INFO - Running paper trading for 2025-09-04
+2026-02-19 20:23:56,124 - INFO - ============================================================
+2026-02-19 20:23:56,124 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,124 - INFO - Vol targeting: rolling_vol=0.0534, scale=1.4994
+2026-02-19 20:23:56,124 - INFO - PnL Net: 0.0012 | Scaled: 0.0019 | Turnover: 17.33% | Vol Scale: 1.50
+2026-02-19 20:23:56,124 - INFO - 
+============================================================
+2026-02-19 20:23:56,124 - INFO - Running paper trading for 2025-09-05
+2026-02-19 20:23:56,124 - INFO - ============================================================
+2026-02-19 20:23:56,126 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,126 - INFO - Vol targeting: rolling_vol=0.0539, scale=1.4842
+2026-02-19 20:23:56,126 - INFO - PnL Net: -0.0013 | Scaled: -0.0019 | Turnover: 20.00% | Vol Scale: 1.48
+2026-02-19 20:23:56,126 - INFO - 
+============================================================
+2026-02-19 20:23:56,126 - INFO - Running paper trading for 2025-09-08
+2026-02-19 20:23:56,126 - INFO - ============================================================
+2026-02-19 20:23:56,128 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,128 - INFO - Vol targeting: rolling_vol=0.0535, scale=1.4949
+2026-02-19 20:23:56,128 - INFO - PnL Net: -0.0003 | Scaled: -0.0004 | Turnover: 16.66% | Vol Scale: 1.49
+2026-02-19 20:23:56,128 - INFO - 
+============================================================
+2026-02-19 20:23:56,128 - INFO - Running paper trading for 2025-09-09
+2026-02-19 20:23:56,128 - INFO - ============================================================
+2026-02-19 20:23:56,128 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,130 - INFO - Vol targeting: rolling_vol=0.0534, scale=1.4986
+2026-02-19 20:23:56,130 - INFO - PnL Net: -0.0044 | Scaled: -0.0065 | Turnover: 17.19% | Vol Scale: 1.50
+2026-02-19 20:23:56,130 - INFO - 
+============================================================
+2026-02-19 20:23:56,130 - INFO - Running paper trading for 2025-09-10
+2026-02-19 20:23:56,130 - INFO - ============================================================
+2026-02-19 20:23:56,130 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,130 - INFO - Vol targeting: rolling_vol=0.0448, scale=1.7844
+2026-02-19 20:23:56,130 - INFO - PnL Net: 0.0040 | Scaled: 0.0072 | Turnover: 16.96% | Vol Scale: 1.78
+2026-02-19 20:23:56,130 - INFO - 
+============================================================
+2026-02-19 20:23:56,132 - INFO - Running paper trading for 2025-09-11
+2026-02-19 20:23:56,132 - INFO - ============================================================
+2026-02-19 20:23:56,132 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,132 - INFO - Vol targeting: rolling_vol=0.0472, scale=1.6944
+2026-02-19 20:23:56,132 - INFO - PnL Net: -0.0041 | Scaled: -0.0070 | Turnover: 17.39% | Vol Scale: 1.69
+2026-02-19 20:23:56,132 - INFO - 
+============================================================
+2026-02-19 20:23:56,132 - INFO - Running paper trading for 2025-09-12
+2026-02-19 20:23:56,132 - INFO - ============================================================
+2026-02-19 20:23:56,134 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,134 - INFO - Vol targeting: rolling_vol=0.0475, scale=1.6830
+2026-02-19 20:23:56,134 - INFO - PnL Net: -0.0021 | Scaled: -0.0035 | Turnover: 15.81% | Vol Scale: 1.68
+2026-02-19 20:23:56,134 - INFO - 
+============================================================
+2026-02-19 20:23:56,134 - INFO - Running paper trading for 2025-09-15
+2026-02-19 20:23:56,134 - INFO - ============================================================
+2026-02-19 20:23:56,136 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,136 - INFO - Vol targeting: rolling_vol=0.0477, scale=1.6773
+2026-02-19 20:23:56,136 - INFO - PnL Net: 0.0010 | Scaled: 0.0016 | Turnover: 18.17% | Vol Scale: 1.68
+2026-02-19 20:23:56,136 - INFO - 
+============================================================
+2026-02-19 20:23:56,136 - INFO - Running paper trading for 2025-09-16
+2026-02-19 20:23:56,136 - INFO - ============================================================
+2026-02-19 20:23:56,138 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,138 - INFO - Vol targeting: rolling_vol=0.0469, scale=1.7072
+2026-02-19 20:23:56,138 - INFO - PnL Net: 0.0006 | Scaled: 0.0011 | Turnover: 16.81% | Vol Scale: 1.71
+2026-02-19 20:23:56,138 - INFO - 
+============================================================
+2026-02-19 20:23:56,138 - INFO - Running paper trading for 2025-09-17
+2026-02-19 20:23:56,138 - INFO - ============================================================
+2026-02-19 20:23:56,138 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,140 - INFO - Vol targeting: rolling_vol=0.0483, scale=1.6553
+2026-02-19 20:23:56,140 - INFO - PnL Net: 0.0037 | Scaled: 0.0061 | Turnover: 15.39% | Vol Scale: 1.66
+2026-02-19 20:23:56,140 - INFO - 
+============================================================
+2026-02-19 20:23:56,140 - INFO - Running paper trading for 2025-09-18
+2026-02-19 20:23:56,140 - INFO - ============================================================
+2026-02-19 20:23:56,140 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,140 - INFO - Vol targeting: rolling_vol=0.0490, scale=1.6323
+2026-02-19 20:23:56,140 - INFO - PnL Net: -0.0028 | Scaled: -0.0045 | Turnover: 13.88% | Vol Scale: 1.63
+2026-02-19 20:23:56,140 - INFO - 
+============================================================
+2026-02-19 20:23:56,140 - INFO - Running paper trading for 2025-09-19
+2026-02-19 20:23:56,140 - INFO - ============================================================
+2026-02-19 20:23:56,142 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,143 - INFO - Vol targeting: rolling_vol=0.0368, scale=2.0000
+2026-02-19 20:23:56,144 - INFO - PnL Net: -0.0018 | Scaled: -0.0037 | Turnover: 14.15% | Vol Scale: 2.00
+2026-02-19 20:23:56,144 - INFO - 
+============================================================
+2026-02-19 20:23:56,144 - INFO - Running paper trading for 2025-09-22
+2026-02-19 20:23:56,144 - INFO - ============================================================
+2026-02-19 20:23:56,144 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,144 - INFO - Vol targeting: rolling_vol=0.0347, scale=2.0000
+2026-02-19 20:23:56,144 - INFO - PnL Net: -0.0022 | Scaled: -0.0044 | Turnover: 12.25% | Vol Scale: 2.00
+2026-02-19 20:23:56,144 - INFO - 
+============================================================
+2026-02-19 20:23:56,144 - INFO - Running paper trading for 2025-09-23
+2026-02-19 20:23:56,144 - INFO - ============================================================
+2026-02-19 20:23:56,146 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,146 - INFO - Vol targeting: rolling_vol=0.0347, scale=2.0000
+2026-02-19 20:23:56,146 - INFO - PnL Net: 0.0006 | Scaled: 0.0012 | Turnover: 11.55% | Vol Scale: 2.00
+2026-02-19 20:23:56,146 - INFO - 
+============================================================
+2026-02-19 20:23:56,146 - INFO - Running paper trading for 2025-09-24
+2026-02-19 20:23:56,146 - INFO - ============================================================
+2026-02-19 20:23:56,148 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,148 - INFO - Vol targeting: rolling_vol=0.0370, scale=2.0000
+2026-02-19 20:23:56,148 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.2339 < 0
+2026-02-19 20:23:56,148 - INFO - PnL Net: -0.0044 | Scaled: -0.0087 | Turnover: 10.82% | Vol Scale: 2.00
+2026-02-19 20:23:56,148 - INFO - 
+============================================================
+2026-02-19 20:23:56,148 - INFO - Running paper trading for 2025-09-25
+2026-02-19 20:23:56,148 - INFO - ============================================================
+2026-02-19 20:23:56,150 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,150 - INFO - Vol targeting: rolling_vol=0.0394, scale=2.0000
+2026-02-19 20:23:56,150 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.0747 < 0
+2026-02-19 20:23:56,150 - INFO - PnL Net: 0.0031 | Scaled: 0.0063 | Turnover: 11.32% | Vol Scale: 2.00
+2026-02-19 20:23:56,150 - INFO - 
+============================================================
+2026-02-19 20:23:56,150 - INFO - Running paper trading for 2025-09-26
+2026-02-19 20:23:56,150 - INFO - ============================================================
+2026-02-19 20:23:56,150 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,152 - INFO - Vol targeting: rolling_vol=0.0396, scale=2.0000
+2026-02-19 20:23:56,152 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.1133 < 0
+2026-02-19 20:23:56,152 - INFO - PnL Net: 0.0009 | Scaled: 0.0019 | Turnover: 10.79% | Vol Scale: 2.00
+2026-02-19 20:23:56,152 - INFO - 
+============================================================
+2026-02-19 20:23:56,152 - INFO - Running paper trading for 2025-09-29
+2026-02-19 20:23:56,152 - INFO - ============================================================
+2026-02-19 20:23:56,152 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,152 - INFO - Vol targeting: rolling_vol=0.0395, scale=2.0000
+2026-02-19 20:23:56,152 - INFO - PnL Net: 0.0006 | Scaled: 0.0013 | Turnover: 18.78% | Vol Scale: 2.00
+2026-02-19 20:23:56,152 - INFO - 
+============================================================
+2026-02-19 20:23:56,152 - INFO - Running paper trading for 2025-09-30
+2026-02-19 20:23:56,152 - INFO - ============================================================
+2026-02-19 20:23:56,154 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,154 - INFO - Vol targeting: rolling_vol=0.0394, scale=2.0000
+2026-02-19 20:23:56,154 - INFO - PnL Net: 0.0013 | Scaled: 0.0026 | Turnover: 16.32% | Vol Scale: 2.00
+2026-02-19 20:23:56,154 - INFO - 
+============================================================
+2026-02-19 20:23:56,154 - INFO - Running paper trading for 2025-10-01
+2026-02-19 20:23:56,154 - INFO - ============================================================
+2026-02-19 20:23:56,156 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,156 - INFO - Vol targeting: rolling_vol=0.0406, scale=1.9724
+2026-02-19 20:23:56,156 - INFO - PnL Net: 0.0029 | Scaled: 0.0057 | Turnover: 13.62% | Vol Scale: 1.97
+2026-02-19 20:23:56,156 - INFO - 
+============================================================
+2026-02-19 20:23:56,156 - INFO - Running paper trading for 2025-10-02
+2026-02-19 20:23:56,156 - INFO - ============================================================
+2026-02-19 20:23:56,158 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,158 - INFO - Vol targeting: rolling_vol=0.0415, scale=1.9257
+2026-02-19 20:23:56,158 - INFO - PnL Net: 0.0028 | Scaled: 0.0053 | Turnover: 12.21% | Vol Scale: 1.93
+2026-02-19 20:23:56,158 - INFO - 
+============================================================
+2026-02-19 20:23:56,158 - INFO - Running paper trading for 2025-10-03
+2026-02-19 20:23:56,159 - INFO - ============================================================
+2026-02-19 20:23:56,160 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,160 - INFO - Vol targeting: rolling_vol=0.0436, scale=1.8365
+2026-02-19 20:23:56,160 - INFO - PnL Net: 0.0040 | Scaled: 0.0073 | Turnover: 10.49% | Vol Scale: 1.84
+2026-02-19 20:23:56,160 - INFO - 
+============================================================
+2026-02-19 20:23:56,160 - INFO - Running paper trading for 2025-10-06
+2026-02-19 20:23:56,161 - INFO - ============================================================
+2026-02-19 20:23:56,162 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,162 - INFO - Vol targeting: rolling_vol=0.0440, scale=1.8163
+2026-02-19 20:23:56,162 - INFO - PnL Net: -0.0017 | Scaled: -0.0032 | Turnover: 8.91% | Vol Scale: 1.82
+2026-02-19 20:23:56,162 - INFO - 
+============================================================
+2026-02-19 20:23:56,162 - INFO - Running paper trading for 2025-10-07
+2026-02-19 20:23:56,162 - INFO - ============================================================
+2026-02-19 20:23:56,163 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,163 - INFO - Vol targeting: rolling_vol=0.0418, scale=1.9150
+2026-02-19 20:23:56,163 - INFO - PnL Net: 0.0027 | Scaled: 0.0053 | Turnover: 7.62% | Vol Scale: 1.91
+2026-02-19 20:23:56,163 - INFO - 
+============================================================
+2026-02-19 20:23:56,163 - INFO - Running paper trading for 2025-10-08
+2026-02-19 20:23:56,163 - INFO - ============================================================
+2026-02-19 20:23:56,165 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,166 - INFO - Vol targeting: rolling_vol=0.0400, scale=1.9984
+2026-02-19 20:23:56,166 - INFO - PnL Net: -0.0012 | Scaled: -0.0024 | Turnover: 6.47% | Vol Scale: 2.00
+2026-02-19 20:23:56,166 - INFO - 
+============================================================
+2026-02-19 20:23:56,166 - INFO - Running paper trading for 2025-10-09
+2026-02-19 20:23:56,166 - INFO - ============================================================
+2026-02-19 20:23:56,167 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,167 - INFO - Vol targeting: rolling_vol=0.0499, scale=1.6037
+2026-02-19 20:23:56,167 - INFO - PnL Net: -0.0093 | Scaled: -0.0149 | Turnover: 6.11% | Vol Scale: 1.60
+2026-02-19 20:23:56,167 - INFO - 
+============================================================
+2026-02-19 20:23:56,167 - INFO - Running paper trading for 2025-10-10
+2026-02-19 20:23:56,167 - INFO - ============================================================
+2026-02-19 20:23:56,168 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,168 - INFO - Vol targeting: rolling_vol=0.0501, scale=1.5958
+2026-02-19 20:23:56,168 - INFO - PnL Net: 0.0026 | Scaled: 0.0041 | Turnover: 16.58% | Vol Scale: 1.60
+2026-02-19 20:23:56,168 - INFO - 
+============================================================
+2026-02-19 20:23:56,168 - INFO - Running paper trading for 2025-10-13
+2026-02-19 20:23:56,168 - INFO - ============================================================
+2026-02-19 20:23:56,170 - INFO - Portfolio construction: 38 longs, 36 shorts (from 38 candidates)
+2026-02-19 20:23:56,170 - INFO - Vol targeting: rolling_vol=0.0500, scale=1.5985
+2026-02-19 20:23:56,170 - INFO - PnL Net: 0.0001 | Scaled: 0.0001 | Turnover: 21.87% | Vol Scale: 1.60
+2026-02-19 20:23:56,170 - INFO - 
+============================================================
+2026-02-19 20:23:56,170 - INFO - Running paper trading for 2025-10-14
+2026-02-19 20:23:56,170 - INFO - ============================================================
+2026-02-19 20:23:56,171 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,172 - INFO - Vol targeting: rolling_vol=0.0503, scale=1.5894
+2026-02-19 20:23:56,172 - INFO - PnL Net: 0.0017 | Scaled: 0.0028 | Turnover: 19.87% | Vol Scale: 1.59
+2026-02-19 20:23:56,172 - INFO - 
+============================================================
+2026-02-19 20:23:56,172 - INFO - Running paper trading for 2025-10-15
+2026-02-19 20:23:56,172 - INFO - ============================================================
+2026-02-19 20:23:56,173 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,173 - INFO - Vol targeting: rolling_vol=0.0506, scale=1.5825
+2026-02-19 20:23:56,173 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.2138 < 0
+2026-02-19 20:23:56,173 - INFO - PnL Net: -0.0039 | Scaled: -0.0062 | Turnover: 19.76% | Vol Scale: 1.58
+2026-02-19 20:23:56,173 - INFO - 
+============================================================
+2026-02-19 20:23:56,173 - INFO - Running paper trading for 2025-10-16
+2026-02-19 20:23:56,173 - INFO - ============================================================
+2026-02-19 20:23:56,175 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,176 - INFO - Vol targeting: rolling_vol=0.0497, scale=1.6093
+2026-02-19 20:23:56,176 - INFO - PnL Net: 0.0004 | Scaled: 0.0006 | Turnover: 19.81% | Vol Scale: 1.61
+2026-02-19 20:23:56,176 - INFO - 
+============================================================
+2026-02-19 20:23:56,176 - INFO - Running paper trading for 2025-10-17
+2026-02-19 20:23:56,176 - INFO - ============================================================
+2026-02-19 20:23:56,177 - INFO - Portfolio construction: 38 longs, 2 shorts (from 38 candidates)
+2026-02-19 20:23:56,177 - INFO - Vol targeting: rolling_vol=0.0522, scale=1.5325
+2026-02-19 20:23:56,177 - INFO - PnL Net: 0.0050 | Scaled: 0.0077 | Turnover: 21.18% | Vol Scale: 1.53
+2026-02-19 20:23:56,177 - INFO - 
+============================================================
+2026-02-19 20:23:56,177 - INFO - Running paper trading for 2025-10-20
+2026-02-19 20:23:56,177 - INFO - ============================================================
+2026-02-19 20:23:56,178 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,179 - INFO - Vol targeting: rolling_vol=0.0521, scale=1.5369
+2026-02-19 20:23:56,179 - INFO - PnL Net: 0.0028 | Scaled: 0.0043 | Turnover: 19.97% | Vol Scale: 1.54
+2026-02-19 20:23:56,179 - INFO - 
+============================================================
+2026-02-19 20:23:56,179 - INFO - Running paper trading for 2025-10-21
+2026-02-19 20:23:56,179 - INFO - ============================================================
+2026-02-19 20:23:56,180 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,180 - INFO - Vol targeting: rolling_vol=0.0528, scale=1.5154
+2026-02-19 20:23:56,180 - INFO - PnL Net: -0.0020 | Scaled: -0.0030 | Turnover: 17.75% | Vol Scale: 1.52
+2026-02-19 20:23:56,180 - INFO - 
+============================================================
+2026-02-19 20:23:56,180 - INFO - Running paper trading for 2025-10-22
+2026-02-19 20:23:56,180 - INFO - ============================================================
+2026-02-19 20:23:56,181 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,182 - INFO - Vol targeting: rolling_vol=0.0516, scale=1.5499
+2026-02-19 20:23:56,182 - INFO - PnL Net: 0.0046 | Scaled: 0.0071 | Turnover: 16.55% | Vol Scale: 1.55
+2026-02-19 20:23:56,182 - INFO - 
+============================================================
+2026-02-19 20:23:56,182 - INFO - Running paper trading for 2025-10-23
+2026-02-19 20:23:56,182 - INFO - ============================================================
+2026-02-19 20:23:56,183 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,184 - INFO - Vol targeting: rolling_vol=0.0510, scale=1.5701
+2026-02-19 20:23:56,184 - INFO - PnL Net: 0.0010 | Scaled: 0.0015 | Turnover: 18.04% | Vol Scale: 1.57
+2026-02-19 20:23:56,184 - INFO - 
+============================================================
+2026-02-19 20:23:56,184 - INFO - Running paper trading for 2025-10-24
+2026-02-19 20:23:56,184 - INFO - ============================================================
+2026-02-19 20:23:56,185 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,185 - INFO - Vol targeting: rolling_vol=0.0511, scale=1.5665
+2026-02-19 20:23:56,185 - INFO - PnL Net: 0.0018 | Scaled: 0.0028 | Turnover: 20.07% | Vol Scale: 1.57
+2026-02-19 20:23:56,186 - INFO - 
+============================================================
+2026-02-19 20:23:56,186 - INFO - Running paper trading for 2025-10-27
+2026-02-19 20:23:56,186 - INFO - ============================================================
+2026-02-19 20:23:56,186 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,186 - INFO - Vol targeting: rolling_vol=0.0513, scale=1.5609
+2026-02-19 20:23:56,187 - INFO - PnL Net: -0.0005 | Scaled: -0.0007 | Turnover: 20.20% | Vol Scale: 1.56
+2026-02-19 20:23:56,187 - INFO - 
+============================================================
+2026-02-19 20:23:56,187 - INFO - Running paper trading for 2025-10-28
+2026-02-19 20:23:56,187 - INFO - ============================================================
+2026-02-19 20:23:56,188 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,188 - INFO - Vol targeting: rolling_vol=0.0516, scale=1.5503
+2026-02-19 20:23:56,188 - INFO - PnL Net: -0.0011 | Scaled: -0.0017 | Turnover: 17.57% | Vol Scale: 1.55
+2026-02-19 20:23:56,189 - INFO - 
+============================================================
+2026-02-19 20:23:56,189 - INFO - Running paper trading for 2025-10-29
+2026-02-19 20:23:56,189 - INFO - ============================================================
+2026-02-19 20:23:56,189 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,189 - INFO - Vol targeting: rolling_vol=0.0533, scale=1.4997
+2026-02-19 20:23:56,189 - INFO - PnL Net: -0.0041 | Scaled: -0.0061 | Turnover: 16.24% | Vol Scale: 1.50
+2026-02-19 20:23:56,189 - INFO - 
+============================================================
+2026-02-19 20:23:56,189 - INFO - Running paper trading for 2025-10-30
+2026-02-19 20:23:56,189 - INFO - ============================================================
+2026-02-19 20:23:56,192 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,192 - INFO - Vol targeting: rolling_vol=0.0529, scale=1.5111
+2026-02-19 20:23:56,192 - INFO - PnL Net: 0.0019 | Scaled: 0.0029 | Turnover: 17.83% | Vol Scale: 1.51
+2026-02-19 20:23:56,193 - INFO - 
+============================================================
+2026-02-19 20:23:56,193 - INFO - Running paper trading for 2025-10-31
+2026-02-19 20:23:56,193 - INFO - ============================================================
+2026-02-19 20:23:56,194 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,194 - INFO - Vol targeting: rolling_vol=0.0514, scale=1.5577
+2026-02-19 20:23:56,194 - INFO - PnL Net: -0.0012 | Scaled: -0.0019 | Turnover: 17.75% | Vol Scale: 1.56
+2026-02-19 20:23:56,194 - INFO - 
+============================================================
+2026-02-19 20:23:56,194 - INFO - Running paper trading for 2025-11-03
+2026-02-19 20:23:56,194 - INFO - ============================================================
+2026-02-19 20:23:56,194 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,196 - INFO - Vol targeting: rolling_vol=0.0532, scale=1.5032
+2026-02-19 20:23:56,196 - INFO - PnL Net: -0.0044 | Scaled: -0.0065 | Turnover: 18.48% | Vol Scale: 1.50
+2026-02-19 20:23:56,196 - INFO - 
+============================================================
+2026-02-19 20:23:56,196 - INFO - Running paper trading for 2025-11-04
+2026-02-19 20:23:56,196 - INFO - ============================================================
+2026-02-19 20:23:56,196 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,196 - INFO - Vol targeting: rolling_vol=0.0532, scale=1.5046
+2026-02-19 20:23:56,196 - INFO - PnL Net: 0.0027 | Scaled: 0.0040 | Turnover: 18.50% | Vol Scale: 1.50
+2026-02-19 20:23:56,198 - INFO - 
+============================================================
+2026-02-19 20:23:56,198 - INFO - Running paper trading for 2025-11-05
+2026-02-19 20:23:56,198 - INFO - ============================================================
+2026-02-19 20:23:56,198 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,198 - INFO - Vol targeting: rolling_vol=0.0556, scale=1.4381
+2026-02-19 20:23:56,198 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.0205 < 0
+2026-02-19 20:23:56,198 - INFO - PnL Net: -0.0050 | Scaled: -0.0071 | Turnover: 18.91% | Vol Scale: 1.44
+2026-02-19 20:23:56,198 - INFO - 
+============================================================
+2026-02-19 20:23:56,198 - INFO - Running paper trading for 2025-11-06
+2026-02-19 20:23:56,198 - INFO - ============================================================
+2026-02-19 20:23:56,200 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,200 - INFO - Vol targeting: rolling_vol=0.0450, scale=1.7759
+2026-02-19 20:23:56,200 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.0011 < 0
+2026-02-19 20:23:56,200 - INFO - PnL Net: 0.0004 | Scaled: 0.0007 | Turnover: 19.27% | Vol Scale: 1.78
+2026-02-19 20:23:56,200 - INFO - 
+============================================================
+2026-02-19 20:23:56,200 - INFO - Running paper trading for 2025-11-07
+2026-02-19 20:23:56,200 - INFO - ============================================================
+2026-02-19 20:23:56,202 - WARNING - No negative predictions for shorts - skipping short positions
+2026-02-19 20:23:56,202 - INFO - Portfolio construction: 38 longs, 0 shorts (from 38 candidates)
+2026-02-19 20:23:56,202 - INFO - Vol targeting: rolling_vol=0.0446, scale=1.7921
+2026-02-19 20:23:56,202 - INFO - PnL Net: 0.0019 | Scaled: 0.0034 | Turnover: 13.18% | Vol Scale: 1.79
+2026-02-19 20:23:56,202 - INFO - 
+============================================================
+2026-02-19 20:23:56,202 - INFO - Running paper trading for 2025-11-10
+2026-02-19 20:23:56,202 - INFO - ============================================================
+2026-02-19 20:23:56,204 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,204 - INFO - Vol targeting: rolling_vol=0.0454, scale=1.7634
+2026-02-19 20:23:56,204 - INFO - PnL Net: 0.0024 | Scaled: 0.0043 | Turnover: 18.16% | Vol Scale: 1.76
+2026-02-19 20:23:56,204 - INFO - 
+============================================================
+2026-02-19 20:23:56,204 - INFO - Running paper trading for 2025-11-11
+2026-02-19 20:23:56,204 - INFO - ============================================================
+2026-02-19 20:23:56,205 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,206 - INFO - Vol targeting: rolling_vol=0.0464, scale=1.7224
+2026-02-19 20:23:56,206 - INFO - PnL Net: 0.0034 | Scaled: 0.0059 | Turnover: 16.31% | Vol Scale: 1.72
+2026-02-19 20:23:56,207 - INFO - 
+============================================================
+2026-02-19 20:23:56,207 - INFO - Running paper trading for 2025-11-12
+2026-02-19 20:23:56,207 - INFO - ============================================================
+2026-02-19 20:23:56,207 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,207 - INFO - Vol targeting: rolling_vol=0.0448, scale=1.7861
+2026-02-19 20:23:56,207 - INFO - PnL Net: -0.0022 | Scaled: -0.0039 | Turnover: 15.82% | Vol Scale: 1.79
+2026-02-19 20:23:56,207 - INFO - 
+============================================================
+2026-02-19 20:23:56,207 - INFO - Running paper trading for 2025-11-13
+2026-02-19 20:23:56,207 - INFO - ============================================================
+2026-02-19 20:23:56,209 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,209 - INFO - Vol targeting: rolling_vol=0.0464, scale=1.7238
+2026-02-19 20:23:56,209 - INFO - PnL Net: -0.0031 | Scaled: -0.0054 | Turnover: 17.53% | Vol Scale: 1.72
+2026-02-19 20:23:56,209 - INFO - 
+============================================================
+2026-02-19 20:23:56,209 - INFO - Running paper trading for 2025-11-14
+2026-02-19 20:23:56,209 - INFO - ============================================================
+2026-02-19 20:23:56,211 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,211 - INFO - Vol targeting: rolling_vol=0.0494, scale=1.6195
+2026-02-19 20:23:56,211 - WARNING - KS3 TRIGGERED: 60-day Sharpe -1.2139 < 0
+2026-02-19 20:23:56,211 - INFO - PnL Net: -0.0071 | Scaled: -0.0114 | Turnover: 18.41% | Vol Scale: 1.62
+2026-02-19 20:23:56,211 - INFO - 
+============================================================
+2026-02-19 20:23:56,211 - INFO - Running paper trading for 2025-11-17
+2026-02-19 20:23:56,211 - INFO - ============================================================
+2026-02-19 20:23:56,213 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,213 - INFO - Vol targeting: rolling_vol=0.0481, scale=1.6647
+2026-02-19 20:23:56,213 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.9382 < 0
+2026-02-19 20:23:56,213 - INFO - PnL Net: -0.0011 | Scaled: -0.0018 | Turnover: 18.60% | Vol Scale: 1.66
+2026-02-19 20:23:56,213 - INFO - 
+============================================================
+2026-02-19 20:23:56,213 - INFO - Running paper trading for 2025-11-18
+2026-02-19 20:23:56,213 - INFO - ============================================================
+2026-02-19 20:23:56,213 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,215 - INFO - Vol targeting: rolling_vol=0.0478, scale=1.6738
+2026-02-19 20:23:56,215 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.9945 < 0
+2026-02-19 20:23:56,215 - INFO - PnL Net: -0.0001 | Scaled: -0.0002 | Turnover: 17.82% | Vol Scale: 1.67
+2026-02-19 20:23:56,215 - INFO - 
+============================================================
+2026-02-19 20:23:56,215 - INFO - Running paper trading for 2025-11-19
+2026-02-19 20:23:56,215 - INFO - ============================================================
+2026-02-19 20:23:56,215 - INFO - Portfolio construction: 38 longs, 10 shorts (from 38 candidates)
+2026-02-19 20:23:56,216 - INFO - Vol targeting: rolling_vol=0.0464, scale=1.7231
+2026-02-19 20:23:56,216 - WARNING - KS3 TRIGGERED: 60-day Sharpe -1.4547 < 0
+2026-02-19 20:23:56,216 - INFO - PnL Net: -0.0049 | Scaled: -0.0085 | Turnover: 20.34% | Vol Scale: 1.72
+2026-02-19 20:23:56,216 - INFO - 
+============================================================
+2026-02-19 20:23:56,216 - INFO - Running paper trading for 2025-11-20
+2026-02-19 20:23:56,216 - INFO - ============================================================
+2026-02-19 20:23:56,216 - INFO - Portfolio construction: 38 longs, 4 shorts (from 38 candidates)
+2026-02-19 20:23:56,216 - INFO - Vol targeting: rolling_vol=0.0537, scale=1.4897
+2026-02-19 20:23:56,218 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.7805 < 0
+2026-02-19 20:23:56,218 - INFO - PnL Net: 0.0070 | Scaled: 0.0104 | Turnover: 18.63% | Vol Scale: 1.49
+2026-02-19 20:23:56,218 - INFO - 
+============================================================
+2026-02-19 20:23:56,218 - INFO - Running paper trading for 2025-11-21
+2026-02-19 20:23:56,218 - INFO - ============================================================
+2026-02-19 20:23:56,218 - WARNING - No negative predictions for shorts - skipping short positions
+2026-02-19 20:23:56,218 - INFO - Portfolio construction: 38 longs, 0 shorts (from 38 candidates)
+2026-02-19 20:23:56,218 - INFO - Vol targeting: rolling_vol=0.0544, scale=1.4711
+2026-02-19 20:23:56,218 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.5647 < 0
+2026-02-19 20:23:56,220 - INFO - PnL Net: 0.0028 | Scaled: 0.0041 | Turnover: 14.74% | Vol Scale: 1.47
+2026-02-19 20:23:56,220 - INFO - 
+============================================================
+2026-02-19 20:23:56,220 - INFO - Running paper trading for 2025-11-24
+2026-02-19 20:23:56,220 - INFO - ============================================================
+2026-02-19 20:23:56,221 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,222 - INFO - Vol targeting: rolling_vol=0.0569, scale=1.4057
+2026-02-19 20:23:56,222 - WARNING - KS3 TRIGGERED: 60-day Sharpe -0.0606 < 0
+2026-02-19 20:23:56,222 - INFO - PnL Net: 0.0042 | Scaled: 0.0060 | Turnover: 18.63% | Vol Scale: 1.41
+2026-02-19 20:23:56,223 - INFO - 
+============================================================
+2026-02-19 20:23:56,223 - INFO - Running paper trading for 2025-11-25
+2026-02-19 20:23:56,223 - INFO - ============================================================
+2026-02-19 20:23:56,223 - INFO - Portfolio construction: 38 longs, 29 shorts (from 38 candidates)
+2026-02-19 20:23:56,223 - INFO - Vol targeting: rolling_vol=0.0582, scale=1.3744
+2026-02-19 20:23:56,223 - INFO - PnL Net: 0.0033 | Scaled: 0.0045 | Turnover: 16.83% | Vol Scale: 1.37
+2026-02-19 20:23:56,223 - INFO - 
+============================================================
+2026-02-19 20:23:56,223 - INFO - Running paper trading for 2025-11-26
+2026-02-19 20:23:56,223 - INFO - ============================================================
+2026-02-19 20:23:56,225 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,225 - INFO - Vol targeting: rolling_vol=0.0572, scale=1.3978
+2026-02-19 20:23:56,225 - INFO - PnL Net: 0.0028 | Scaled: 0.0039 | Turnover: 19.67% | Vol Scale: 1.40
+2026-02-19 20:23:56,225 - INFO - 
+============================================================
+2026-02-19 20:23:56,225 - INFO - Running paper trading for 2025-11-28
+2026-02-19 20:23:56,225 - INFO - ============================================================
+2026-02-19 20:23:56,227 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,227 - INFO - Vol targeting: rolling_vol=0.0570, scale=1.4044
+2026-02-19 20:23:56,227 - INFO - PnL Net: -0.0008 | Scaled: -0.0011 | Turnover: 18.71% | Vol Scale: 1.40
+2026-02-19 20:23:56,228 - INFO - 
+============================================================
+2026-02-19 20:23:56,228 - INFO - Running paper trading for 2025-12-01
+2026-02-19 20:23:56,228 - INFO - ============================================================
+2026-02-19 20:23:56,228 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,228 - INFO - Vol targeting: rolling_vol=0.0577, scale=1.3855
+2026-02-19 20:23:56,228 - INFO - PnL Net: 0.0032 | Scaled: 0.0044 | Turnover: 17.87% | Vol Scale: 1.39
+2026-02-19 20:23:56,228 - INFO - 
+============================================================
+2026-02-19 20:23:56,228 - INFO - Running paper trading for 2025-12-02
+2026-02-19 20:23:56,228 - INFO - ============================================================
+2026-02-19 20:23:56,230 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,230 - INFO - Vol targeting: rolling_vol=0.0579, scale=1.3813
+2026-02-19 20:23:56,230 - INFO - PnL Net: 0.0056 | Scaled: 0.0077 | Turnover: 20.20% | Vol Scale: 1.38
+2026-02-19 20:23:56,230 - INFO - 
+============================================================
+2026-02-19 20:23:56,230 - INFO - Running paper trading for 2025-12-03
+2026-02-19 20:23:56,230 - INFO - ============================================================
+2026-02-19 20:23:56,232 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,232 - INFO - Vol targeting: rolling_vol=0.0576, scale=1.3891
+2026-02-19 20:23:56,232 - INFO - PnL Net: -0.0002 | Scaled: -0.0003 | Turnover: 19.11% | Vol Scale: 1.39
+2026-02-19 20:23:56,232 - INFO - 
+============================================================
+2026-02-19 20:23:56,232 - INFO - Running paper trading for 2025-12-04
+2026-02-19 20:23:56,232 - INFO - ============================================================
+2026-02-19 20:23:56,234 - INFO - Portfolio construction: 38 longs, 3 shorts (from 38 candidates)
+2026-02-19 20:23:56,234 - INFO - Vol targeting: rolling_vol=0.0539, scale=1.4845
+2026-02-19 20:23:56,234 - INFO - PnL Net: 0.0005 | Scaled: 0.0008 | Turnover: 19.09% | Vol Scale: 1.48
+2026-02-19 20:23:56,234 - INFO - 
+============================================================
+2026-02-19 20:23:56,234 - INFO - Running paper trading for 2025-12-05
+2026-02-19 20:23:56,234 - INFO - ============================================================
+2026-02-19 20:23:56,234 - INFO - Portfolio construction: 38 longs, 2 shorts (from 38 candidates)
+2026-02-19 20:23:56,236 - INFO - Vol targeting: rolling_vol=0.0571, scale=1.4018
+2026-02-19 20:23:56,236 - INFO - PnL Net: -0.0045 | Scaled: -0.0063 | Turnover: 19.14% | Vol Scale: 1.40
+2026-02-19 20:23:56,236 - INFO - 
+============================================================
+2026-02-19 20:23:56,236 - INFO - Running paper trading for 2025-12-08
+2026-02-19 20:23:56,236 - INFO - ============================================================
+2026-02-19 20:23:56,237 - WARNING - No negative predictions for shorts - skipping short positions
+2026-02-19 20:23:56,238 - INFO - Portfolio construction: 38 longs, 0 shorts (from 38 candidates)
+2026-02-19 20:23:56,238 - INFO - Vol targeting: rolling_vol=0.0570, scale=1.4030
+2026-02-19 20:23:56,238 - INFO - PnL Net: -0.0005 | Scaled: -0.0008 | Turnover: 15.68% | Vol Scale: 1.40
+2026-02-19 20:23:56,238 - INFO - 
+============================================================
+2026-02-19 20:23:56,238 - INFO - Running paper trading for 2025-12-09
+2026-02-19 20:23:56,238 - INFO - ============================================================
+2026-02-19 20:23:56,240 - INFO - Portfolio construction: 38 longs, 2 shorts (from 38 candidates)
+2026-02-19 20:23:56,240 - INFO - Vol targeting: rolling_vol=0.0607, scale=1.3183
+2026-02-19 20:23:56,240 - INFO - PnL Net: 0.0068 | Scaled: 0.0089 | Turnover: 18.84% | Vol Scale: 1.32
+2026-02-19 20:23:56,240 - INFO - 
+============================================================
+2026-02-19 20:23:56,240 - INFO - Running paper trading for 2025-12-10
+2026-02-19 20:23:56,240 - INFO - ============================================================
+2026-02-19 20:23:56,242 - WARNING - No negative predictions for shorts - skipping short positions
+2026-02-19 20:23:56,242 - INFO - Portfolio construction: 38 longs, 0 shorts (from 38 candidates)
+2026-02-19 20:23:56,242 - INFO - Vol targeting: rolling_vol=0.0675, scale=1.1847
+2026-02-19 20:23:56,242 - INFO - PnL Net: 0.0096 | Scaled: 0.0114 | Turnover: 13.56% | Vol Scale: 1.18
+2026-02-19 20:23:56,242 - INFO - 
+============================================================
+2026-02-19 20:23:56,242 - INFO - Running paper trading for 2025-12-11
+2026-02-19 20:23:56,242 - INFO - ============================================================
+2026-02-19 20:23:56,242 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,244 - INFO - Vol targeting: rolling_vol=0.0665, scale=1.2031
+2026-02-19 20:23:56,244 - INFO - PnL Net: 0.0011 | Scaled: 0.0013 | Turnover: 17.58% | Vol Scale: 1.20
+2026-02-19 20:23:56,244 - INFO - 
+============================================================
+2026-02-19 20:23:56,244 - INFO - Running paper trading for 2025-12-12
+2026-02-19 20:23:56,244 - INFO - ============================================================
+2026-02-19 20:23:56,244 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,244 - INFO - Vol targeting: rolling_vol=0.0646, scale=1.2379
+2026-02-19 20:23:56,244 - INFO - PnL Net: 0.0020 | Scaled: 0.0025 | Turnover: 20.65% | Vol Scale: 1.24
+2026-02-19 20:23:56,244 - INFO - 
+============================================================
+2026-02-19 20:23:56,244 - INFO - Running paper trading for 2025-12-15
+2026-02-19 20:23:56,244 - INFO - ============================================================
+2026-02-19 20:23:56,246 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,247 - INFO - Vol targeting: rolling_vol=0.0592, scale=1.3522
+2026-02-19 20:23:56,247 - INFO - PnL Net: -0.0030 | Scaled: -0.0041 | Turnover: 19.78% | Vol Scale: 1.35
+2026-02-19 20:23:56,247 - INFO - 
+============================================================
+2026-02-19 20:23:56,247 - INFO - Running paper trading for 2025-12-16
+2026-02-19 20:23:56,247 - INFO - ============================================================
+2026-02-19 20:23:56,247 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,247 - INFO - Vol targeting: rolling_vol=0.0591, scale=1.3527
+2026-02-19 20:23:56,247 - INFO - PnL Net: -0.0011 | Scaled: -0.0014 | Turnover: 18.63% | Vol Scale: 1.35
+2026-02-19 20:23:56,247 - INFO - 
+============================================================
+2026-02-19 20:23:56,247 - INFO - Running paper trading for 2025-12-17
+2026-02-19 20:23:56,247 - INFO - ============================================================
+2026-02-19 20:23:56,249 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,249 - INFO - Vol targeting: rolling_vol=0.0590, scale=1.3570
+2026-02-19 20:23:56,249 - INFO - PnL Net: 0.0005 | Scaled: 0.0007 | Turnover: 18.11% | Vol Scale: 1.36
+2026-02-19 20:23:56,249 - INFO - 
+============================================================
+2026-02-19 20:23:56,249 - INFO - Running paper trading for 2025-12-18
+2026-02-19 20:23:56,249 - INFO - ============================================================
+2026-02-19 20:23:56,251 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,251 - INFO - Vol targeting: rolling_vol=0.0538, scale=1.4865
+2026-02-19 20:23:56,251 - INFO - PnL Net: 0.0014 | Scaled: 0.0021 | Turnover: 15.89% | Vol Scale: 1.49
+2026-02-19 20:23:56,251 - INFO - 
+============================================================
+2026-02-19 20:23:56,251 - INFO - Running paper trading for 2025-12-19
+2026-02-19 20:23:56,251 - INFO - ============================================================
+2026-02-19 20:23:56,253 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,253 - INFO - Vol targeting: rolling_vol=0.0508, scale=1.5738
+2026-02-19 20:23:56,253 - INFO - PnL Net: 0.0029 | Scaled: 0.0046 | Turnover: 15.26% | Vol Scale: 1.57
+2026-02-19 20:23:56,253 - INFO - 
+============================================================
+2026-02-19 20:23:56,253 - INFO - Running paper trading for 2025-12-22
+2026-02-19 20:23:56,253 - INFO - ============================================================
+2026-02-19 20:23:56,254 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,254 - INFO - Vol targeting: rolling_vol=0.0516, scale=1.5517
+2026-02-19 20:23:56,255 - INFO - PnL Net: -0.0009 | Scaled: -0.0014 | Turnover: 16.20% | Vol Scale: 1.55
+2026-02-19 20:23:56,255 - INFO - 
+============================================================
+2026-02-19 20:23:56,255 - INFO - Running paper trading for 2025-12-23
+2026-02-19 20:23:56,255 - INFO - ============================================================
+2026-02-19 20:23:56,256 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,256 - INFO - Vol targeting: rolling_vol=0.0507, scale=1.5785
+2026-02-19 20:23:56,256 - INFO - PnL Net: 0.0014 | Scaled: 0.0022 | Turnover: 18.49% | Vol Scale: 1.58
+2026-02-19 20:23:56,257 - INFO - 
+============================================================
+2026-02-19 20:23:56,257 - INFO - Running paper trading for 2025-12-24
+2026-02-19 20:23:56,257 - INFO - ============================================================
+2026-02-19 20:23:56,258 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,259 - INFO - Vol targeting: rolling_vol=0.0504, scale=1.5889
+2026-02-19 20:23:56,259 - INFO - PnL Net: 0.0005 | Scaled: 0.0008 | Turnover: 17.12% | Vol Scale: 1.59
+2026-02-19 20:23:56,259 - INFO - 
+============================================================
+2026-02-19 20:23:56,259 - INFO - Running paper trading for 2025-12-26
+2026-02-19 20:23:56,259 - INFO - ============================================================
+2026-02-19 20:23:56,260 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,260 - INFO - Vol targeting: rolling_vol=0.0515, scale=1.5540
+2026-02-19 20:23:56,260 - INFO - PnL Net: -0.0022 | Scaled: -0.0034 | Turnover: 16.78% | Vol Scale: 1.55
+2026-02-19 20:23:56,260 - INFO - 
+============================================================
+2026-02-19 20:23:56,260 - INFO - Running paper trading for 2025-12-29
+2026-02-19 20:23:56,260 - INFO - ============================================================
+2026-02-19 20:23:56,261 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,262 - INFO - Vol targeting: rolling_vol=0.0514, scale=1.5572
+2026-02-19 20:23:56,262 - INFO - PnL Net: -0.0006 | Scaled: -0.0009 | Turnover: 15.33% | Vol Scale: 1.56
+2026-02-19 20:23:56,262 - INFO - 
+============================================================
+2026-02-19 20:23:56,262 - INFO - Running paper trading for 2026-02-06
+2026-02-19 20:23:56,262 - INFO - ============================================================
+2026-02-19 20:23:56,263 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,263 - INFO - Vol targeting: rolling_vol=0.0513, scale=1.5602
+2026-02-19 20:23:56,263 - INFO - PnL Net: -0.0009 | Scaled: -0.0014 | Turnover: 21.13% | Vol Scale: 1.56
+2026-02-19 20:23:56,263 - INFO - 
+============================================================
+2026-02-19 20:23:56,263 - INFO - Running paper trading for 2026-02-09
+2026-02-19 20:23:56,263 - INFO - ============================================================
+2026-02-19 20:23:56,264 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,265 - INFO - Vol targeting: rolling_vol=0.0485, scale=1.6506
+2026-02-19 20:23:56,265 - INFO - PnL Net: -0.0001 | Scaled: -0.0001 | Turnover: 18.54% | Vol Scale: 1.65
+2026-02-19 20:23:56,265 - INFO - 
+============================================================
+2026-02-19 20:23:56,265 - INFO - Running paper trading for 2026-02-10
+2026-02-19 20:23:56,265 - INFO - ============================================================
+2026-02-19 20:23:56,266 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,266 - INFO - Vol targeting: rolling_vol=0.0499, scale=1.6041
+2026-02-19 20:23:56,267 - INFO - PnL Net: -0.0028 | Scaled: -0.0046 | Turnover: 16.32% | Vol Scale: 1.60
+2026-02-19 20:23:56,267 - INFO - 
+============================================================
+2026-02-19 20:23:56,267 - INFO - Running paper trading for 2026-02-11
+2026-02-19 20:23:56,267 - INFO - ============================================================
+2026-02-19 20:23:56,268 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,268 - INFO - Vol targeting: rolling_vol=0.0607, scale=1.3188
+2026-02-19 20:23:56,268 - INFO - PnL Net: -0.0095 | Scaled: -0.0125 | Turnover: 14.16% | Vol Scale: 1.32
+2026-02-19 20:23:56,268 - INFO - 
+============================================================
+2026-02-19 20:23:56,268 - INFO - Running paper trading for 2026-02-12
+2026-02-19 20:23:56,268 - INFO - ============================================================
+2026-02-19 20:23:56,269 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,269 - INFO - Vol targeting: rolling_vol=0.0586, scale=1.3654
+2026-02-19 20:23:56,269 - INFO - PnL Net: 0.0017 | Scaled: 0.0023 | Turnover: 12.15% | Vol Scale: 1.37
+2026-02-19 20:23:56,270 - INFO - 
+============================================================
+2026-02-19 20:23:56,270 - INFO - Running paper trading for 2026-02-13
+2026-02-19 20:23:56,270 - INFO - ============================================================
+2026-02-19 20:23:56,271 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,271 - INFO - Vol targeting: rolling_vol=0.0585, scale=1.3673
+2026-02-19 20:23:56,271 - INFO - PnL Net: 0.0003 | Scaled: 0.0004 | Turnover: 11.94% | Vol Scale: 1.37
+2026-02-19 20:23:56,271 - INFO - 
+============================================================
+2026-02-19 20:23:56,271 - INFO - Running paper trading for 2026-02-17
+2026-02-19 20:23:56,272 - INFO - ============================================================
+2026-02-19 20:23:56,273 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,273 - INFO - Vol targeting: rolling_vol=0.0546, scale=1.4648
+2026-02-19 20:23:56,273 - INFO - PnL Net: 0.0030 | Scaled: 0.0043 | Turnover: 10.47% | Vol Scale: 1.46
+2026-02-19 20:23:56,273 - INFO - 
+============================================================
+2026-02-19 20:23:56,273 - INFO - Running paper trading for 2026-02-18
+2026-02-19 20:23:56,273 - INFO - ============================================================
+2026-02-19 20:23:56,274 - INFO - Portfolio construction: 38 longs, 38 shorts (from 38 candidates)
+2026-02-19 20:23:56,275 - INFO - Vol targeting: rolling_vol=0.0432, scale=1.8498
+2026-02-19 20:23:56,275 - INFO - PnL Net: -0.0028 | Scaled: -0.0051 | Turnover: 8.78% | Vol Scale: 1.85
+2026-02-19 20:23:56,279 - INFO - Saved daily results to C:\Users\luixj\AI\stock-data\data\processed\phase4\phase4_paper_trading_daily.parquet
+2026-02-19 20:23:56,279 - INFO - Saved summary to C:\Users\luixj\AI\stock-data\data\processed\phase4\phase4_paper_trading_summary.json
+2026-02-19 20:23:56,279 - INFO - 
+============================================================
+2026-02-19 20:23:56,279 - INFO - PAPER TRADING SUMMARY
+2026-02-19 20:23:56,279 - INFO - ============================================================
+2026-02-19 20:23:56,279 - INFO - Trading Days: 196
+2026-02-19 20:23:56,280 - INFO - 
+RAW PERFORMANCE (no vol targeting):
+2026-02-19 20:23:56,280 - INFO -   Sharpe Ratio: 1.07
+2026-02-19 20:23:56,280 - INFO -   Annual Return: 7.74%
+2026-02-19 20:23:56,280 - INFO -   Volatility: 7.21%
+2026-02-19 20:23:56,280 - INFO - 
+VOL-TARGETED PERFORMANCE:
+2026-02-19 20:23:56,280 - INFO -   Sharpe Ratio: 0.93
+2026-02-19 20:23:56,280 - INFO -   Annual Return: 8.27%
+2026-02-19 20:23:56,280 - INFO -   Volatility: 8.87%
+2026-02-19 20:23:56,280 - INFO - 
+RISK METRICS:
+2026-02-19 20:23:56,280 - INFO -   Max Drawdown: -4.72%
+2026-02-19 20:23:56,280 - INFO -   Long Sharpe: 0.62
+2026-02-19 20:23:56,280 - INFO -   Short Sharpe: 0.57
+2026-02-19 20:23:56,280 - INFO - 
+EXECUTION:
+2026-02-19 20:23:56,280 - INFO -   Avg Turnover: 17.98%
+2026-02-19 20:23:56,280 - INFO -   Avg Cost: 0.4 bps
+2026-02-19 20:23:56,280 - INFO - 
+KILL SWITCHES:
+2026-02-19 20:23:56,280 - INFO -   Events: 15 (7.7% of days)
+2026-02-19 20:23:56,280 - INFO - ============================================================
+2026-02-19 20:23:56,280 - INFO - Simulation complete: 196 days | Sharpe(scaled)=0.93 | MaxDD=-4.72%
+2026-02-19 20:23:56,768 - INFO - ============================================================
+2026-02-19 20:23:56,768 - INFO - STEP 2: Syncing Qdrant collections
+2026-02-19 20:23:56,768 - INFO - ============================================================
+2026-02-19 20:23:57,148 - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,175 - INFO - HTTP Request: GET http://localhost:6333/collections/stock_recommendations "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,177 - INFO - Collection 'stock_recommendations' already exists — will clear it.
+2026-02-19 20:23:57,179 - INFO - HTTP Request: GET http://localhost:6333/collections/trading_results "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,179 - INFO - Collection 'trading_results' already exists — will clear it.
+2026-02-19 20:23:57,181 - INFO - HTTP Request: GET http://localhost:6333/collections/performance_metrics "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,181 - INFO - Collection 'performance_metrics' already exists — will clear it.
+2026-02-19 20:23:57,183 - INFO - HTTP Request: GET http://localhost:6333/collections/daily_trade_strategies "HTTP/1.1 404 Not Found"
+2026-02-19 20:23:57,225 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,226 - INFO - Created collection 'daily_trade_strategies'.
+2026-02-19 20:23:57,242 - INFO - HTTP Request: POST http://localhost:6333/collections/stock_recommendations/points/delete?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,245 - INFO - Cleared all points from 'stock_recommendations'.
+2026-02-19 20:23:57,247 - INFO - HTTP Request: POST http://localhost:6333/collections/trading_results/points/delete?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,248 - INFO - Cleared all points from 'trading_results'.
+2026-02-19 20:23:57,251 - INFO - HTTP Request: POST http://localhost:6333/collections/performance_metrics/points/delete?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,251 - INFO - Cleared all points from 'performance_metrics'.
+2026-02-19 20:23:57,253 - INFO - HTTP Request: POST http://localhost:6333/collections/daily_trade_strategies/points/delete?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,255 - INFO - Cleared all points from 'daily_trade_strategies'.
+2026-02-19 20:23:57,261 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,287 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,291 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,317 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,343 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,346 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,354 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,379 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,383 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,391 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,418 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,424 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,432 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,457 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,463 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,469 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,492 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,497 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,503 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,537 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,541 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,548 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,572 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,576 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,581 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,605 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,608 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,614 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,639 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,643 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,661 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,686 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,690 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,697 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,721 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,725 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,731 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,756 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,760 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,766 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,789 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,815 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,823 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,847 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,851 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,856 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,881 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,884 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,892 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,916 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,918 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,926 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,953 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,971 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:57,979 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,004 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,008 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,015 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,039 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,043 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,052 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,079 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,082 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,090 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,114 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,121 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,128 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,152 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,157 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,162 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,187 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,192 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,199 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,220 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,237 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,245 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,269 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,273 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,302 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,326 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,329 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,336 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,361 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,366 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,382 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,442 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,447 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,458 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,491 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,495 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,501 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,527 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,529 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,537 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,563 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,567 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,575 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,617 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,623 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,648 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,692 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,696 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,702 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,728 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,730 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,738 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,765 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,769 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,777 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,802 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,807 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,815 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,840 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,843 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,850 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,874 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,879 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,910 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,935 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,940 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,947 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,987 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,991 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:58,999 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,024 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,028 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,051 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,097 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,101 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,108 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,132 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,136 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,160 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,185 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,191 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,197 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,239 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,243 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,249 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,273 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,277 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,284 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,308 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,312 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,316 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,342 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,345 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,352 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,377 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,394 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,400 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,425 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,429 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,440 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,488 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,492 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,498 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,524 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,528 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,533 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,560 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,567 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,574 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,599 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,603 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,609 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,636 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,640 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,645 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,671 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,675 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,681 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,706 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,723 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,730 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,755 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,757 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,765 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,790 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,794 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,800 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,828 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,830 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,837 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,865 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,869 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,875 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,902 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,906 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,916 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,940 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,944 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,950 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,976 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,980 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:23:59,986 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,017 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,024 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,051 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,099 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,103 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,129 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,153 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,159 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,164 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,191 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,194 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,200 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,225 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,228 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,234 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,262 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,264 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,283 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,309 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,313 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,332 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,357 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,361 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,369 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,396 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,399 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,405 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,429 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,433 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,440 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,490 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,494 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,500 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,525 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,529 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,537 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,562 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,565 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,572 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,599 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,602 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,615 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,659 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,663 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,690 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,738 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,742 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,749 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,785 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,788 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,816 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,844 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,846 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,853 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,879 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,884 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,890 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,915 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,917 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,925 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,952 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,971 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:00,981 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,009 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,014 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,034 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,082 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,086 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,114 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,160 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,164 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,171 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,195 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,199 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,205 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,229 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,233 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,240 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,265 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,268 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,273 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,301 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,310 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,341 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,388 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,392 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,401 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,425 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,448 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,481 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,508 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,518 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,525 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,551 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,553 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,561 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,587 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,591 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,599 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,624 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,627 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,634 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,660 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,664 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,693 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,717 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,722 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,729 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,756 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,758 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,787 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,831 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,835 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,840 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,878 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,892 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,899 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,925 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,939 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,948 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,974 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,978 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:01,984 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,018 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,022 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,029 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,067 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,081 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,089 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,115 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,123 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,132 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,159 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,164 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,170 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,209 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,213 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,220 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,247 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,251 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,258 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,283 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,287 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,293 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,322 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,324 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,332 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,358 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,362 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,368 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,393 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,397 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,407 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,435 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,439 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,445 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,477 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,481 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,490 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,536 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,540 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,547 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,572 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,575 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,582 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,608 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,612 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,618 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,644 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,647 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,677 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,721 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,725 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,731 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,769 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,773 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,799 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,824 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,830 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,839 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,872 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,875 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,895 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,942 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,946 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,955 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,983 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,987 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:02,994 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,034 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,041 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,048 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,078 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,096 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,129 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,175 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,180 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,186 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,214 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,217 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,224 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,248 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,252 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,270 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,298 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,304 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,311 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,339 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,342 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,364 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,390 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,393 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,400 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,427 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,431 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,439 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,465 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,467 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,478 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,504 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,509 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,515 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,540 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,544 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,552 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,582 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,587 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,595 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,645 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,648 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,676 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,702 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,706 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,712 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,755 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,759 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,767 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,794 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,796 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,823 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,870 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,874 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,880 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,908 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,911 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,917 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,943 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,947 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:03,955 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,005 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,009 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,017 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,042 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,046 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,051 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,078 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,081 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,088 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,113 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,116 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,125 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,150 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,154 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,161 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,184 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,188 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,208 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,235 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,240 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,247 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,272 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,276 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,283 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,309 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,313 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,319 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,343 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,347 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,353 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,379 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,384 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,390 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,417 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,421 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,431 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,460 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,463 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,469 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,494 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,498 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,522 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,546 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,551 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,556 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,580 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,590 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,599 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,625 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,627 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,634 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,660 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,662 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,692 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,719 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,725 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,738 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,788 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,815 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,848 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,874 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,893 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,901 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,943 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,947 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,974 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:04,999 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,003 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,010 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,050 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,054 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,082 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,129 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,144 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,148 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,191 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,195 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,200 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,238 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,240 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,248 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,271 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,275 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,282 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,307 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,310 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,317 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,343 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,347 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,364 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,388 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,392 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,399 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,423 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,429 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,435 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,462 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,464 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,472 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,498 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,519 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,526 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,551 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,556 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,582 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,629 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,633 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,641 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,666 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,671 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,679 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,704 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,708 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,714 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,741 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,752 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,760 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,786 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,790 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,796 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,823 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,848 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,861 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,894 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,898 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,904 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,930 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,932 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,941 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,967 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,971 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:05,978 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,005 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,009 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,035 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,059 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,063 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,070 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,096 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,117 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,124 - INFO - HTTP Request: PUT http://localhost:6333/collections/stock_recommendations/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,150 - INFO - HTTP Request: PUT http://localhost:6333/collections/daily_trade_strategies/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,152 - INFO - HTTP Request: PUT http://localhost:6333/collections/trading_results/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,152 - INFO - Uploaded 13936 recommendation points.
+2026-02-19 20:24:06,154 - INFO - Uploaded 196 trading result points.
+2026-02-19 20:24:06,154 - INFO - Uploaded 196 strategy points.
+2026-02-19 20:24:06,156 - INFO - HTTP Request: PUT http://localhost:6333/collections/performance_metrics/points?wait=true "HTTP/1.1 200 OK"
+2026-02-19 20:24:06,156 - INFO - Uploaded performance metrics snapshot.
+2026-02-19 20:24:06,158 - INFO - Progress updated: 196 days completed | last historical date: 2026-02-18
+2026-02-19 20:24:06,158 - INFO - ============================================================
+2026-02-19 20:24:06,158 - INFO - ALL DONE — paper trading extended to 2026-02-18
+2026-02-19 20:24:06,158 - INFO - Output files:
+2026-02-19 20:24:06,158 - INFO -   Predictions : data\processed\phase4\predictions_combined.parquet
+2026-02-19 20:24:06,158 - INFO -   Daily       : C:\Users\luixj\AI\stock-data\data\processed\phase4\phase4_paper_trading_daily.parquet
+2026-02-19 20:24:06,158 - INFO -   Summary     : C:\Users\luixj\AI\stock-data\data\processed\phase4\phase4_paper_trading_summary.json
+2026-02-19 20:24:06,158 - INFO -   Progress    : C:\Users\luixj\AI\stock-data\data\processed\phase4\paper_trading_progress.json
+2026-02-19 20:24:06,158 - INFO - ============================================================

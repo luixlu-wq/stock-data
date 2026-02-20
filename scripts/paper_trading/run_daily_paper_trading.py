@@ -9,6 +9,9 @@ Usage:
 
     # Manual: Specify which historical date to use
     python scripts/paper_trading/run_daily_paper_trading.py --historical-date 2025-04-01
+
+    # Optional: Skip per-day strategy upsert into Qdrant
+    python scripts/paper_trading/run_daily_paper_trading.py --skip-qdrant-strategy
 """
 
 import argparse
@@ -22,6 +25,10 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from scripts.paper_trading.phase4_paper_trading_runner import PaperTradingRunner
+from scripts.paper_trading.strategy_planner import (
+    build_trade_strategy_payload,
+    strategy_payload_to_vector,
+)
 
 # Mapping: Your calendar date → Historical date
 # This allows you to "replay" historical data as if it's happening in real-time
@@ -29,6 +36,8 @@ HISTORICAL_START_DATE = "2025-04-01"
 YOUR_START_DATE = "2026-01-19"
 PHASE1_PREDICTIONS = Path("data/processed/phase1_predictions.parquet")
 COMBINED_PREDICTIONS = Path("data/processed/phase4/predictions_combined.parquet")
+QDRANT_URL = "http://localhost:6333"
+COLLECTION_STRATEGIES = "daily_trade_strategies"
 
 
 def resolve_predictions_path(cli_path: str | None) -> Path:
@@ -151,6 +160,55 @@ def update_progress(progress_file: Path, historical_date: str, calendar_date: st
         json.dump(progress, f, indent=2)
 
 
+def upsert_daily_strategy(historical_date: str, predictions_path: Path):
+    """
+    Save operation strategy for one date into Qdrant.
+    Non-fatal: errors are logged and do not fail daily execution.
+    """
+    try:
+        from qdrant_client import QdrantClient
+        from qdrant_client.models import Distance, PointStruct, VectorParams
+    except Exception as e:
+        print(f"WARNING: Qdrant client not available; skipping strategy save ({e})")
+        return
+
+    try:
+        pred_df = pd.read_parquet(
+            predictions_path,
+            columns=["date", "ticker", "y_pred_reg", "y_true_reg", "close"],
+        )
+        strategy_payload = build_trade_strategy_payload(historical_date, pred_df)
+        if not strategy_payload:
+            print(f"WARNING: No strategy payload generated for {historical_date}")
+            return
+
+        strategy_payload["calendar_date"] = datetime.now().strftime("%Y-%m-%d")
+        strategy_payload["saved_at"] = datetime.now().isoformat()
+
+        client = QdrantClient(url=QDRANT_URL)
+        try:
+            client.get_collection(COLLECTION_STRATEGIES)
+        except Exception:
+            client.create_collection(
+                collection_name=COLLECTION_STRATEGIES,
+                vectors_config=VectorParams(size=8, distance=Distance.COSINE),
+            )
+
+        date_int = int(historical_date.replace("-", ""))
+        point_id = date_int * 10_000 + 8_888
+        client.upsert(
+            collection_name=COLLECTION_STRATEGIES,
+            points=[PointStruct(
+                id=point_id,
+                vector=strategy_payload_to_vector(strategy_payload),
+                payload=strategy_payload,
+            )],
+        )
+        print(f"Saved daily strategy to Qdrant: {historical_date}")
+    except Exception as e:
+        print(f"WARNING: Failed to save strategy to Qdrant for {historical_date}: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(description='Daily Paper Trading Runner')
     parser.add_argument('--historical-date', type=str, default=None,
@@ -161,6 +219,8 @@ def main():
     parser.add_argument('--output-dir', type=str,
                        default='data/processed/phase4',
                        help='Output directory')
+    parser.add_argument('--skip-qdrant-strategy', action='store_true',
+                       help='Skip saving operation strategy into Qdrant')
 
     args = parser.parse_args()
 
@@ -251,6 +311,9 @@ def main():
 
         # Update progress
         update_progress(progress_file, historical_date, calendar_date)
+
+        if not args.skip_qdrant_strategy:
+            upsert_daily_strategy(historical_date, predictions_path)
 
         # Load and display cumulative stats
         try:

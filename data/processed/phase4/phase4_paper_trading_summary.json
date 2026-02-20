@@ -1,16 +1,16 @@
 {
   "num_days": 196,
-  "sharpe_raw": 1.0743792182190264,
-  "annual_return_raw": 0.07744467884089261,
-  "vol_raw": 0.07208318769351374,
-  "sharpe_scaled": 0.9320360499581881,
-  "annual_return_scaled": 0.08265921618733146,
+  "sharpe_raw": 1.0743792182190275,
+  "annual_return_raw": 0.07744467884089268,
+  "vol_raw": 0.07208318769351373,
+  "sharpe_scaled": 0.932036049958189,
+  "annual_return_scaled": 0.08265921618733155,
   "vol_scaled": 0.08868671570272377,
   "max_dd": -0.047176940184565946,
   "avg_turnover": 0.17979490435870707,
   "avg_cost_bps": 0.44948726089676777,
   "long_sharpe": 0.615443311220684,
-  "short_sharpe": 0.5703144412575835,
+  "short_sharpe": 0.5703144412575833,
   "ks_events": 15,
   "ks_pct": 7.653061224489796
 }
