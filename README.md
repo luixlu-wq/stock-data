@@ -591,7 +591,7 @@ python scripts/paper_trading/run_batch_extension.py --skip-qdrant
 
 ### Setup Windows Task Scheduler
 
-Automates daily paper trading at 4:15 PM with Qdrant database storage.
+Automates daily paper trading at 4:15 PM with Qdrant database storage, plus a logon catch-up trigger so missed runs can recover on the next sign-in.
 
 **Prerequisites**:
 ```bash
@@ -651,6 +651,12 @@ Get-ScheduledTaskInfo -TaskName "DailyPaperTrading"
 
 # Run manually
 Start-ScheduledTask -TaskName "DailyPaperTrading"
+```
+
+If `Get-ScheduledTaskInfo` shows missed runs, re-register the task with:
+
+```powershell
+.\scripts\automation\setup_daily_task.ps1
 ```
 
 ---

@@ -11,6 +11,7 @@ $TaskName = "DailyPaperTrading"
 $ScriptPath = Join-Path $PSScriptRoot "daily_paper_trading_qdrant.py"
 $VenvPython = Join-Path $PSScriptRoot "..\..\venv\Scripts\python.exe"
 $WorkingDir = Join-Path $PSScriptRoot "..\..\"
+$UserId = "$env:USERDOMAIN\$env:USERNAME"
 
 # Resolve paths
 $ScriptPath = Resolve-Path $ScriptPath
@@ -23,7 +24,7 @@ Write-Host "  Task Name: $TaskName"
 Write-Host "  Script: $ScriptPath"
 Write-Host "  Python: $VenvPython"
 Write-Host "  Working Dir: $WorkingDir"
-Write-Host "  Schedule: Daily at 4:15 PM EST"
+Write-Host "  Triggers: Daily at 4:15 PM + At logon catch-up"
 Write-Host ""
 
 # Check if running as Administrator
@@ -51,21 +52,27 @@ $Action = New-ScheduledTaskAction `
     -Argument "`"$ScriptPath`"" `
     -WorkingDirectory $WorkingDir
 
-# Create trigger (when to run) - Daily at 4:15 PM
-$Trigger = New-ScheduledTaskTrigger `
+# Create triggers
+$DailyTrigger = New-ScheduledTaskTrigger `
     -Daily `
     -At "4:15 PM"
+
+$LogonTrigger = New-ScheduledTaskTrigger `
+    -AtLogOn `
+    -User $UserId
 
 # Create settings
 $Settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
     -StartWhenAvailable `
-    -RunOnlyIfNetworkAvailable
+    -RunOnlyIfNetworkAvailable `
+    -WakeToRun `
+    -MultipleInstances IgnoreNew
 
 # Create principal (run with highest privileges)
 $Principal = New-ScheduledTaskPrincipal `
-    -UserId $env:USERNAME `
+    -UserId $UserId `
     -LogonType Interactive `
     -RunLevel Highest
 
@@ -74,10 +81,10 @@ try {
     Register-ScheduledTask `
         -TaskName $TaskName `
         -Action $Action `
-        -Trigger $Trigger `
+        -Trigger @($DailyTrigger, $LogonTrigger) `
         -Settings $Settings `
         -Principal $Principal `
-        -Description "Automated daily paper trading with Qdrant storage. Runs S2_FilterNegative strategy simulation and saves results to vector database." `
+        -Description "Automated daily paper trading with Qdrant storage. Daily 4:15 PM trigger plus logon catch-up trigger." `
         -Force
 
     Write-Host ""
@@ -87,7 +94,7 @@ try {
     Write-Host ""
     Write-Host "Task Details:" -ForegroundColor Cyan
     Write-Host "  Name: $TaskName"
-    Write-Host "  Schedule: Daily at 4:15 PM"
+    Write-Host "  Triggers: Daily at 4:15 PM and at logon"
     Write-Host "  Next Run: $($(Get-ScheduledTask -TaskName $TaskName).Triggers[0].StartBoundary)"
     Write-Host ""
     Write-Host "Useful Commands:" -ForegroundColor Cyan

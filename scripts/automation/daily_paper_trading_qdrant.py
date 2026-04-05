@@ -123,6 +123,96 @@ class QdrantPaperTrading:
             f"--sim-start {next_start} --sim-end auto"
         )
 
+    def get_predictions_status(self) -> Dict[str, str]:
+        """
+        Return current predictions coverage status.
+
+        Keys:
+            min_tradable, max_tradable, max_raw, is_stale, stale_cutoff
+        """
+        all_dates, tradable_dates = self.load_available_dates(self.predictions_path)
+        min_tradable = tradable_dates[0]
+        max_tradable = tradable_dates[-1]
+        max_raw = all_dates[-1]
+        stale_cutoff = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        is_stale = max_tradable < stale_cutoff
+        return {
+            'min_tradable': min_tradable,
+            'max_tradable': max_tradable,
+            'max_raw': max_raw,
+            'is_stale': 'true' if is_stale else 'false',
+            'stale_cutoff': stale_cutoff,
+        }
+
+    def refresh_predictions_if_stale(self) -> bool:
+        """
+        Refresh predictions using run_2026_paper_trading.py when tradable data is stale.
+
+        Returns True if a refresh command was executed (successfully), else False.
+        """
+        status = self.get_predictions_status()
+        if status['is_stale'] != 'true':
+            return False
+
+        max_tradable = status['max_tradable']
+        next_start = (pd.to_datetime(max_tradable) + timedelta(days=1)).strftime('%Y-%m-%d')
+        cmd = [
+            sys.executable,
+            "scripts/paper_trading/run_2026_paper_trading.py",
+            "--sim-start",
+            next_start,
+            "--sim-end",
+            "auto",
+        ]
+
+        logger.warning(
+            "Predictions are stale (max tradable %s, expected >= %s). Auto-refreshing...",
+            max_tradable,
+            status['stale_cutoff'],
+        )
+        logger.info("Refresh command: %s", " ".join(cmd))
+
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            logger.error("Prediction refresh failed (exit=%s)", result.returncode)
+            if result.stdout:
+                logger.error("Refresh stdout:\n%s", result.stdout[-4000:])
+            if result.stderr:
+                logger.error("Refresh stderr:\n%s", result.stderr[-4000:])
+            return False
+
+        logger.info("Prediction refresh completed successfully.")
+        if result.stdout:
+            logger.info("Refresh stdout tail:\n%s", result.stdout[-1000:])
+        return True
+
+    def log_no_data_diagnosis(self):
+        """
+        Emit a concise no-action diagnosis so operators can quickly tell why
+        the 4:15 PM scheduler run did not place trades.
+        """
+        progress_file = Path(self.output_dir) / "paper_trading_progress.json"
+        last_processed = None
+        if progress_file.exists():
+            try:
+                with open(progress_file, 'r') as f:
+                    progress = json.load(f)
+                last_processed = progress.get('last_historical_date')
+            except Exception:
+                last_processed = None
+
+        status = self.get_predictions_status()
+        stale_text = (
+            f"stale predictions (max tradable {status['max_tradable']} < {status['stale_cutoff']})"
+            if status['is_stale'] == 'true'
+            else "predictions not stale"
+        )
+        logger.info(
+            "Scheduler run completed with no trade: no tradable historical date after last_processed=%s (%s).",
+            last_processed or "N/A",
+            stale_text,
+        )
+
     def setup_qdrant_collections(self):
         """Create Qdrant collections if they don't exist."""
         logger.info("Setting up Qdrant collections...")
@@ -503,7 +593,13 @@ class QdrantPaperTrading:
             # Step 1: Get next historical date
             historical_date = self.get_next_historical_date()
             if historical_date is None:
+                refreshed = self.refresh_predictions_if_stale()
+                if refreshed:
+                    historical_date = self.get_next_historical_date()
+
+            if historical_date is None:
                 logger.info("No action taken today because there is no new historical date to process.")
+                self.log_no_data_diagnosis()
                 logger.info("="*60)
                 logger.info("DAILY AUTOMATION COMPLETE (NO NEW DATA)")
                 logger.info("="*60)

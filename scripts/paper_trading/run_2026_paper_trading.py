@@ -418,6 +418,36 @@ def generate_predictions(
     return pred_df
 
 
+def merge_2026_predictions(existing_df: pd.DataFrame | None, new_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Preserve previously generated 2026 predictions when an incremental refresh
+    produces only future non-tradable dates.
+    """
+    frames = []
+
+    if existing_df is not None and not existing_df.empty:
+        existing = existing_df.copy()
+        existing['date'] = pd.to_datetime(existing['date'], errors='coerce').dt.strftime('%Y-%m-%d')
+        frames.append(existing)
+
+    if new_df is not None and not new_df.empty:
+        incoming = new_df.copy()
+        incoming['date'] = pd.to_datetime(incoming['date'], errors='coerce').dt.strftime('%Y-%m-%d')
+        frames.append(incoming)
+
+    if not frames:
+        return pd.DataFrame(columns=['date', 'ticker', 'y_pred_reg', 'y_true_reg', 'close'])
+
+    merged = pd.concat(frames, ignore_index=True)
+    merged = (
+        merged
+        .sort_values(['date', 'ticker'])
+        .drop_duplicates(subset=['date', 'ticker'], keep='last')
+        .reset_index(drop=True)
+    )
+    return merged
+
+
 # =============================================================================
 # Step 5: Combine 2025 + 2026 predictions and run full simulation
 # =============================================================================
@@ -752,13 +782,38 @@ def main():
         model = load_model()
 
         # Step 4: Generate predictions
-        pred_2026_df = generate_predictions(features_df, model, args.sim_start, sim_end)
-        pred_2026_df['date'] = pd.to_datetime(pred_2026_df['date']).dt.strftime('%Y-%m-%d')
+        new_pred_2026_df = generate_predictions(features_df, model, args.sim_start, sim_end)
+
+        existing_pred_2026_df = None
+        if PRED_2026_PATH.exists():
+            try:
+                existing_pred_2026_df = pd.read_parquet(PRED_2026_PATH)
+                log.info(
+                    "Loaded existing 2026 predictions for merge: %d rows | %d dates",
+                    len(existing_pred_2026_df),
+                    existing_pred_2026_df['date'].nunique() if 'date' in existing_pred_2026_df.columns else 0,
+                )
+            except Exception as e:
+                log.warning("Could not read existing 2026 predictions for merge: %s", e)
+
+        pred_2026_df = merge_2026_predictions(existing_pred_2026_df, new_pred_2026_df)
+        if not pred_2026_df.empty:
+            pred_2026_df['date'] = pd.to_datetime(pred_2026_df['date']).dt.strftime('%Y-%m-%d')
 
         # Save 2026 predictions
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         pred_2026_df.to_parquet(PRED_2026_PATH, index=False)
-        log.info(f"Saved 2026 predictions: {PRED_2026_PATH}")
+        if pred_2026_df.empty:
+            log.warning("No tradable 2026 predictions available after merge; saved empty file.")
+        else:
+            log.info(
+                "Saved 2026 predictions: %s (%d rows | %d dates | %s -> %s)",
+                PRED_2026_PATH,
+                len(pred_2026_df),
+                pred_2026_df['date'].nunique(),
+                pred_2026_df['date'].min(),
+                pred_2026_df['date'].max(),
+            )
 
     # ── Step 5: Combine + simulate ────────────────────────────────────────────
     results_df, combined_pred_df = combine_and_simulate(pred_2026_df, sim_end)

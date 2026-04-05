@@ -1,0 +1,24 @@
+2026-02-20 16:15:07,177 - INFO - Starting automated daily paper trading...
+2026-02-20 16:15:08,288 - INFO - Docker Desktop is running, daemon is ready
+2026-02-20 16:15:08,297 - INFO - Qdrant is already running
+2026-02-20 16:15:08,856 - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2026-02-20 16:15:08,861 - INFO - Setting up Qdrant collections...
+2026-02-20 16:15:08,865 - INFO - HTTP Request: GET http://localhost:6333/collections/stock_recommendations "HTTP/1.1 200 OK"
+2026-02-20 16:15:08,866 - INFO - Collection 'stock_recommendations' already exists
+2026-02-20 16:15:08,869 - INFO - HTTP Request: GET http://localhost:6333/collections/trading_results "HTTP/1.1 200 OK"
+2026-02-20 16:15:08,869 - INFO - Collection 'trading_results' already exists
+2026-02-20 16:15:08,872 - INFO - HTTP Request: GET http://localhost:6333/collections/performance_metrics "HTTP/1.1 200 OK"
+2026-02-20 16:15:08,872 - INFO - Collection 'performance_metrics' already exists
+2026-02-20 16:15:08,873 - INFO - ============================================================
+2026-02-20 16:15:08,873 - INFO - AUTOMATED DAILY PAPER TRADING
+2026-02-20 16:15:08,873 - INFO - ============================================================
+2026-02-20 16:15:08,873 - INFO - Calendar Date: 2026-02-20
+2026-02-20 16:15:08,873 - INFO - Predictions source: data\processed\phase4\predictions_combined.parquet
+2026-02-20 16:15:09,051 - INFO - No new historical dates available. Last processed: 2026-02-18 | Tradable range: 2025-04-01 to 2026-02-18
+2026-02-20 16:15:09,051 - WARNING - Predictions look stale. Refresh with:
+2026-02-20 16:15:09,051 - WARNING -   python scripts/paper_trading/run_2026_paper_trading.py --sim-start 2026-02-19 --sim-end auto
+2026-02-20 16:15:09,051 - INFO - No action taken today because there is no new historical date to process.
+2026-02-20 16:15:09,051 - INFO - ============================================================
+2026-02-20 16:15:09,051 - INFO - DAILY AUTOMATION COMPLETE (NO NEW DATA)
+2026-02-20 16:15:09,051 - INFO - ============================================================
+2026-02-20 16:15:09,051 - INFO - Automation completed successfully!
